@@ -250,23 +250,16 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
       <div class="kicker" style="font-size:13px;margin:2px 0 10px">la base che tiene l'IA <span>coerente</span></div>
       <div class="lead">Qui vanno <b>tutte le immagini di riferimento</b> di Kiara: volto da più angolazioni e figura intera. Non si pubblicano — servono all'IA come model sheet per <b>bloccare l'identità</b> (volto, proporzioni, incarnato) prima di generare qualsiasi post. Scattate a <b>luce neutra, sfondo neutro, stesso outfit base</b>, così l'IA isola la persona e non l'atmosfera.</div>
 
-      <div class="ms-block">
-        <div class="ms-h">Volto · più angolazioni</div>
-        <div class="ms-faces">
-          <div class="t"><div class="ms-face">K</div><div class="ms-lab"><div class="a">Frontale</div><div class="f">ref-face-front</div></div></div>
-          <div class="t"><div class="ms-face">K</div><div class="ms-lab"><div class="a">3/4 sinistra</div><div class="f">ref-face-3q-l</div></div></div>
-          <div class="t"><div class="ms-face">K</div><div class="ms-lab"><div class="a">3/4 destra</div><div class="f">ref-face-3q-r</div></div></div>
-          <div class="t"><div class="ms-face">K</div><div class="ms-lab"><div class="a">Profilo</div><div class="f">ref-face-side</div></div></div>
-          <div class="t"><div class="ms-face" style="background:linear-gradient(150deg,var(--rosa),var(--pesca))">K</div><div class="ms-lab"><div class="a">Espressioni</div><div class="f">ref-face-expr</div></div></div>
+      <div style="display:flex;gap:16px;flex:1;align-items:flex-start">
+        <div style="flex:1">
+          <div class="ms-h">Volto · più angolazioni</div>
+          <img src="img/ref-face-sheet.png" alt="Kiara face sheet" style="width:100%;border-radius:10px;display:block;object-fit:cover">
+          <div class="ms-note" style="margin-top:8px"><b>ref-face-sheet.png</b> · 6 angolazioni · seed identità</div>
         </div>
-      </div>
-
-      <div class="ms-block">
-        <div class="ms-h">Full body · proporzioni</div>
-        <div class="ms-bodies">
-          <div class="t"><div class="ms-body">FIGURA INTERA</div><div class="ms-lab"><div class="a">Frontale</div><div class="f">ref-body-front</div></div></div>
-          <div class="t"><div class="ms-body">FIGURA INTERA</div><div class="ms-lab"><div class="a">Tre quarti</div><div class="f">ref-body-3q</div></div></div>
-          <div class="t"><div class="ms-body">FIGURA INTERA</div><div class="ms-lab"><div class="a">Di spalle</div><div class="f">ref-body-back</div></div></div>
+        <div style="flex:1">
+          <div class="ms-h">Full body · proporzioni</div>
+          <img src="img/ref-body-sheet.png" alt="Kiara body sheet" style="width:100%;border-radius:10px;display:block;object-fit:cover">
+          <div class="ms-note" style="margin-top:8px"><b>ref-body-sheet.png</b> · 6 pose · proporzioni e silhouette</div>
         </div>
       </div>
 
@@ -288,11 +281,7 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
         <div class="note"><b>Uso:</b> caricare in <code>img/</code> come <code>ref-body-*.jpg</code> prima di generare qualsiasi contenuto full-body.</div>
       </div>
       <div class="col-vis">
-        <div class="photo-ph" style="height:340px">
-          <div class="ph-icon">◻</div>
-          <div class="ph-label">Foto corpo</div>
-          <div class="ph-sub">inserire foto riferimento corpo di Kiara</div>
-        </div>
+        <img src="img/ref-body-sheet.png" alt="Kiara body rotations" style="width:100%;border-radius:16px;display:block;object-fit:cover">
       </div>
     </div>
   </section>
