@@ -174,6 +174,7 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
 .sw-lg i{width:48px;height:48px;border-radius:12px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.07)}
 .sw-lg .sw-label{font-size:9px;color:var(--tortora);margin-top:6px;text-align:center;font-weight:500}
 .sw-swatch{display:flex;flex-direction:column;align-items:center}
+.sw-hex{font-size:8px;color:var(--tortora);font-family:'Courier New',monospace;margin-top:2px;text-align:center;opacity:.65}
 
 /* ── REGISTA CARD ── */
 .regista-list{margin-top:20px;border-top:1px solid var(--champagne);max-width:680px}
@@ -183,6 +184,28 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
 .regista-quote{margin-top:20px;padding:18px 22px;background:var(--avorio);border-radius:12px;border-left:3px solid var(--corallo);max-width:680px}
 .regista-quote .rq-label{font-size:8px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--corallo);margin-bottom:8px}
 .regista-quote .rq-text{font-family:'Fraunces',serif;font-style:italic;font-size:15px;color:rgba(93,70,59,.35);line-height:1.45}
+/* ── ANTI-LISTA ── */
+.anti-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:20px}
+.anti-block{padding:16px 18px;border-radius:14px;background:var(--avorio);border:1px solid var(--champagne)}
+.anti-block .ab-label{font-size:8px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--corallo);margin-bottom:10px}
+.anti-item{display:flex;gap:10px;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--champagne);font-size:11.5px;color:var(--tortora);line-height:1.5}
+.anti-item:last-child{border-bottom:none;padding-bottom:0}
+.anti-item::before{content:"×";color:var(--corallo);font-weight:800;font-size:11px;flex-shrink:0}
+/* ── HASHTAG TABLE ── */
+.htag-table{width:100%;max-width:760px;margin-top:20px;border-top:1px solid var(--champagne);border-collapse:collapse}
+.htag-table td{padding:9px 0;border-bottom:1px solid var(--champagne);vertical-align:top;font-size:11.5px}
+.htag-table td:first-child{font-size:8px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--tortora);width:100px;padding-right:24px;font-family:'Manrope'}
+.htag-table td:last-child{font-family:'Courier New',monospace;color:var(--cacao);line-height:1.7}
+.htag-table em{color:var(--corallo);font-style:normal;font-weight:700}
+/* ── CALENDAR ── */
+.cal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}
+.cal-day{border-radius:14px;overflow:hidden;border:1px solid var(--champagne)}
+.cal-day-head{padding:9px 14px;font-size:8px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;background:var(--champagne);color:var(--cacao)}
+.cal-day-body{padding:14px;background:var(--avorio)}
+.cal-fmt{font-family:'Fraunces',serif;font-weight:500;font-size:15px;color:var(--cacao);margin-bottom:3px}
+.cal-role{font-size:9px;color:var(--corallo);font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+.cal-note{font-size:10.5px;color:var(--tortora);line-height:1.55}
+.cal-opt{opacity:.4;font-style:italic}
 
 /* ── FEATURED ── */
 .feat{display:flex;flex-direction:column;gap:12px}
@@ -424,7 +447,6 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
       </div>
     </div>
   </div>
-</div>
 
   <div class="sec" style="padding-left:40px">
     <div class="tag">Note di regia · Scheda personaggio</div>
@@ -460,6 +482,47 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
     <div class="regista-quote">
       <div class="rq-label">Frase tipica — da sostituire</div>
       <div class="rq-text">"[La cosa che direbbe solo lei, in quel modo che la rende inconfondibile.]"</div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="tag">Chi è Kiara · Anti-lista</div>
+    <h2 class="htitle" style="font-size:28px;margin-bottom:6px">Cosa non è.</h2>
+    <div class="kicker" style="margin-bottom:16px">MAI <span>nemmeno per sbaglio</span>.</div>
+    <p style="font-size:13px;color:var(--tortora);line-height:1.65;max-width:720px;margin-bottom:4px">Guardrail per l'agente: in assenza di istruzioni specifiche, l'IA tende a riempire i vuoti con cliché da influencer standard. Questa lista blocca la deriva.</p>
+    <div class="anti-grid">
+      <div class="anti-block">
+        <div class="ab-label">Non posta</div>
+        <div class="anti-item">Visual spam o pack di prodotti senza contesto narrativo</div>
+        <div class="anti-item">Schermate di DM, before/after, countdown timer</div>
+        <div class="anti-item">Meme generici o trend virali senza anima propria</div>
+        <div class="anti-item">Selfie frontale da specchio — posa standard influencer</div>
+        <div class="anti-item">Contenuti motivazionali generici (#mondaymotivation)</div>
+      </div>
+      <div class="anti-block">
+        <div class="ab-label">Non dice</div>
+        <div class="anti-item">"Link in bio" come call to action principale</div>
+        <div class="anti-item">"Vi presento il mio partner / sponsor"</div>
+        <div class="anti-item">"Sono la vostra amica, fidatevi di me"</div>
+        <div class="anti-item">Frasi da comunicato stampa in caption</div>
+        <div class="anti-item">Più di una emoji dello stesso tipo di fila</div>
+      </div>
+      <div class="anti-block">
+        <div class="ab-label">Non è</div>
+        <div class="anti-item">Aspirazionale nel senso classico — fitness, lusso ostentato</div>
+        <div class="anti-item">Umile in modo performativo</div>
+        <div class="anti-item">Un bot che si scusa per essere IA</div>
+        <div class="anti-item">Una persona che finge di essere umana</div>
+        <div class="anti-item">Un avatar intercambiabile — ogni post è inconfondibile</div>
+      </div>
+      <div class="anti-block">
+        <div class="ab-label">Non si accosta a</div>
+        <div class="anti-item">Brand fast fashion di massa senza posizionamento</div>
+        <div class="anti-item">Contenuti di politica o cronaca</div>
+        <div class="anti-item">Challenges generiche o trend TikTok traslati</div>
+        <div class="anti-item">Grafica da stock photo — font bianco su foto random</div>
+        <div class="anti-item">Colori fuori palette: nessun blu freddo, nessun verde brillante</div>
+      </div>
     </div>
   </div>
 </div>
@@ -525,15 +588,15 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
         <div style="flex:1">
           <div style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--cacao);margin-bottom:16px">Palette</div>
           <div class="sw-lg">
-            <div class="sw-swatch"><i style="background:#F7F0E6"></i><div class="sw-label">Avorio</div></div>
-            <div class="sw-swatch"><i style="background:#FFF8EE"></i><div class="sw-label">Panna</div></div>
-            <div class="sw-swatch"><i style="background:#E9D7BA"></i><div class="sw-label">Champagne</div></div>
-            <div class="sw-swatch"><i style="background:#D8B88A"></i><div class="sw-label">Miele</div></div>
-            <div class="sw-swatch"><i style="background:#F5B895"></i><div class="sw-label">Pesca</div></div>
-            <div class="sw-swatch"><i style="background:#5D463B"></i><div class="sw-label">Cacao</div></div>
-            <div class="sw-swatch"><i style="background:#9A8171"></i><div class="sw-label">Tortora</div></div>
-            <div class="sw-swatch"><i style="background:#E97962"></i><div class="sw-label">Corallo ✦</div></div>
-            <div class="sw-swatch"><i style="background:#9EDBD6"></i><div class="sw-label">Acqua</div></div>
+            <div class="sw-swatch"><i style="background:#F7F0E6"></i><div class="sw-label">Avorio</div><div class="sw-hex">#F7F0E6</div></div>
+            <div class="sw-swatch"><i style="background:#FFF8EE"></i><div class="sw-label">Panna</div><div class="sw-hex">#FFF8EE</div></div>
+            <div class="sw-swatch"><i style="background:#E9D7BA"></i><div class="sw-label">Champagne</div><div class="sw-hex">#E9D7BA</div></div>
+            <div class="sw-swatch"><i style="background:#D8B88A"></i><div class="sw-label">Miele</div><div class="sw-hex">#D8B88A</div></div>
+            <div class="sw-swatch"><i style="background:#F5B895"></i><div class="sw-label">Pesca</div><div class="sw-hex">#F5B895</div></div>
+            <div class="sw-swatch"><i style="background:#5D463B"></i><div class="sw-label">Cacao</div><div class="sw-hex">#5D463B</div></div>
+            <div class="sw-swatch"><i style="background:#9A8171"></i><div class="sw-label">Tortora</div><div class="sw-hex">#9A8171</div></div>
+            <div class="sw-swatch"><i style="background:#E97962"></i><div class="sw-label">Corallo ✦</div><div class="sw-hex">#E97962</div></div>
+            <div class="sw-swatch"><i style="background:#9EDBD6"></i><div class="sw-label">Acqua</div><div class="sw-hex">#9EDBD6</div></div>
           </div>
           <div style="font-size:10px;color:var(--tortora);margin-top:18px;line-height:1.6">Nucleo caldo · un solo accento corallo · freddi usati raramente</div>
         </div>
@@ -592,6 +655,48 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="sec">
+    <div class="tag">Piano editoriale · Calendario</div>
+    <h2 class="htitle" style="font-size:28px;margin-bottom:6px">Frequenza</h2>
+    <div class="kicker" style="font-size:13px;margin:2px 0 14px"><span>[X] post</span> A SETTIMANA</div>
+    <p style="font-size:13px;color:var(--tortora);line-height:1.65;max-width:720px;margin-bottom:4px">La frequenza va definita dal team. Il venerdì è sempre il giorno di conversione. Mai due Drop consecutivi, mai tre post dello stesso format di fila.</p>
+    <div class="cal-grid">
+      <div class="cal-day">
+        <div class="cal-day-head">Lunedì</div>
+        <div class="cal-day-body">
+          <div class="cal-fmt">World</div>
+          <div class="cal-role">costruisce desiderio</div>
+          <div class="cal-note">Atmosfera, luogo, oggetto. Nessun prodotto — apre la settimana con estetica pura.</div>
+        </div>
+      </div>
+      <div class="cal-day">
+        <div class="cal-day-head">Mercoledì</div>
+        <div class="cal-day-body">
+          <div class="cal-fmt">Voce · Ritual</div>
+          <div class="cal-role">costruisce carattere</div>
+          <div class="cal-note">Alternare: settimane pari Voce, dispari Ritual. Costruisce intimità e affezione.</div>
+        </div>
+      </div>
+      <div class="cal-day">
+        <div class="cal-day-head">Venerdì</div>
+        <div class="cal-day-body">
+          <div class="cal-fmt">Drop · Muse</div>
+          <div class="cal-role">converte o alza</div>
+          <div class="cal-note">Drop se c'è release attiva. Muse se no — mantiene percezione premium senza vendere.</div>
+        </div>
+      </div>
+      <div class="cal-day">
+        <div class="cal-day-head">Domenica <span class="cal-opt">(opz.)</span></div>
+        <div class="cal-day-body">
+          <div class="cal-fmt cal-opt">Duet</div>
+          <div class="cal-role cal-opt">monetizza</div>
+          <div class="cal-note cal-opt">Solo per collab attive. Non forzare: meglio 3 forti che 4 con un Duet finto.</div>
+        </div>
+      </div>
+    </div>
+    <div class="note" style="margin-top:20px"><b>Frequenza: [da definire]</b> — minimo 3 post/settimana, ottimale 4. <b>Regola dei Drop:</b> mai due Drop nella stessa settimana.</div>
   </div>
 
 </div>
@@ -718,6 +823,23 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="sec">
+    <div class="tag">CTA · Hashtag strategy</div>
+    <h2 class="htitle" style="font-size:28px;margin-bottom:6px">Hashtag</h2>
+    <div class="kicker" style="font-size:13px;margin:2px 0 14px">MASSIMO <span>8 per post</span>.</div>
+    <p style="font-size:13px;color:var(--tortora);line-height:1.65;max-width:720px;margin-bottom:4px">Sempre <em style="color:var(--corallo);font-style:normal;font-weight:600">#unrealkiara</em> come primo tag — identità prima del reach. Mai tag generici (#love, #instagood). English per reach, italiano solo per community specifiche.</p>
+    <table class="htag-table">
+      <tr><td>Sempre</td><td><em>#unrealkiara</em></td></tr>
+      <tr><td>Drop</td><td>#unrealkiara <em>#virtualdrop</em> #digitalfashion #aimodel #[nome-release]</td></tr>
+      <tr><td>Voce</td><td>#unrealkiara <em>#virtualinfluencer</em> #aiart #digitalcreator #moodboard</td></tr>
+      <tr><td>World</td><td>#unrealkiara <em>#aesthetics</em> #mood #editorialfashion #[luogo-o-mood]</td></tr>
+      <tr><td>Ritual</td><td>#unrealkiara <em>#slowmorning</em> #diary #digitallife #softlife</td></tr>
+      <tr><td>Muse</td><td>#unrealkiara <em>#editorial</em> #aimodel #digitalart #[stagione-o-tema]</td></tr>
+      <tr><td>Duet</td><td>#unrealkiara <em>#collab</em> #[hashtag-brand] #virtualinfluencer</td></tr>
+    </table>
+    <div class="note" style="margin-top:16px"><b>I tag in [parentesi]</b> vanno sostituiti a ogni post — non pubblicare parentesi. Il tag del brand nei Duet segue le linee guida del partner.</div>
   </div>
 </div>
 
