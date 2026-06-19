@@ -182,6 +182,18 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
 .pp-two .pp-box{flex:1}
 .pp-cap{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--tortora);font-weight:700;margin-bottom:6px}
 
+/* PHOTO PLACEHOLDER */
+.photo-ph{width:100%;height:100%;min-height:220px;border:2px dashed var(--miele);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:var(--avorio)}
+.photo-ph .ph-icon{font-size:36px;opacity:.3}
+.photo-ph .ph-label{font-size:9px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--tortora)}
+.photo-ph .ph-sub{font-size:10px;color:var(--miele);font-weight:500;text-align:center;max-width:160px;line-height:1.4}
+
+/* COPY PLACEHOLDER */
+.copy-ph{display:flex;flex-direction:column;gap:10px}
+.copy-ph-block{border:1.5px dashed var(--corallo);border-radius:10px;padding:14px 16px;background:#FDEFE9}
+.copy-ph-block .cph-label{font-size:8px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--corallo);margin-bottom:6px}
+.copy-ph-block .cph-text{font-size:12px;color:rgba(93,70,59,.45);line-height:1.6;font-style:italic}
+
 .toolbar{position:fixed;top:16px;right:16px;z-index:50}
 .toolbar button{background:var(--cacao);color:var(--panna);border:none;font-family:'Manrope';font-weight:600;font-size:13px;padding:11px 18px;border-radius:30px;cursor:pointer;box-shadow:0 10px 24px -10px rgba(60,40,30,.6);transition:.2s}
 .toolbar button:hover{background:var(--corallo)}
@@ -259,6 +271,102 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
       </div>
 
       <div class="ms-note"><b>Più angolazioni = più stabilità.</b> Una sola posa fa "appiattire" l'IA su quell'inquadratura; il set completo le permette di ricostruire Kiara da qualsiasi vista.</div>
+    </div>
+  </section>
+
+  <!-- IL CORPO -->
+  <section class="page section-num"><h2><b>Il corpo.</b></h2></section>
+  <section class="page">
+    <div class="brandbar"><span class="l">@unreal.kiara</span><span class="r">Il corpo</span></div>
+    <div class="body">
+      <div class="col-txt">
+        <div class="tag">Il corpo · Reference visiva</div>
+        <h1 class="htitle">Una presenza</h1>
+        <div class="kicker">CHE <span>abita lo spazio</span>.</div>
+        <p>Il corpo di Kiara non è accessorio: è parte del brand. Proporzioni, postura, gestualità devono essere <b>stabili quanto il volto</b> — ogni render parte dal ref-body, non da zero.</p>
+        <p>Silhouette morbida, mai statuaria. La posa racconta carattere: <b>naturale, non costruita</b>. Nessun corpo da catalogo.</p>
+        <div class="note"><b>Uso:</b> caricare in <code>img/</code> come <code>ref-body-*.jpg</code> prima di generare qualsiasi contenuto full-body.</div>
+      </div>
+      <div class="col-vis">
+        <div class="photo-ph" style="height:340px">
+          <div class="ph-icon">◻</div>
+          <div class="ph-label">Foto corpo</div>
+          <div class="ph-sub">inserire foto riferimento corpo di Kiara</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IL PROFUMO -->
+  <section class="page section-num"><h2><b>Il profumo.</b></h2></section>
+  <section class="page">
+    <div class="brandbar"><span class="l">@unreal.kiara</span><span class="r">Il profumo</span></div>
+    <div class="body">
+      <div class="col-txt">
+        <div class="tag">Il profumo · Identità sensoriale</div>
+        <h1 class="htitle">Un odore che</h1>
+        <div class="kicker">NON <span>esiste ancora</span>.</div>
+        <div class="copy-ph">
+          <div class="copy-ph-block">
+            <div class="cph-label">Testo di apertura — da sostituire</div>
+            <div class="cph-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Kiara ha una firma olfattiva che il copy dovrà definire: calda, ambrata, mai dolce in modo ovvio. Il profumo è l'estensione del brand nell'unico senso che l'IA non può riprodurre.</div>
+          </div>
+          <div class="copy-ph-block">
+            <div class="cph-label">Note sensoriali — da sostituire</div>
+            <div class="cph-text">Note di testa · di cuore · di fondo — il copywriter inserirà qui la piramide olfattiva, le associazioni visive, il racconto della fragranza.</div>
+          </div>
+          <div class="copy-ph-block">
+            <div class="cph-label">Chiusura / claim — da sostituire</div>
+            <div class="cph-text">"[Claim del profumo]" — Kiara</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-vis">
+        <div class="photo-ph" style="height:340px">
+          <div class="ph-icon">◻</div>
+          <div class="ph-label">Foto profumo</div>
+          <div class="ph-sub">inserire visual del profumo / flacone / mood</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHI È KIARA -->
+  <section class="page section-num"><h2><b>Chi è Kiara.</b></h2></section>
+  <section class="page">
+    <div class="brandbar"><span class="l">@unreal.kiara</span><span class="r">Chi è Kiara</span></div>
+    <div class="body">
+      <div class="col-txt">
+        <div class="tag">Chi è Kiara · Carattere e storia</div>
+        <h1 class="htitle">Non esiste.</h1>
+        <div class="kicker">MA <span>ha un'anima</span>.</div>
+        <div class="copy-ph">
+          <div class="copy-ph-block">
+            <div class="cph-label">Chi è — da sostituire</div>
+            <div class="cph-text">Kiara è una virtual influencer nata da [origine — il copy team definirà la backstory: da dove viene, perché esiste, cosa cerca]. La sua natura digitale non è un segreto: è il suo punto di forza.</div>
+          </div>
+          <div class="copy-ph-block">
+            <div class="cph-label">Cosa ama — da sostituire</div>
+            <div class="cph-text">Ama [oggetti, atmosfere, momenti]. Colleziona luci più che cose. Abita città che non esistono, mattine che non ha vissuto, profumi che non ha annusato — eppure li racconta come se ci fosse stata.</div>
+          </div>
+          <div class="copy-ph-block">
+            <div class="cph-label">Cosa non è — da sostituire</div>
+            <div class="cph-text">Non è un bot. Non è un avatar generico. Non è una persona che finge di non esserlo. È qualcosa di [aggettivo] — il copy team completa.</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-vis">
+        <div class="bio-card" style="height:100%">
+          <div class="nm">Kiara <span style="color:var(--corallo)">✓</span></div>
+          <div class="ln" style="margin-bottom:14px"><span class="hi">[tagline da definire]</span><br>[sottotitolo · tipo · canale]</div>
+          <div class="dash">
+            <i><small>Origine</small>[da definire — copy team]</i>
+            <i><small>Carattere</small>[da definire — copy team]</i>
+            <i><small>Ossessioni</small>[da definire — copy team]</i>
+            <i><small>Paure</small>[da definire — copy team]</i>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
