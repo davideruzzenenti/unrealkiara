@@ -69,8 +69,8 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
 .kref{font-family:'Fraunces',serif;font-style:italic;font-weight:500}
 
 /* ── AVATAR ── */
-.m-ava{width:160px;height:160px;border-radius:50%;margin:0 auto 14px;background:conic-gradient(from 210deg,var(--pesca),var(--miele),var(--rosa),var(--pesca));padding:4px}
-.m-ava img,.m-ava span{width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(150deg,var(--champagne),var(--pesca));font-family:'Fraunces',serif;font-style:italic;font-size:60px;color:var(--panna)}
+.m-ava{width:320px;height:320px;border-radius:50%;margin:0 auto 16px;background:conic-gradient(from 210deg,var(--pesca),var(--miele),var(--rosa),var(--pesca));padding:5px}
+.m-ava img,.m-ava span{width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(150deg,var(--champagne),var(--pesca));font-family:'Fraunces',serif;font-style:italic;font-size:80px;color:var(--panna)}
 .m-ava img{object-fit:cover;display:block}
 .cap{text-align:center;font-size:10px;color:var(--tortora);font-weight:500}
 
@@ -156,6 +156,31 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
 .cta-stack .blk.fix{border-style:solid;border-color:var(--corallo);background:#FDEFE9}
 .cta-stack .blk.fix p{color:var(--corallo);font-weight:500}
 
+/* ── TEMPLATE GRID ── */
+.tmpl-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:36px;margin-top:8px}
+.tmpl-card{display:flex;flex-direction:column;gap:14px}
+.tmpl-card .post{max-height:none;width:100%}
+.tmpl-name{font-family:'Fraunces',serif;font-weight:500;font-size:22px;color:var(--cacao)}
+.tmpl-desc{font-size:12.5px;color:var(--tortora);line-height:1.55}
+.tmpl-desc b{color:var(--cacao);font-weight:600}
+
+/* ── TYPE CARD LARGE ── */
+.type-card-lg{background:var(--avorio);border-radius:20px;padding:48px 52px;border:1px solid var(--champagne)}
+.type-card-lg .big{font-family:'Fraunces',serif;font-weight:600;font-size:72px;color:var(--cacao);line-height:1;margin-bottom:4px}
+.type-card-lg .lab{font-size:11px;color:var(--tortora);margin-bottom:32px;font-weight:600;letter-spacing:.08em}
+.type-card-lg .big2{font-family:'Manrope';font-weight:500;font-size:40px;color:var(--cacao);margin-bottom:4px}
+.type-card-lg .lab2{font-size:11px;color:var(--tortora);margin-bottom:28px;font-weight:600;letter-spacing:.08em}
+.sw-lg{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+.sw-lg i{width:48px;height:48px;border-radius:12px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.07)}
+.sw-lg .sw-label{font-size:9px;color:var(--tortora);margin-top:6px;text-align:center;font-weight:500}
+.sw-swatch{display:flex;flex-direction:column;align-items:center}
+
+/* ── REGISTA CARD ── */
+.regista-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+.reg-field{background:var(--avorio);border-radius:12px;padding:16px 18px;border:1px solid var(--champagne)}
+.reg-field .rf-label{font-size:8px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--tortora);margin-bottom:8px}
+.reg-field .rf-text{font-size:11.5px;color:rgba(93,70,59,.45);line-height:1.55;font-style:italic}
+
 /* ── FEATURED ── */
 .feat{display:flex;flex-direction:column;gap:12px}
 .fcard{display:flex;border-radius:12px;overflow:hidden;box-shadow:0 10px 24px -20px rgba(93,70,59,.45);background:var(--panna)}
@@ -230,7 +255,6 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
   <a href="#template">Template</a>
   <a href="#cta">CTA</a>
   <a href="#firma">Firma</a>
-  <a href="#appendice">Appendice</a>
   <a href="#preprompt">Pre-prompt</a>
 </nav>
 
@@ -277,15 +301,19 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
       <div class="kicker" style="font-size:13px;margin:2px 0 8px">la base che tiene l'IA <span>coerente</span></div>
       <div class="lead" style="font-size:12px;color:var(--tortora);line-height:1.55;max-width:820px;margin-bottom:20px">Qui vanno <b>tutte le immagini di riferimento</b> di Kiara: volto da più angolazioni e figura intera. Non si pubblicano — servono all'IA come model sheet per <b>bloccare l'identità</b> prima di generare qualsiasi post.</div>
       <div style="display:flex;gap:20px;align-items:flex-start">
-        <div style="flex:1">
+        <div style="flex:1.1">
           <div class="ms-h" style="font-size:9px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--cacao);margin-bottom:10px">Volto · più angolazioni</div>
           <img src="img/ref-face-sheet.png" alt="Kiara face sheet" style="width:100%;border-radius:12px;display:block">
           <div class="ms-note" style="font-size:9px;color:var(--tortora);margin-top:10px;line-height:1.5;border-left:2px solid var(--corallo);padding-left:10px"><b>ref-face-sheet.png</b> · 6 angolazioni · seed identità</div>
         </div>
         <div style="flex:1">
-          <div class="ms-h" style="font-size:9px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--cacao);margin-bottom:10px">Full body · proporzioni</div>
-          <img src="img/ref-body-sheet.png" alt="Kiara body sheet" style="width:100%;border-radius:12px;display:block">
-          <div class="ms-note" style="font-size:9px;color:var(--tortora);margin-top:10px;line-height:1.5;border-left:2px solid var(--corallo);padding-left:10px"><b>ref-body-sheet.png</b> · 6 pose · proporzioni e silhouette</div>
+          <div class="ms-h" style="font-size:9px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--cacao);margin-bottom:10px">Espressioni del volto</div>
+          <div class="photo-ph" style="min-height:300px">
+            <div class="ph-icon">◻</div>
+            <div class="ph-label">Foglio espressioni</div>
+            <div class="ph-sub">neutra · sorriso lieve · sguardo basso · altri stati</div>
+          </div>
+          <div class="ms-note" style="font-size:9px;color:var(--tortora);margin-top:10px;line-height:1.5;border-left:2px solid var(--corallo);padding-left:10px"><b>ref-face-expr.png</b> · espressioni · da aggiungere</div>
         </div>
       </div>
       <div class="note" style="margin-top:16px"><b>Più angolazioni = più stabilità.</b> Una sola posa fa "appiattire" l'IA su quell'inquadratura; il set completo le permette di ricostruire Kiara da qualsiasi vista.</div>
@@ -302,19 +330,14 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
 </div>
 <div class="wrap">
   <div class="sec">
-    <div class="body">
-      <div class="col-txt">
-        <div class="tag">Il corpo · Reference visiva</div>
-        <h2 class="htitle">Una presenza</h2>
-        <div class="kicker">CHE <span>abita lo spazio</span>.</div>
-        <p>Il corpo di Kiara non è accessorio: è parte del brand. Proporzioni, postura, gestualità devono essere <b>stabili quanto il volto</b> — ogni render parte dal ref-body, non da zero.</p>
-        <p>Silhouette morbida, mai statuaria. La posa racconta carattere: <b>naturale, non costruita</b>. Nessun corpo da catalogo.</p>
-        <div class="note"><b>Uso:</b> caricare in <code>img/</code> come <code>ref-body-sheet.png</code> prima di generare qualsiasi contenuto full-body.</div>
-      </div>
-      <div class="col-vis">
-        <img src="img/ref-body-sheet.png" alt="Kiara body rotations" style="width:100%;border-radius:16px;display:block">
-      </div>
+    <div class="tag">Il corpo · Reference visiva</div>
+    <h2 class="htitle" style="margin-bottom:6px">Una presenza</h2>
+    <div class="kicker" style="margin-bottom:20px">CHE <span>abita lo spazio</span>.</div>
+    <div style="display:flex;gap:24px;margin-bottom:24px">
+      <p style="flex:1;font-size:13px;line-height:1.65;color:var(--tortora)">Il corpo di Kiara non è accessorio: è parte del brand. Proporzioni, postura, gestualità devono essere <b style="color:var(--cacao);font-weight:600">stabili quanto il volto</b> — ogni render parte dal ref-body, non da zero.</p>
+      <p style="flex:1;font-size:13px;line-height:1.65;color:var(--tortora)">Silhouette morbida, mai statuaria. La posa racconta carattere: <b style="color:var(--cacao);font-weight:600">naturale, non costruita</b>. Nessun corpo da catalogo.</p>
     </div>
+    <img src="img/ref-body-sheet.png" alt="Kiara body rotations" style="width:100%;border-radius:20px;display:block">
   </div>
 </div>
 
@@ -328,29 +351,31 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
   <div class="sec">
     <div class="body">
       <div class="col-txt">
-        <div class="tag">Il profumo · Identità sensoriale</div>
+        <div class="tag">Il profumo · Firma sensoriale</div>
         <h2 class="htitle">Un odore che</h2>
-        <div class="kicker">NON <span>esiste ancora</span>.</div>
-        <div class="copy-ph">
+        <div class="kicker">LE <span>appartiene</span>.</div>
+        <p>Il profumo non è un prodotto che Kiara vende. È il senso che le appartiene prima ancora che esista — l'unica dimensione che nessuna IA può generare, eppure la più evocativa. <b>Collegare Kiara a un odore specifico significa renderla reale in un senso che la vista non può fare.</b></p>
+        <p>Stimola il senso più potente della memoria e del desiderio, quello che la comunicazione digitale lascia sempre vuoto.</p>
+        <div class="copy-ph" style="margin-top:16px">
           <div class="copy-ph-block">
-            <div class="cph-label">Testo di apertura — da sostituire</div>
-            <div class="cph-text">Kiara ha una firma olfattiva che il copy dovrà definire: calda, ambrata, mai dolce in modo ovvio. Il profumo è l'estensione del brand nell'unico senso che l'IA non può riprodurre.</div>
+            <div class="cph-label">Cosa evoca — da sostituire</div>
+            <div class="cph-text">L'odore di Kiara evoca [luogo, momento, sensazione]. Non è dolce, non è ovvio. Ha qualcosa di [aggettivo inatteso] — il copy team definisce l'associazione centrale.</div>
           </div>
           <div class="copy-ph-block">
-            <div class="cph-label">Note sensoriali — da sostituire</div>
-            <div class="cph-text">Note di testa · di cuore · di fondo — il copywriter inserirà qui la piramide olfattiva, le associazioni visive, il racconto della fragranza.</div>
+            <div class="cph-label">Il paesaggio olfattivo — da sostituire</div>
+            <div class="cph-text">[Descrizione sensoriale e visiva del profumo — non una piramide tecnica, ma un racconto: dove sei quando lo senti, cosa vedi, cosa scompare.] </div>
           </div>
           <div class="copy-ph-block">
-            <div class="cph-label">Chiusura / claim — da sostituire</div>
-            <div class="cph-text">"[Claim del profumo]" — Kiara</div>
+            <div class="cph-label">La sensazione che lascia — da sostituire</div>
+            <div class="cph-text">"[Una frase che cattura l'essenza — breve, poetica, inequivocabilmente Kiara.]"</div>
           </div>
         </div>
       </div>
       <div class="col-vis">
-        <div class="photo-ph" style="min-height:360px">
+        <div class="photo-ph" style="min-height:420px">
           <div class="ph-icon">◻</div>
-          <div class="ph-label">Foto profumo</div>
-          <div class="ph-sub">inserire visual del profumo / flacone / mood</div>
+          <div class="ph-label">Visual sensoriale</div>
+          <div class="ph-sub">immagine evocativa — non un flacone, ma un luogo, una luce, un momento</div>
         </div>
       </div>
     </div>
@@ -401,6 +426,44 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
   </div>
 </div>
 
+  <div class="sec">
+    <div class="tag">Note di regia · Scheda personaggio</div>
+    <h2 class="htitle" style="font-size:32px;margin-bottom:6px">Come la descriverebbe</h2>
+    <div class="kicker" style="margin-bottom:8px">UN <span>regista</span>.</div>
+    <p style="font-size:13px;color:var(--tortora);line-height:1.65;max-width:680px;margin-bottom:24px">Le note che un regista scriverebbe per un'attrice prima delle riprese — precise, visive, fisiche. Non quello che Kiara dice, ma come <b style="color:var(--cacao)">esiste nello spazio</b>.</p>
+    <div class="regista-grid">
+      <div class="reg-field">
+        <div class="rf-label">Fisico</div>
+        <div class="rf-text">[Descrizione fisica precisa: altezza percepita, corporatura, incarnato, capelli, tratti distintivi — da definire con il copy team]</div>
+      </div>
+      <div class="reg-field">
+        <div class="rf-label">Portamento · Movimento</div>
+        <div class="rf-text">[Come si muove, come occupa lo spazio. Lenta o veloce? Decisa o esitante? Ogni gesto dice qualcosa — da definire]</div>
+      </div>
+      <div class="reg-field">
+        <div class="rf-label">Voce</div>
+        <div class="rf-text">[Timbro, velocità, pause. Se Kiara parlasse — e un giorno potrebbe — come suonerebbe? Da definire]</div>
+      </div>
+      <div class="reg-field">
+        <div class="rf-label">Sguardo</div>
+        <div class="rf-text">[Cosa guarda, come guarda. Diretto o obliquo? Presente o altrove? Lo sguardo è il punto di contatto con chi la segue — da definire]</div>
+      </div>
+      <div class="reg-field">
+        <div class="rf-label">Presenza in scena</div>
+        <div class="rf-text">[Quanto spazio occupa nell'inquadratura e nella stanza. Come cambia l'atmosfera quando compare — da definire]</div>
+      </div>
+      <div class="reg-field">
+        <div class="rf-label">Energia · Contraddizione</div>
+        <div class="rf-text">[La tensione interna che la rende interessante. Cosa convive in lei che non dovrebbe convivere — da definire]</div>
+      </div>
+    </div>
+    <div class="copy-ph-block" style="margin-top:16px;border-style:dashed;border-color:var(--miele);background:transparent">
+      <div class="cph-label">Frase tipica — da sostituire</div>
+      <div class="cph-text">"[La cosa che direbbe solo lei, in quel modo che la rende inconfondibile.]"</div>
+    </div>
+  </div>
+</div>
+
 <!-- ══ 02 · BIO ══ -->
 <div class="ch-div" id="bio">
   <div class="ch-div-inner">
@@ -444,25 +507,35 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
 </div>
 <div class="wrap">
   <div class="sec">
-    <div class="body">
-      <div class="col-txt">
-        <div class="tag">03. Identità visiva</div>
-        <h2 class="htitle">Un'identità da</h2>
-        <div class="kicker">MUSA <span>digitale</span>.</div>
-        <p>Kiara sceglie il <b>calore</b> per dire desiderabilità. <b>Fraunces</b> dà l'anima — serif morbido, poetico, femminile. <b>Manrope</b> tiene pulizia e vendibilità: UI, prezzi, hashtag.</p>
-        <p>Palette calda con <b>un solo accento d'azione</b> (corallo). Niente decorazione gratuita: respiro, contrasto morbido, percezione premium-soft.</p>
-      </div>
-      <div class="col-vis">
-        <div class="type-card">
-          <div class="big">Aa Bb</div>
-          <div class="lab">FRAUNCES · titoli &amp; voce</div>
-          <div class="big2">Aa Bb Cc</div>
-          <div class="lab" style="margin-bottom:8px">MANROPE · testi &amp; UI</div>
-          <div class="sw">
-            <i style="background:#F7F0E6"></i><i style="background:#5D463B"></i><i style="background:#9A8171"></i>
-            <i style="background:#E97962"></i><i style="background:#F5B895"></i><i style="background:#9EDBD6"></i>
+    <div class="tag">03. Identità visiva</div>
+    <h2 class="htitle" style="margin-bottom:6px">Un'identità da</h2>
+    <div class="kicker" style="margin-bottom:20px">MUSA <span>digitale</span>.</div>
+    <div style="display:flex;gap:24px;margin-bottom:32px">
+      <p style="flex:1;font-size:13px;line-height:1.65;color:var(--tortora)">Kiara sceglie il <b style="color:var(--cacao)">calore</b> per dire desiderabilità. <b style="color:var(--cacao)">Fraunces</b> dà l'anima — serif morbido, poetico, femminile. <b style="color:var(--cacao)">Manrope</b> tiene pulizia e vendibilità: UI, prezzi, hashtag.</p>
+      <p style="flex:1;font-size:13px;line-height:1.65;color:var(--tortora)">Palette calda con <b style="color:var(--cacao)">un solo accento d'azione</b> (corallo). Niente decorazione gratuita: respiro, contrasto morbido, percezione premium-soft.</p>
+    </div>
+    <div class="type-card-lg">
+      <div style="display:flex;gap:60px;align-items:flex-start">
+        <div style="flex:1">
+          <div class="big">Aa Bb Cc</div>
+          <div class="lab">FRAUNCES · titoli &amp; voce poetica</div>
+          <div class="big2">Aa Bb Cc Dd</div>
+          <div class="lab2">MANROPE · testi, UI &amp; conversione</div>
+        </div>
+        <div style="flex:1">
+          <div style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--cacao);margin-bottom:16px">Palette</div>
+          <div class="sw-lg">
+            <div class="sw-swatch"><i style="background:#F7F0E6"></i><div class="sw-label">Avorio</div></div>
+            <div class="sw-swatch"><i style="background:#FFF8EE"></i><div class="sw-label">Panna</div></div>
+            <div class="sw-swatch"><i style="background:#E9D7BA"></i><div class="sw-label">Champagne</div></div>
+            <div class="sw-swatch"><i style="background:#D8B88A"></i><div class="sw-label">Miele</div></div>
+            <div class="sw-swatch"><i style="background:#F5B895"></i><div class="sw-label">Pesca</div></div>
+            <div class="sw-swatch"><i style="background:#5D463B"></i><div class="sw-label">Cacao</div></div>
+            <div class="sw-swatch"><i style="background:#9A8171"></i><div class="sw-label">Tortora</div></div>
+            <div class="sw-swatch"><i style="background:#E97962"></i><div class="sw-label">Corallo ✦</div></div>
+            <div class="sw-swatch"><i style="background:#9EDBD6"></i><div class="sw-label">Acqua</div></div>
           </div>
-          <div style="font-size:9px;color:var(--tortora);margin-top:10px">nucleo caldo + 1 accento corallo + freddi rari</div>
+          <div style="font-size:10px;color:var(--tortora);margin-top:18px;line-height:1.6">Nucleo caldo · un solo accento corallo · freddi usati raramente</div>
         </div>
       </div>
     </div>
@@ -533,57 +606,34 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
 <div class="wrap">
 
   <div class="sec">
-    <div class="sub-div"><span class="sub-label">06 · Drop</span><hr></div>
-    <div class="body">
-      <div class="col-txt">
-        <div class="tag">Format Drop</div>
-        <h2 class="htitle">La struttura del template</h2>
-        <div class="kicker">FORMAT <span>DROP</span>.</div>
-        <p>Trasferisce desiderio e dà la conversione. Struttura ripetibile: nome release in alto, promessa estetica al centro, <b>prezzo + CTA corallo</b> in basso.</p>
-        <p>È l'unico format dove il corallo compare con forza: segna l'azione.</p>
-      </div>
-      <div class="col-vis">
+    <div class="tmpl-grid">
+
+      <div class="tmpl-card">
         <div class="post drop">
           <div class="lbl">Drop</div>
           <div class="t">Champagne<br>Edit</div>
           <div class="d">Release digitale · sei pose esclusive in luce dorata.</div>
           <div class="row"><div class="price">€39</div><div class="cta">Disponibile ora →</div></div>
         </div>
+        <div>
+          <div class="tmpl-name">Drop <span style="font-size:11px;font-family:'Manrope';font-weight:700;color:var(--corallo);letter-spacing:.08em">· 06</span></div>
+          <div class="tmpl-desc">Il format che <b>converte</b>. Nome release in alto, promessa estetica al centro, prezzo + CTA corallo in basso. L'unico dove il corallo compare con forza — segna l'azione.</div>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <div class="sec">
-    <div class="sub-div"><span class="sub-label">07 · Voce</span><hr></div>
-    <div class="body">
-      <div class="col-txt">
-        <div class="tag">Format Voce</div>
-        <h2 class="htitle">La struttura del template</h2>
-        <div class="kicker">FORMAT <span>VOCE</span>.</div>
-        <p>Rende leggibile il carattere di Kiara: pensieri brevi, poetici, ironici sul suo essere digitale.</p>
-        <p>Fondo chiaro, frase in Fraunces corsivo, una parola in corallo, firma "— Kiara". Costruisce <b>affezione</b>, non vendita.</p>
-      </div>
-      <div class="col-vis">
+      <div class="tmpl-card">
         <div class="post voce">
           <div class="lbl">Voce</div>
           <div class="q">Sono finta solo <b>nei pixel</b>. Il resto è verissimo.</div>
           <div class="sig">— Kiara</div>
         </div>
+        <div>
+          <div class="tmpl-name">Voce <span style="font-size:11px;font-family:'Manrope';font-weight:700;color:var(--tortora);letter-spacing:.08em">· 07</span></div>
+          <div class="tmpl-desc">Il format del <b>carattere</b>. Pensieri brevi, poetici, ironici sul suo essere digitale. Fondo chiaro, Fraunces corsivo, una parola in corallo. Costruisce affezione, non vendita.</div>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <div class="sec">
-    <div class="sub-div"><span class="sub-label">08 · World</span><hr></div>
-    <div class="body">
-      <div class="col-txt">
-        <div class="tag">Format World</div>
-        <h2 class="htitle">La struttura del template</h2>
-        <div class="kicker">FORMAT <span>WORLD</span>.</div>
-        <p>Mostra il mondo di Kiara: luoghi, atmosfere, oggetti, outfit. Non vende e non riflette — <b>costruisce l'universo estetico</b> in cui i Drop hanno senso.</p>
-        <p>Fondo caldo, luogo in Fraunces corsivo, micro-didascalia. Il format che rende desiderabile tutto il resto.</p>
-      </div>
-      <div class="col-vis">
+      <div class="tmpl-card">
         <div class="post world">
           <div class="lbl">World</div>
           <div></div>
@@ -592,70 +642,51 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
             <div class="sub2" style="margin-top:8px">— mattina, da nessuna parte</div>
           </div>
         </div>
+        <div>
+          <div class="tmpl-name">World <span style="font-size:11px;font-family:'Manrope';font-weight:700;color:var(--tortora);letter-spacing:.08em">· 08</span></div>
+          <div class="tmpl-desc">Il format della <b>presenza</b>. Luoghi, atmosfere, oggetti, outfit. Non vende — costruisce l'universo estetico in cui i Drop hanno senso. Il format che rende desiderabile tutto il resto.</div>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <div class="sec">
-    <div class="sub-div"><span class="sub-label">09 · Ritual</span><hr></div>
-    <div class="body">
-      <div class="col-txt">
-        <div class="tag">Format Ritual</div>
-        <h2 class="htitle">La struttura del template</h2>
-        <div class="kicker">FORMAT <span>RITUAL</span>.</div>
-        <p>Il diario di Kiara: la sua giornata, le abitudini, le piccole ossessioni ricorrenti. Crea <b>ritorno e intimità</b>.</p>
-        <p>Fondo avorio, timestamp in corallo, frase in Fraunces corsivo. Trasforma un personaggio in una <b>compagnia quotidiana</b>.</p>
-      </div>
-      <div class="col-vis">
+      <div class="tmpl-card">
         <div class="post ritual">
           <div class="lbl">Ritual</div>
           <div class="time">07:14</div>
           <div class="diary">Prima cosa: scelgo la luce del giorno. Anche se non mi tocca.</div>
           <div class="tail">— diario · giorno 041</div>
         </div>
+        <div>
+          <div class="tmpl-name">Ritual <span style="font-size:11px;font-family:'Manrope';font-weight:700;color:var(--tortora);letter-spacing:.08em">· 09</span></div>
+          <div class="tmpl-desc">Il format dell'<b>intimità</b>. Il diario di Kiara: giornata, abitudini, ossessioni ricorrenti. Timestamp in corallo, Fraunces corsivo. Trasforma un personaggio in una compagnia quotidiana.</div>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <div class="sec">
-    <div class="sub-div"><span class="sub-label">10 · Muse</span><hr></div>
-    <div class="body">
-      <div class="col-txt">
-        <div class="tag">Format Muse</div>
-        <h2 class="htitle">La struttura del template</h2>
-        <div class="kicker">FORMAT <span>MUSE</span>.</div>
-        <p>L'editoriale: mini-storie visive a tema o stagione. Premium, costruito per i <b>caroselli</b> e per agganciare collab.</p>
-        <p>Fondo cacao, titolo in Fraunces, indice "01/06". È il format che alza la <b>percezione di valore</b> del profilo.</p>
-      </div>
-      <div class="col-vis">
+      <div class="tmpl-card">
         <div class="post muse">
           <div class="lbl">Muse</div>
           <div class="sea">Stagione · Champagne</div>
           <div class="cover">L'oro non<br>è un colore.<br>È un'ora.</div>
           <div class="idx">01 / 06</div>
         </div>
+        <div>
+          <div class="tmpl-name">Muse <span style="font-size:11px;font-family:'Manrope';font-weight:700;color:var(--tortora);letter-spacing:.08em">· 10</span></div>
+          <div class="tmpl-desc">Il format del <b>valore</b>. Editoriale: mini-storie visive a tema o stagione. Premium, per caroselli e collab. Fondo cacao, Fraunces, indice "01/06". Alza la percezione del profilo.</div>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <div class="sec">
-    <div class="sub-div"><span class="sub-label">11 · Duet</span><hr></div>
-    <div class="body">
-      <div class="col-txt">
-        <div class="tag">Format Duet</div>
-        <h2 class="htitle">La struttura del template</h2>
-        <div class="kicker">FORMAT <span>DUET</span>.</div>
-        <p>Kiara accanto a brand, oggetti o persone reali. È il format che <b>monetizza di più</b>.</p>
-        <p>La sua natura digitale <b>emerge dal contrasto col reale</b>, senza doverla spiegare. Struttura: Kiara ✕ partner, badge "in collaboration", una riga di voce.</p>
-      </div>
-      <div class="col-vis">
+      <div class="tmpl-card">
         <div class="post duet">
           <div class="lbl">Duet</div>
           <div class="x"><div class="k">K</div><div class="cross">✕</div><div class="b">BRAND</div></div>
           <div class="cap2">Io sono finta.<br>Questo profumo no.</div>
           <div class="badge">in collaboration with —</div>
         </div>
+        <div>
+          <div class="tmpl-name">Duet <span style="font-size:11px;font-family:'Manrope';font-weight:700;color:var(--tortora);letter-spacing:.08em">· 11</span></div>
+          <div class="tmpl-desc">Il format che <b>monetizza di più</b>. Kiara accanto a brand o persone reali. La natura digitale emerge dal contrasto col reale — senza spiegarla. Struttura: Kiara ✕ partner + badge collab.</div>
+        </div>
       </div>
+
     </div>
   </div>
 
@@ -745,65 +776,8 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
   </div>
 </div>
 
-<!-- ══ APPENDICE ══ -->
-<div class="ch-div" id="appendice">
-  <div class="ch-div-inner">
-    <h2>FIRMA <em style="font-style:italic;color:var(--pesca)">digitale</em>.</h2>
-  </div>
-</div>
-<div class="wrap">
-
-  <div class="sec">
-    <div class="asset">
-      <div class="tag">Appendice 1 — Reference avatar (model sheet)</div>
-      <h2 class="htitle" style="font-size:30px;margin-bottom:6px">Immagini di Kiara da caricare</h2>
-      <div class="kicker" style="font-size:13px;margin:2px 0 16px">cartella <span>img/</span> · vincolanti per l'IA</div>
-      <div class="grp">
-        <div class="gh">Volto · più angolazioni <em>· 1:1, luce e sfondo neutri, stesso outfit</em></div>
-        <div class="arow"><span class="fname">ref-face-front.jpg</span><span class="fmt">1:1</span><span class="desc"><b>Volto frontale</b>, sguardo in camera. Il riferimento primario dell'identità.</span></div>
-        <div class="arow"><span class="fname">ref-face-3q-l.jpg</span><span class="fmt">1:1</span><span class="desc">Volto a <b>tre quarti sinistra</b>.</span></div>
-        <div class="arow"><span class="fname">ref-face-3q-r.jpg</span><span class="fmt">1:1</span><span class="desc">Volto a <b>tre quarti destra</b>.</span></div>
-        <div class="arow"><span class="fname">ref-face-side.jpg</span><span class="fmt">1:1</span><span class="desc"><b>Profilo laterale</b> completo.</span></div>
-        <div class="arow"><span class="fname">ref-face-expr.jpg</span><span class="fmt">1:1</span><span class="desc"><b>Foglio espressioni</b>: neutra, sorriso lieve, sguardo basso.</span></div>
-      </div>
-      <div class="grp">
-        <div class="gh">Full body · proporzioni <em>· 2:3, posa neutra, outfit base</em></div>
-        <div class="arow"><span class="fname">ref-body-front.jpg</span><span class="fmt">2:3</span><span class="desc"><b>Figura intera frontale</b>, posa neutra.</span></div>
-        <div class="arow"><span class="fname">ref-body-3q.jpg</span><span class="fmt">2:3</span><span class="desc">Figura intera a <b>tre quarti</b>.</span></div>
-        <div class="arow"><span class="fname">ref-body-back.jpg</span><span class="fmt">2:3</span><span class="desc">Figura intera <b>di spalle</b>.</span></div>
-      </div>
-      <div class="foot">Queste immagini <b>non si pubblicano</b>: sono il seed d'identità.</div>
-    </div>
-  </div>
-
-  <div class="sec">
-    <div class="asset">
-      <div class="tag">Appendice 2 — Esempi format &amp; Featured</div>
-      <h2 class="htitle" style="font-size:30px;margin-bottom:6px">Visual dei contenuti</h2>
-      <div class="kicker" style="font-size:13px;margin:2px 0 16px">cartella <span>img/</span> · indicativi (mood e composizione)</div>
-      <div class="grp">
-        <div class="gh">Esempi format <em>· 1:1</em></div>
-        <div class="arow"><span class="fname">ex-drop.jpg</span><span class="fmt">1:1</span><span class="desc">Prodotto/drop su fondo caldo.</span></div>
-        <div class="arow"><span class="fname">ex-world.jpg</span><span class="fmt">1:1</span><span class="desc">Atmosfera/luogo: ambiente, luce, oggetti.</span></div>
-        <div class="arow"><span class="fname">ex-ritual.jpg</span><span class="fmt">1:1</span><span class="desc">Gesto/momento del diario: dettaglio intimo.</span></div>
-        <div class="arow"><span class="fname">ex-muse.jpg</span><span class="fmt">1:1</span><span class="desc">Cover editoriale di un carosello.</span></div>
-        <div class="arow"><span class="fname">ex-duet.jpg</span><span class="fmt">1:1</span><span class="desc">Kiara accanto a un brand/oggetto reale.</span></div>
-      </div>
-      <div class="grp">
-        <div class="gh">Featured <em>· 16:9</em></div>
-        <div class="arow"><span class="fname">feat-aesthetic.jpg</span><span class="fmt">16:9</span><span class="desc">Il contenuto estetico più forte.</span></div>
-        <div class="arow"><span class="fname">feat-commercial.jpg</span><span class="fmt">16:9</span><span class="desc">Il drop più riuscito.</span></div>
-        <div class="arow"><span class="fname">feat-collab.jpg</span><span class="fmt">16:9</span><span class="desc">Collab con un brand reale.</span></div>
-        <div class="arow"><span class="fname">feat-interactive.jpg</span><span class="fmt">16:9</span><span class="desc">Contenuto plasmato dalla community.</span></div>
-      </div>
-      <div class="foot"><b>REF</b> = identità, vincolante. <b>EX / FEAT</b> = mood, indicativi. Nomi minuscoli, senza spazi né accenti.</div>
-    </div>
-  </div>
-
-</div>
-
 <!-- ══ PRE-PROMPT ══ -->
-<div class="ch-div" id="preprompt">
+<div class="ch-div" id="preprompt" style="margin-top:0">
   <div class="ch-div-inner">
     <h2>Extra. <b>Pre-prompt.</b></h2>
   </div>
