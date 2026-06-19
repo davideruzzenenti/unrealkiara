@@ -176,10 +176,13 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
 .sw-swatch{display:flex;flex-direction:column;align-items:center}
 
 /* ── REGISTA CARD ── */
-.regista-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
-.reg-field{background:var(--avorio);border-radius:12px;padding:16px 18px;border:1px solid var(--champagne)}
-.reg-field .rf-label{font-size:8px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--tortora);margin-bottom:8px}
-.reg-field .rf-text{font-size:11.5px;color:rgba(93,70,59,.45);line-height:1.55;font-style:italic}
+.regista-list{margin-top:28px;border-top:1px solid var(--champagne)}
+.reg-row{display:grid;grid-template-columns:180px 1fr;gap:32px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--champagne)}
+.reg-row .rf-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--tortora);padding-top:2px}
+.reg-row .rf-text{font-size:13px;color:rgba(93,70,59,.4);line-height:1.65;font-style:italic;font-family:'Fraunces',serif}
+.regista-quote{margin-top:32px;padding:28px 32px;background:var(--avorio);border-radius:16px;border-left:3px solid var(--corallo)}
+.regista-quote .rq-label{font-size:8px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--corallo);margin-bottom:10px}
+.regista-quote .rq-text{font-family:'Fraunces',serif;font-style:italic;font-size:20px;color:rgba(93,70,59,.35);line-height:1.4}
 
 /* ── FEATURED ── */
 .feat{display:flex;flex-direction:column;gap:12px}
@@ -428,35 +431,35 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
     <h2 class="htitle" style="font-size:32px;margin-bottom:6px">Come la descriverebbe</h2>
     <div class="kicker" style="margin-bottom:8px">UN <span>regista</span>.</div>
     <p style="font-size:13px;color:var(--tortora);line-height:1.65;max-width:680px;margin-bottom:24px">Le note che un regista scriverebbe per un'attrice prima delle riprese — precise, visive, fisiche. Non quello che Kiara dice, ma come <b style="color:var(--cacao)">esiste nello spazio</b>.</p>
-    <div class="regista-grid">
-      <div class="reg-field">
+    <div class="regista-list">
+      <div class="reg-row">
         <div class="rf-label">Fisico</div>
         <div class="rf-text">[Descrizione fisica precisa: altezza percepita, corporatura, incarnato, capelli, tratti distintivi — da definire con il copy team]</div>
       </div>
-      <div class="reg-field">
+      <div class="reg-row">
         <div class="rf-label">Portamento · Movimento</div>
         <div class="rf-text">[Come si muove, come occupa lo spazio. Lenta o veloce? Decisa o esitante? Ogni gesto dice qualcosa — da definire]</div>
       </div>
-      <div class="reg-field">
+      <div class="reg-row">
         <div class="rf-label">Voce</div>
         <div class="rf-text">[Timbro, velocità, pause. Se Kiara parlasse — e un giorno potrebbe — come suonerebbe? Da definire]</div>
       </div>
-      <div class="reg-field">
+      <div class="reg-row">
         <div class="rf-label">Sguardo</div>
         <div class="rf-text">[Cosa guarda, come guarda. Diretto o obliquo? Presente o altrove? Lo sguardo è il punto di contatto con chi la segue — da definire]</div>
       </div>
-      <div class="reg-field">
+      <div class="reg-row">
         <div class="rf-label">Presenza in scena</div>
         <div class="rf-text">[Quanto spazio occupa nell'inquadratura e nella stanza. Come cambia l'atmosfera quando compare — da definire]</div>
       </div>
-      <div class="reg-field">
+      <div class="reg-row">
         <div class="rf-label">Energia · Contraddizione</div>
         <div class="rf-text">[La tensione interna che la rende interessante. Cosa convive in lei che non dovrebbe convivere — da definire]</div>
       </div>
     </div>
-    <div class="copy-ph-block" style="margin-top:16px;border-style:dashed;border-color:var(--miele);background:transparent">
-      <div class="cph-label">Frase tipica — da sostituire</div>
-      <div class="cph-text">"[La cosa che direbbe solo lei, in quel modo che la rende inconfondibile.]"</div>
+    <div class="regista-quote">
+      <div class="rq-label">Frase tipica — da sostituire</div>
+      <div class="rq-text">"[La cosa che direbbe solo lei, in quel modo che la rende inconfondibile.]"</div>
     </div>
   </div>
 </div>
