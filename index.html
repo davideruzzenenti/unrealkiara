@@ -14,87 +14,101 @@
   --cacao:#5D463B; --tortora:#9A8171; --oro:#C8A45D;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-webkit-font-smoothing:antialiased;padding:30px 0 60px}
-.deck{width:1066px;max-width:96vw;margin:0 auto}
+html{scroll-behavior:smooth}
+body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-webkit-font-smoothing:antialiased}
 
-.page{width:100%;aspect-ratio:16/9;background:var(--panna);border-radius:10px;overflow:hidden;
-  margin-bottom:22px;box-shadow:0 18px 50px -28px rgba(60,40,30,.5);position:relative;
-  padding:46px 52px;display:flex;flex-direction:column}
-.brandbar{display:flex;justify-content:space-between;font-size:9px;letter-spacing:.22em;
-  text-transform:uppercase;font-weight:600;margin-bottom:20px;flex:0 0 auto}
-.brandbar .l{background:var(--cacao);color:var(--panna);padding:4px 11px;border-radius:20px;text-transform:none;letter-spacing:.02em}
-.brandbar .r{color:var(--tortora)}
-.kref{font-family:'Fraunces',serif;font-style:italic;font-weight:500}
-.vl{position:absolute;right:52px;bottom:42px;font-family:'Fraunces',serif;font-weight:500;font-size:12px;line-height:1.05;text-align:right;letter-spacing:.1em}
+/* ── NAV ── */
+.sitenav{position:sticky;top:0;z-index:100;background:var(--cacao);height:50px;display:flex;align-items:center;padding:0 32px;gap:2px;overflow-x:auto;scrollbar-width:none}
+.sitenav::-webkit-scrollbar{display:none}
+.sitenav .logo{font-family:'Fraunces',serif;font-style:italic;font-size:15px;color:var(--pesca);font-weight:500;margin-right:20px;flex-shrink:0;text-decoration:none;letter-spacing:.01em}
+.sitenav a{color:rgba(255,248,238,.45);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;white-space:nowrap;padding:5px 11px;border-radius:20px;transition:.18s;flex-shrink:0}
+.sitenav a:hover{color:var(--panna)}
+.sitenav a.active{color:var(--panna);background:rgba(255,248,238,.12)}
 
-.page.opener{background:var(--cacao);color:var(--panna);justify-content:center}
-.page.opener .brandbar .l{background:transparent;color:var(--panna);box-shadow:inset 0 0 0 1px rgba(255,248,238,.35)}
-.page.opener .brandbar .r{color:rgba(255,248,238,.55)}
-.page.opener h1{font-family:'Fraunces',serif;font-weight:500;font-size:60px;line-height:1;font-variation-settings:'SOFT' 40,'opsz' 144}
-.page.opener h1 em{font-style:italic;color:var(--pesca)}
-.page.opener .sub{font-size:12px;letter-spacing:.3em;text-transform:uppercase;margin-top:16px;color:var(--miele);font-weight:600}
-.page.opener .vl{color:rgba(255,248,238,.5)}
+/* ── HERO ── */
+.hero{background:var(--cacao);color:var(--panna);padding:110px 0 90px;position:relative;overflow:hidden}
+.hero-inner{max-width:1066px;margin:0 auto;padding:0 52px}
+.hero h1{font-family:'Fraunces',serif;font-weight:500;font-size:80px;line-height:.98;font-variation-settings:'SOFT' 40,'opsz' 144}
+.hero h1 em{font-style:italic;color:var(--pesca)}
+.hero .sub{font-size:11px;letter-spacing:.32em;text-transform:uppercase;margin-top:22px;color:var(--miele);font-weight:600}
+.hero .watermark{position:absolute;right:52px;bottom:44px;font-family:'Fraunces',serif;font-weight:500;font-size:13px;line-height:1.05;text-align:right;letter-spacing:.12em;color:rgba(255,248,238,.15)}
 
-.page.section-num{background:var(--cacao);color:var(--panna);justify-content:center}
-.page.section-num h2{font-family:'Fraunces',serif;font-weight:400;font-size:56px;line-height:1.02}
-.page.section-num h2 b{font-weight:500;color:var(--pesca)}
+/* ── CHAPTER DIVIDER ── */
+.ch-div{background:var(--cacao);color:var(--panna);padding:52px 0 44px;margin-top:80px}
+.ch-div-inner{max-width:1066px;margin:0 auto;padding:0 52px;display:flex;align-items:baseline;gap:18px}
+.ch-div .num{font-family:'Fraunces',serif;font-weight:400;font-size:11px;letter-spacing:.22em;color:var(--miele);text-transform:uppercase;flex-shrink:0;margin-top:6px}
+.ch-div h2{font-family:'Fraunces',serif;font-weight:400;font-size:54px;line-height:1}
+.ch-div h2 b{font-weight:500;color:var(--pesca)}
 
-.body{flex:1;display:flex;gap:46px;align-items:center}
+/* ── SUBSECTION DIVIDER (inside chapter, no dark band) ── */
+.sub-div{display:flex;align-items:center;gap:16px;margin:52px 0 32px}
+.sub-div .sub-label{font-size:9px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--tortora);white-space:nowrap}
+.sub-div hr{flex:1;border:none;border-top:1px solid var(--champagne)}
+
+/* ── WRAP & SECTIONS ── */
+.wrap{max-width:1066px;margin:0 auto;padding:0 52px}
+.sec{padding:64px 0;border-bottom:1px solid var(--champagne)}
+.sec:last-child{border-bottom:none}
+[id]{scroll-margin-top:62px}
+
+/* ── TWO-COL LAYOUT ── */
+.body{display:flex;gap:60px;align-items:center}
 .col-txt{flex:1;min-width:0}
-.col-vis{flex:0 0 350px}
-.tag{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--tortora);font-weight:600;margin-bottom:10px}
-.htitle{font-family:'Fraunces',serif;font-weight:400;font-size:40px;line-height:1.0;color:var(--cacao);font-variation-settings:'SOFT' 30,'opsz' 144}
-.kicker{font-family:'Manrope';font-weight:700;font-size:17px;margin:4px 0 16px;letter-spacing:-.01em}
-.kicker span{color:var(--corallo)}
-.col-txt p{font-size:12.5px;line-height:1.6;color:var(--tortora);margin-bottom:11px;font-weight:400}
-.col-txt p b{color:var(--cacao);font-weight:600}
-.quote-line{color:var(--cacao);font-family:'Fraunces',serif;font-style:italic;font-size:14px}
-.note{font-size:10.5px;color:var(--tortora);margin-top:8px;line-height:1.55;border-left:2px solid var(--corallo);padding-left:12px}
-.note b{color:var(--corallo)}
+.col-vis{flex:0 0 360px}
 
-.m-ava{width:150px;height:150px;border-radius:50%;margin:0 auto 12px;background:conic-gradient(from 210deg,var(--pesca),var(--miele),var(--rosa),var(--pesca));padding:4px}
-.m-ava span{width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(150deg,var(--champagne),var(--pesca));font-family:'Fraunces',serif;font-style:italic;font-size:56px;color:var(--panna)}
+/* ── TYPOGRAPHY ── */
+.tag{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--tortora);font-weight:600;margin-bottom:10px}
+.htitle{font-family:'Fraunces',serif;font-weight:400;font-size:42px;line-height:1;color:var(--cacao);font-variation-settings:'SOFT' 30,'opsz' 144}
+.kicker{font-family:'Manrope';font-weight:700;font-size:17px;margin:4px 0 18px;letter-spacing:-.01em}
+.kicker span{color:var(--corallo)}
+.col-txt p{font-size:13px;line-height:1.65;color:var(--tortora);margin-bottom:12px;font-weight:400}
+.col-txt p b{color:var(--cacao);font-weight:600}
+.quote-line{color:var(--cacao);font-family:'Fraunces',serif;font-style:italic;font-size:15px}
+.note{font-size:11px;color:var(--tortora);margin-top:10px;line-height:1.55;border-left:2px solid var(--corallo);padding-left:12px}
+.note b{color:var(--corallo)}
+.kref{font-family:'Fraunces',serif;font-style:italic;font-weight:500}
+
+/* ── AVATAR ── */
+.m-ava{width:160px;height:160px;border-radius:50%;margin:0 auto 14px;background:conic-gradient(from 210deg,var(--pesca),var(--miele),var(--rosa),var(--pesca));padding:4px}
+.m-ava img,.m-ava span{width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(150deg,var(--champagne),var(--pesca));font-family:'Fraunces',serif;font-style:italic;font-size:60px;color:var(--panna)}
+.m-ava img{object-fit:cover;display:block}
 .cap{text-align:center;font-size:10px;color:var(--tortora);font-weight:500}
 
-/* MODEL SHEET */
-.msheet{flex:1;display:flex;flex-direction:column;justify-content:center}
-.msheet .lead{font-size:11.5px;color:var(--tortora);line-height:1.5;margin-bottom:12px;max-width:840px}
+/* ── MODEL SHEET ── */
+.msheet{display:flex;flex-direction:column;gap:16px}
+.msheet .lead{font-size:12px;color:var(--tortora);line-height:1.55;max-width:820px}
 .msheet .lead b{color:var(--cacao);font-weight:600}
-.ms-block{margin-bottom:10px}
-.ms-h{font-size:9px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--cacao);margin-bottom:7px}
-.ms-faces,.ms-bodies{display:flex;gap:10px}
-.ms-faces .t,.ms-bodies .t{flex:1}
-.ms-face{height:96px;border-radius:12px;background:linear-gradient(150deg,var(--champagne),var(--pesca));display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-style:italic;color:var(--panna);font-size:28px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.25)}
-.ms-body{height:138px;border-radius:12px;background:linear-gradient(160deg,var(--miele),var(--champagne));display:flex;align-items:center;justify-content:center;font-family:'Manrope';font-weight:700;font-size:10px;letter-spacing:.12em;color:rgba(93,70,59,.4)}
-.ms-lab{text-align:center;margin-top:5px}
-.ms-lab .a{font-size:9.5px;font-weight:700;color:var(--cacao)}
-.ms-lab .f{font-family:'Courier New',monospace;font-size:8.5px;color:var(--corallo)}
-.ms-note{font-size:9px;color:var(--tortora);margin-top:8px;line-height:1.5;border-left:2px solid var(--corallo);padding-left:10px}
+.ms-h{font-size:9px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--cacao);margin-bottom:8px}
+.ms-note{font-size:9px;color:var(--tortora);line-height:1.5;border-left:2px solid var(--corallo);padding-left:10px}
 .ms-note b{color:var(--corallo)}
 
-.bio-card{background:var(--avorio);border-radius:16px;padding:22px;border:1px solid var(--champagne)}
-.bio-card .nm{font-family:'Fraunces',serif;font-weight:500;font-size:16px;margin-bottom:6px}
-.bio-card .ln{font-size:12px;color:var(--tortora);line-height:1.6}
+/* ── BIO CARD ── */
+.bio-card{background:var(--avorio);border-radius:16px;padding:24px;border:1px solid var(--champagne)}
+.bio-card .nm{font-family:'Fraunces',serif;font-weight:500;font-size:17px;margin-bottom:7px}
+.bio-card .ln{font-size:12.5px;color:var(--tortora);line-height:1.65}
 .bio-card .ln .hi{color:var(--corallo);font-weight:600}
-.dash{margin-top:14px;display:flex;flex-direction:column;gap:6px}
-.dash i{border:1px dashed var(--miele);border-radius:8px;padding:7px 10px;font-style:normal;color:var(--cacao);font-size:11px}
+.dash{margin-top:16px;display:flex;flex-direction:column;gap:7px}
+.dash i{border:1px dashed var(--miele);border-radius:8px;padding:8px 11px;font-style:normal;color:var(--cacao);font-size:11.5px}
 .dash i small{display:block;font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--miele);margin-bottom:2px}
 
-.type-card{background:var(--avorio);border-radius:14px;padding:20px;border:1px solid var(--champagne)}
-.type-card .big{font-family:'Fraunces',serif;font-weight:600;font-size:36px;color:var(--cacao);line-height:1}
-.type-card .lab{font-size:10px;color:var(--tortora);margin:3px 0 14px;font-weight:600}
-.type-card .big2{font-family:'Manrope';font-weight:500;font-size:20px;color:var(--cacao)}
-.sw{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
-.sw i{width:26px;height:26px;border-radius:7px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)}
+/* ── TYPE CARD ── */
+.type-card{background:var(--avorio);border-radius:14px;padding:22px;border:1px solid var(--champagne)}
+.type-card .big{font-family:'Fraunces',serif;font-weight:600;font-size:38px;color:var(--cacao);line-height:1}
+.type-card .lab{font-size:10px;color:var(--tortora);margin:3px 0 16px;font-weight:600}
+.type-card .big2{font-family:'Manrope';font-weight:500;font-size:22px;color:var(--cacao)}
+.sw{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.sw i{width:28px;height:28px;border-radius:8px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)}
 
-.fmt-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.fmt-chip{border-radius:12px;padding:13px 14px;background:var(--avorio);border:1px solid var(--champagne)}
-.fmt-chip .fn{font-family:'Fraunces',serif;font-weight:600;font-size:16px;color:var(--cacao)}
-.fmt-chip .fr{font-size:10px;color:var(--tortora);margin-top:2px;font-weight:500}
+/* ── FORMAT GRID ── */
+.fmt-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}
+.fmt-chip{border-radius:12px;padding:14px 16px;background:var(--avorio);border:1px solid var(--champagne)}
+.fmt-chip .fn{font-family:'Fraunces',serif;font-weight:600;font-size:17px;color:var(--cacao)}
+.fmt-chip .fr{font-size:10.5px;color:var(--tortora);margin-top:3px;font-weight:500}
 .fmt-chip.accent{background:linear-gradient(150deg,var(--pesca),var(--albicocca));border-color:transparent}
 .fmt-chip.accent .fn,.fmt-chip.accent .fr{color:var(--cacao)}
 
-.post{aspect-ratio:1;border-radius:16px;padding:24px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;box-shadow:0 14px 30px -22px rgba(93,70,59,.4);max-height:330px;margin:0 auto;width:100%}
+/* ── POSTS ── */
+.post{aspect-ratio:1;border-radius:16px;padding:24px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;box-shadow:0 14px 36px -22px rgba(93,70,59,.45);max-height:340px;margin:0 auto;width:100%}
 .post .lbl{position:absolute;top:12px;left:13px;font-size:8px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;opacity:.55}
 .post.drop{background:linear-gradient(160deg,var(--pesca),var(--albicocca));color:var(--cacao)}
 .post.drop .t{font-family:'Fraunces',serif;font-weight:500;font-size:28px;line-height:1.04}
@@ -126,6 +140,7 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
 .post.duet .badge{font-size:11px;font-weight:600;color:var(--tortora)}
 .post.duet .cap2{font-family:'Fraunces',serif;font-style:italic;font-size:20px;color:var(--cacao);line-height:1.15}
 
+/* ── SEQUENCE ── */
 .seq{display:flex;gap:9px}
 .seq .step{flex:1;text-align:center}
 .seq .box{border:1.5px dashed var(--miele);border-radius:9px;height:80px;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-style:italic;color:var(--tortora);font-size:13px}
@@ -133,17 +148,19 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
 .seq .top{font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--tortora);font-weight:600;margin-bottom:7px;min-height:22px}
 .seq .bot{font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--corallo);font-weight:600;margin-top:7px}
 
+/* ── CTA STACK ── */
 .cta-stack{display:flex;flex-direction:column;gap:10px}
-.cta-stack .blk{border:1.5px dashed var(--miele);border-radius:11px;padding:13px 15px}
+.cta-stack .blk{border:1.5px dashed var(--miele);border-radius:11px;padding:14px 16px}
 .cta-stack .blk .bt{font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--tortora);font-weight:600;margin-bottom:6px}
-.cta-stack .blk p{font-size:12.5px;line-height:1.45;color:var(--cacao);font-weight:400}
+.cta-stack .blk p{font-size:13px;line-height:1.45;color:var(--cacao);font-weight:400}
 .cta-stack .blk.fix{border-style:solid;border-color:var(--corallo);background:#FDEFE9}
 .cta-stack .blk.fix p{color:var(--corallo);font-weight:500}
 
-.feat{display:flex;flex-direction:column;gap:11px}
+/* ── FEATURED ── */
+.feat{display:flex;flex-direction:column;gap:12px}
 .fcard{display:flex;border-radius:12px;overflow:hidden;box-shadow:0 10px 24px -20px rgba(93,70,59,.45);background:var(--panna)}
 .fcard .vis{flex:0 0 90px;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-style:italic;font-size:26px;color:rgba(255,255,255,.85)}
-.fcard .bd{padding:11px 14px}
+.fcard .bd{padding:12px 15px}
 .fcard .bd .k{font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--tortora);font-weight:600}
 .fcard .bd .h{font-family:'Fraunces',serif;font-weight:500;font-size:15px;color:var(--cacao);margin-top:2px}
 .f1 .vis{background:linear-gradient(150deg,var(--pesca),var(--albicocca))}
@@ -151,30 +168,31 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
 .f3 .vis{background:linear-gradient(150deg,var(--acqua),var(--turchese))}
 .f4 .vis{background:linear-gradient(150deg,var(--salvia),var(--pistacchio))}
 
-.sig-card{background:var(--panna);border-radius:16px;padding:22px;display:flex;gap:18px;align-items:center;box-shadow:0 14px 30px -24px rgba(93,70,59,.4)}
-.sig-card .av{width:80px;height:80px;border-radius:50%;flex:0 0 80px;background:linear-gradient(150deg,var(--champagne),var(--pesca));display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-style:italic;font-size:32px;color:var(--panna)}
-.sig-card .n{font-family:'Fraunces',serif;font-weight:500;font-size:18px}
+/* ── SIG CARD ── */
+.sig-card{background:var(--panna);border-radius:16px;padding:24px;display:flex;gap:20px;align-items:center;box-shadow:0 14px 30px -24px rgba(93,70,59,.4)}
+.sig-card .av{width:84px;height:84px;border-radius:50%;flex:0 0 84px;background:linear-gradient(150deg,var(--champagne),var(--pesca));display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-style:italic;font-size:34px;color:var(--panna)}
+.sig-card .n{font-family:'Fraunces',serif;font-weight:500;font-size:19px}
 .sig-card .r{font-size:11px;color:var(--tortora);font-weight:500;margin:3px 0}
 .sig-card .p{font-size:12px;color:var(--corallo);font-weight:600}
-.sig-card .links{font-size:10.5px;color:var(--tortora);margin-top:7px;line-height:1.7}
+.sig-card .links{font-size:11px;color:var(--tortora);margin-top:8px;line-height:1.7}
 
-.asset{flex:1;display:flex;flex-direction:column;justify-content:center}
-.asset .grp{margin-bottom:11px}
-.asset .gh{font-size:9px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--cacao);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+/* ── ASSET LIST ── */
+.asset{display:flex;flex-direction:column;gap:4px}
+.asset .grp{margin-bottom:14px}
+.asset .gh{font-size:9px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--cacao);margin-bottom:8px;display:flex;align-items:center;gap:8px}
 .asset .gh em{font-style:normal;font-weight:500;color:var(--tortora);letter-spacing:0;text-transform:none;font-size:10px}
-.asset .arow{display:grid;grid-template-columns:175px 44px 1fr;gap:10px;align-items:baseline;padding:4px 0;border-bottom:1px solid var(--avorio)}
+.asset .arow{display:grid;grid-template-columns:180px 46px 1fr;gap:12px;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--avorio)}
 .asset .fname{font-family:'Courier New',monospace;font-size:11px;font-weight:700;color:var(--corallo)}
 .asset .fmt{font-size:9px;font-weight:700;color:var(--tortora);letter-spacing:.04em}
-.asset .desc{font-size:10.5px;color:var(--tortora);line-height:1.4}
+.asset .desc{font-size:11px;color:var(--tortora);line-height:1.4}
 .asset .desc b{color:var(--cacao);font-weight:600}
-.asset .foot{font-size:9.5px;color:var(--tortora);margin-top:8px;line-height:1.5;border-left:2px solid var(--corallo);padding-left:10px}
+.asset .foot{font-size:10px;color:var(--tortora);margin-top:10px;line-height:1.5;border-left:2px solid var(--corallo);padding-left:10px}
 .asset .foot b{color:var(--corallo)}
 
-/* PRE-PROMPT */
-.pp{flex:1;display:flex;flex-direction:column;justify-content:center}
-.pp-lead{font-size:12px;color:var(--tortora);line-height:1.55;margin-bottom:14px;max-width:840px}
+/* ── PRE-PROMPT ── */
+.pp-lead{font-size:12.5px;color:var(--tortora);line-height:1.55;margin-bottom:16px;max-width:820px}
 .pp-lead b{color:var(--cacao);font-weight:600}
-.pp-box{background:var(--cacao);border-radius:12px;padding:18px 20px;color:var(--avorio);font-family:'Courier New',monospace;font-size:11px;line-height:1.65;white-space:pre-wrap}
+.pp-box{background:var(--cacao);border-radius:12px;padding:20px 22px;color:var(--avorio);font-family:'Courier New',monospace;font-size:11.5px;line-height:1.65;white-space:pre-wrap}
 .pp-box .c{color:var(--miele)}
 .pp-box .v{color:var(--acqua)}
 .pp-box .h{color:var(--pesca);font-weight:700}
@@ -182,123 +200,141 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
 .pp-two .pp-box{flex:1}
 .pp-cap{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--tortora);font-weight:700;margin-bottom:6px}
 
-/* PHOTO PLACEHOLDER */
-.photo-ph{width:100%;height:100%;min-height:220px;border:2px dashed var(--miele);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:var(--avorio)}
+/* ── PLACEHOLDERS ── */
+.photo-ph{width:100%;min-height:240px;border:2px dashed var(--miele);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:var(--avorio)}
 .photo-ph .ph-icon{font-size:36px;opacity:.3}
 .photo-ph .ph-label{font-size:9px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--tortora)}
 .photo-ph .ph-sub{font-size:10px;color:var(--miele);font-weight:500;text-align:center;max-width:160px;line-height:1.4}
-
-/* COPY PLACEHOLDER */
 .copy-ph{display:flex;flex-direction:column;gap:10px}
 .copy-ph-block{border:1.5px dashed var(--corallo);border-radius:10px;padding:14px 16px;background:#FDEFE9}
 .copy-ph-block .cph-label{font-size:8px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--corallo);margin-bottom:6px}
 .copy-ph-block .cph-text{font-size:12px;color:rgba(93,70,59,.45);line-height:1.6;font-style:italic}
 
-.toolbar{position:fixed;top:16px;right:16px;z-index:50}
-.toolbar button{background:var(--cacao);color:var(--panna);border:none;font-family:'Manrope';font-weight:600;font-size:13px;padding:11px 18px;border-radius:30px;cursor:pointer;box-shadow:0 10px 24px -10px rgba(60,40,30,.6);transition:.2s}
-.toolbar button:hover{background:var(--corallo)}
-
-@media print{
-  @page{ size:338mm 190mm; margin:0; }
-  html,body{background:#fff;padding:0;margin:0}
-  .deck{width:100%;max-width:none;margin:0}
-  .toolbar{display:none}
-  .page{width:338mm;height:190mm;aspect-ratio:auto;border-radius:0;margin:0;box-shadow:none;page-break-after:always;break-after:page;padding:60px 70px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .page:last-child{page-break-after:auto}
-}
+/* ── FOOTER ── */
+.site-footer{background:var(--cacao);color:rgba(255,248,238,.4);text-align:center;padding:40px 52px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;margin-top:80px}
+.site-footer em{font-family:'Fraunces',serif;font-style:italic;color:var(--pesca);font-size:13px;letter-spacing:0;text-transform:none}
 </style>
 </head>
 <body>
 
-<div class="toolbar"><button onclick="window.print()">&#10548; Scarica PDF</button></div>
+<!-- ══ NAV ══ -->
+<nav class="sitenav" id="sitenav">
+  <a href="#top" class="logo">Kiara</a>
+  <a href="#volto">Volto</a>
+  <a href="#corpo">Corpo</a>
+  <a href="#profumo">Profumo</a>
+  <a href="#chi-e">Chi è</a>
+  <a href="#bio">Bio</a>
+  <a href="#identita">Identità</a>
+  <a href="#format">Format</a>
+  <a href="#template">Template</a>
+  <a href="#cta">CTA</a>
+  <a href="#firma">Firma</a>
+  <a href="#appendice">Appendice</a>
+  <a href="#preprompt">Pre-prompt</a>
+</nav>
 
-<div class="deck">
-
-  <section class="page opener">
-    <div class="brandbar"><span class="l">@unreal.kiara</span><span class="r">Strategy Deck</span></div>
+<!-- ══ HERO ══ -->
+<section class="hero" id="top">
+  <div class="hero-inner">
     <h1>PERSONAL BRAND.<br><em>Kiara</em></h1>
     <div class="sub">Virtual Influencer · Instagram First</div>
-    <div class="vl">UNREAL<br>KIARA</div>
-  </section>
+  </div>
+  <div class="watermark">UNREAL<br>KIARA</div>
+</section>
 
-  <section class="page section-num"><h2>01. <b>Il volto.</b></h2></section>
-  <section class="page">
-    <div class="brandbar"><span class="l">@unreal.kiara</span><span class="r">01 · Volto</span></div>
+<!-- ══ 01 · VOLTO ══ -->
+<div class="ch-div" id="volto">
+  <div class="ch-div-inner">
+    <span class="num">01</span>
+    <h2><b>Il volto.</b></h2>
+  </div>
+</div>
+<div class="wrap">
+
+  <div class="sec">
     <div class="body">
       <div class="col-txt">
         <div class="tag">01. Immagine profilo</div>
-        <h1 class="htitle">Essere riconosciuti</h1>
+        <h2 class="htitle">Essere riconosciuti</h2>
         <div class="kicker">ANCHE SE <span>non esisti</span>.</div>
         <p>Per una persona reale il volto trasmette presenza. Per Kiara deve trasmettere <b>coerenza</b>: stesso identikit a ogni render — struttura, taglio, luce, grana della pelle.</p>
         <p>La minaccia numero uno non è sembrare finta, è sembrare <b>una persona diversa ogni post</b>. La riconoscibilità nasce dal seed coerente, non dal singolo scatto.</p>
         <p>Sguardo laterale, luce calda, mai posa "fototessera": profondità e presenza, non perfezione plastica.</p>
-        <div class="note"><b>Regola:</b> tutto parte dal Model Sheet (slide seguente). Ogni contenuto si genera DA quel set, non da zero.</div>
+        <div class="note"><b>Regola:</b> tutto parte dal Model Sheet (sezione seguente). Ogni contenuto si genera DA quel set, non da zero.</div>
       </div>
       <div class="col-vis">
-        <div class="m-ava"><img src="img/ref-face-front.jpg" alt="Kiara" style="width:100%;height:100%;border-radius:50%;object-fit:cover"></div>
+        <div class="m-ava"><img src="img/ref-face-front.jpg" alt="Kiara"></div>
         <div class="cap">profilo · render coerente, non perfetto</div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- MODEL SHEET -->
-  <section class="page">
-    <div class="brandbar"><span class="l">@unreal.kiara</span><span class="r">01 · Model Sheet</span></div>
+  <div class="sec">
     <div class="msheet">
       <div class="tag">01. Model sheet — Reference avatar</div>
-      <h1 class="htitle" style="font-size:30px;margin-bottom:2px">Tutte le facce di Kiara</h1>
-      <div class="kicker" style="font-size:13px;margin:2px 0 10px">la base che tiene l'IA <span>coerente</span></div>
-      <div class="lead">Qui vanno <b>tutte le immagini di riferimento</b> di Kiara: volto da più angolazioni e figura intera. Non si pubblicano — servono all'IA come model sheet per <b>bloccare l'identità</b> (volto, proporzioni, incarnato) prima di generare qualsiasi post. Scattate a <b>luce neutra, sfondo neutro, stesso outfit base</b>, così l'IA isola la persona e non l'atmosfera.</div>
-
-      <div style="display:flex;gap:16px;flex:1;align-items:flex-start">
+      <h2 class="htitle" style="font-size:32px;margin-bottom:4px">Tutte le facce di Kiara</h2>
+      <div class="kicker" style="font-size:13px;margin:2px 0 8px">la base che tiene l'IA <span>coerente</span></div>
+      <div class="lead" style="font-size:12px;color:var(--tortora);line-height:1.55;max-width:820px;margin-bottom:20px">Qui vanno <b>tutte le immagini di riferimento</b> di Kiara: volto da più angolazioni e figura intera. Non si pubblicano — servono all'IA come model sheet per <b>bloccare l'identità</b> prima di generare qualsiasi post.</div>
+      <div style="display:flex;gap:20px;align-items:flex-start">
         <div style="flex:1">
-          <div class="ms-h">Volto · più angolazioni</div>
-          <img src="img/ref-face-sheet.png" alt="Kiara face sheet" style="width:100%;border-radius:10px;display:block;object-fit:cover">
-          <div class="ms-note" style="margin-top:8px"><b>ref-face-sheet.png</b> · 6 angolazioni · seed identità</div>
+          <div class="ms-h" style="font-size:9px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--cacao);margin-bottom:10px">Volto · più angolazioni</div>
+          <img src="img/ref-face-sheet.png" alt="Kiara face sheet" style="width:100%;border-radius:12px;display:block">
+          <div class="ms-note" style="font-size:9px;color:var(--tortora);margin-top:10px;line-height:1.5;border-left:2px solid var(--corallo);padding-left:10px"><b>ref-face-sheet.png</b> · 6 angolazioni · seed identità</div>
         </div>
         <div style="flex:1">
-          <div class="ms-h">Full body · proporzioni</div>
-          <img src="img/ref-body-sheet.png" alt="Kiara body sheet" style="width:100%;border-radius:10px;display:block;object-fit:cover">
-          <div class="ms-note" style="margin-top:8px"><b>ref-body-sheet.png</b> · 6 pose · proporzioni e silhouette</div>
+          <div class="ms-h" style="font-size:9px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--cacao);margin-bottom:10px">Full body · proporzioni</div>
+          <img src="img/ref-body-sheet.png" alt="Kiara body sheet" style="width:100%;border-radius:12px;display:block">
+          <div class="ms-note" style="font-size:9px;color:var(--tortora);margin-top:10px;line-height:1.5;border-left:2px solid var(--corallo);padding-left:10px"><b>ref-body-sheet.png</b> · 6 pose · proporzioni e silhouette</div>
         </div>
       </div>
-
-      <div class="ms-note"><b>Più angolazioni = più stabilità.</b> Una sola posa fa "appiattire" l'IA su quell'inquadratura; il set completo le permette di ricostruire Kiara da qualsiasi vista.</div>
+      <div class="note" style="margin-top:16px"><b>Più angolazioni = più stabilità.</b> Una sola posa fa "appiattire" l'IA su quell'inquadratura; il set completo le permette di ricostruire Kiara da qualsiasi vista.</div>
     </div>
-  </section>
+  </div>
 
-  <!-- IL CORPO -->
-  <section class="page section-num"><h2><b>Il corpo.</b></h2></section>
-  <section class="page">
-    <div class="brandbar"><span class="l">@unreal.kiara</span><span class="r">Il corpo</span></div>
+</div>
+
+<!-- ══ CORPO ══ -->
+<div class="ch-div" id="corpo">
+  <div class="ch-div-inner">
+    <h2><b>Il corpo.</b></h2>
+  </div>
+</div>
+<div class="wrap">
+  <div class="sec">
     <div class="body">
       <div class="col-txt">
         <div class="tag">Il corpo · Reference visiva</div>
-        <h1 class="htitle">Una presenza</h1>
+        <h2 class="htitle">Una presenza</h2>
         <div class="kicker">CHE <span>abita lo spazio</span>.</div>
         <p>Il corpo di Kiara non è accessorio: è parte del brand. Proporzioni, postura, gestualità devono essere <b>stabili quanto il volto</b> — ogni render parte dal ref-body, non da zero.</p>
         <p>Silhouette morbida, mai statuaria. La posa racconta carattere: <b>naturale, non costruita</b>. Nessun corpo da catalogo.</p>
-        <div class="note"><b>Uso:</b> caricare in <code>img/</code> come <code>ref-body-*.jpg</code> prima di generare qualsiasi contenuto full-body.</div>
+        <div class="note"><b>Uso:</b> caricare in <code>img/</code> come <code>ref-body-sheet.png</code> prima di generare qualsiasi contenuto full-body.</div>
       </div>
       <div class="col-vis">
-        <img src="img/ref-body-sheet.png" alt="Kiara body rotations" style="width:100%;border-radius:16px;display:block;object-fit:cover">
+        <img src="img/ref-body-sheet.png" alt="Kiara body rotations" style="width:100%;border-radius:16px;display:block">
       </div>
     </div>
-  </section>
+  </div>
+</div>
 
-  <!-- IL PROFUMO -->
-  <section class="page section-num"><h2><b>Il profumo.</b></h2></section>
-  <section class="page">
-    <div class="brandbar"><span class="l">@unreal.kiara</span><span class="r">Il profumo</span></div>
+<!-- ══ PROFUMO ══ -->
+<div class="ch-div" id="profumo">
+  <div class="ch-div-inner">
+    <h2><b>Il profumo.</b></h2>
+  </div>
+</div>
+<div class="wrap">
+  <div class="sec">
     <div class="body">
       <div class="col-txt">
         <div class="tag">Il profumo · Identità sensoriale</div>
-        <h1 class="htitle">Un odore che</h1>
+        <h2 class="htitle">Un odore che</h2>
         <div class="kicker">NON <span>esiste ancora</span>.</div>
         <div class="copy-ph">
           <div class="copy-ph-block">
             <div class="cph-label">Testo di apertura — da sostituire</div>
-            <div class="cph-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Kiara ha una firma olfattiva che il copy dovrà definire: calda, ambrata, mai dolce in modo ovvio. Il profumo è l'estensione del brand nell'unico senso che l'IA non può riprodurre.</div>
+            <div class="cph-text">Kiara ha una firma olfattiva che il copy dovrà definire: calda, ambrata, mai dolce in modo ovvio. Il profumo è l'estensione del brand nell'unico senso che l'IA non può riprodurre.</div>
           </div>
           <div class="copy-ph-block">
             <div class="cph-label">Note sensoriali — da sostituire</div>
@@ -311,23 +347,28 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
         </div>
       </div>
       <div class="col-vis">
-        <div class="photo-ph" style="height:340px">
+        <div class="photo-ph" style="min-height:360px">
           <div class="ph-icon">◻</div>
           <div class="ph-label">Foto profumo</div>
           <div class="ph-sub">inserire visual del profumo / flacone / mood</div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</div>
 
-  <!-- CHI È KIARA -->
-  <section class="page section-num"><h2><b>Chi è Kiara.</b></h2></section>
-  <section class="page">
-    <div class="brandbar"><span class="l">@unreal.kiara</span><span class="r">Chi è Kiara</span></div>
+<!-- ══ CHI È KIARA ══ -->
+<div class="ch-div" id="chi-e">
+  <div class="ch-div-inner">
+    <h2><b>Chi è Kiara.</b></h2>
+  </div>
+</div>
+<div class="wrap">
+  <div class="sec">
     <div class="body">
       <div class="col-txt">
         <div class="tag">Chi è Kiara · Carattere e storia</div>
-        <h1 class="htitle">Non esiste.</h1>
+        <h2 class="htitle">Non esiste.</h2>
         <div class="kicker">MA <span>ha un'anima</span>.</div>
         <div class="copy-ph">
           <div class="copy-ph-block">
@@ -336,7 +377,7 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
           </div>
           <div class="copy-ph-block">
             <div class="cph-label">Cosa ama — da sostituire</div>
-            <div class="cph-text">Ama [oggetti, atmosfere, momenti]. Colleziona luci più che cose. Abita città che non esistono, mattine che non ha vissuto, profumi che non ha annusato — eppure li racconta come se ci fosse stata.</div>
+            <div class="cph-text">Ama [oggetti, atmosfere, momenti]. Colleziona luci più che cose. Abita città che non esistono, mattine che non ha vissuto — eppure li racconta come se ci fosse stata.</div>
           </div>
           <div class="copy-ph-block">
             <div class="cph-label">Cosa non è — da sostituire</div>
@@ -345,7 +386,7 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
         </div>
       </div>
       <div class="col-vis">
-        <div class="bio-card" style="height:100%">
+        <div class="bio-card">
           <div class="nm">Kiara <span style="color:var(--corallo)">✓</span></div>
           <div class="ln" style="margin-bottom:14px"><span class="hi">[tagline da definire]</span><br>[sottotitolo · tipo · canale]</div>
           <div class="dash">
@@ -357,20 +398,27 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</div>
 
-  <section class="page section-num"><h2>02. <b>Bio.</b></h2></section>
-  <section class="page">
-    <div class="brandbar"><span class="l">@unreal.kiara</span><span class="r">02 · Bio</span></div>
+<!-- ══ 02 · BIO ══ -->
+<div class="ch-div" id="bio">
+  <div class="ch-div-inner">
+    <span class="num">02</span>
+    <h2><b>Bio.</b></h2>
+  </div>
+</div>
+<div class="wrap">
+  <div class="sec">
     <div class="body">
       <div class="col-txt">
         <div class="tag">02. Bio</div>
-        <h1 class="htitle">Essere capiti</h1>
+        <h2 class="htitle">Essere capiti</h2>
         <div class="kicker">IN <span>tre righe</span>.</div>
         <p>La bio unisce <b>natura, tono e promessa</b>. Prima riga: cos'è (trasparenza = identità). Seconda: il tono. Terza: l'azione.</p>
         <p class="quote-line">"Non esisto. Ma il mio mood sì."</p>
         <p>Non cerca lo status di "umana": dichiara di essere digitale e trasforma l'onestà in carattere. Impossibile da smascherare, perché non nasconde nulla.</p>
-        <div class="note"><b>Vs. il tuo deck:</b> tu agganci un problema di mercato. Kiara aggancia un <b>desiderio estetico + canale d'acquisto</b>.</div>
+        <div class="note"><b>Logica:</b> Kiara aggancia un <b>desiderio estetico + canale d'acquisto</b> — non un problema di mercato.</div>
       </div>
       <div class="col-vis">
         <div class="bio-card">
@@ -384,18 +432,24 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</div>
 
-  <section class="page section-num"><h2>03. <b>Identità visiva.</b></h2></section>
-  <section class="page">
-    <div class="brandbar"><span class="l">@unreal.kiara</span><span class="r">03 · Identità</span></div>
+<!-- ══ 03 · IDENTITÀ ══ -->
+<div class="ch-div" id="identita">
+  <div class="ch-div-inner">
+    <span class="num">03</span>
+    <h2><b>Identità visiva.</b></h2>
+  </div>
+</div>
+<div class="wrap">
+  <div class="sec">
     <div class="body">
       <div class="col-txt">
         <div class="tag">03. Identità visiva</div>
-        <h1 class="htitle">Un'identità da</h1>
+        <h2 class="htitle">Un'identità da</h2>
         <div class="kicker">MUSA <span>digitale</span>.</div>
-        <p>Dove la tua identità sceglie l'austerità (nero/bianco, Google Sans) per dire controllo, Kiara sceglie il <b>calore</b> per dire desiderabilità. Logica identica, segno opposto.</p>
-        <p><b>Fraunces</b> dà l'anima — serif morbido, poetico, femminile. <b>Manrope</b> tiene pulizia e vendibilità: UI, prezzi, hashtag.</p>
+        <p>Kiara sceglie il <b>calore</b> per dire desiderabilità. <b>Fraunces</b> dà l'anima — serif morbido, poetico, femminile. <b>Manrope</b> tiene pulizia e vendibilità: UI, prezzi, hashtag.</p>
         <p>Palette calda con <b>un solo accento d'azione</b> (corallo). Niente decorazione gratuita: respiro, contrasto morbido, percezione premium-soft.</p>
       </div>
       <div class="col-vis">
@@ -403,28 +457,36 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
           <div class="big">Aa Bb</div>
           <div class="lab">FRAUNCES · titoli &amp; voce</div>
           <div class="big2">Aa Bb Cc</div>
-          <div class="lab" style="margin-bottom:6px">MANROPE · testi &amp; UI</div>
+          <div class="lab" style="margin-bottom:8px">MANROPE · testi &amp; UI</div>
           <div class="sw">
             <i style="background:#F7F0E6"></i><i style="background:#5D463B"></i><i style="background:#9A8171"></i>
             <i style="background:#E97962"></i><i style="background:#F5B895"></i><i style="background:#9EDBD6"></i>
           </div>
-          <div style="font-size:9px;color:var(--tortora);margin-top:8px">nucleo caldo + 1 accento corallo + freddi rari</div>
+          <div style="font-size:9px;color:var(--tortora);margin-top:10px">nucleo caldo + 1 accento corallo + freddi rari</div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</div>
 
-  <section class="page section-num"><h2>04. <b>Format.</b></h2></section>
-  <section class="page">
-    <div class="brandbar"><span class="l">@unreal.kiara</span><span class="r">04 · Format</span></div>
+<!-- ══ 04 · FORMAT ══ -->
+<div class="ch-div" id="format">
+  <div class="ch-div-inner">
+    <span class="num">04</span>
+    <h2><b>Format.</b></h2>
+  </div>
+</div>
+<div class="wrap">
+
+  <div class="sec">
     <div class="body">
       <div class="col-txt">
         <div class="tag">04. Format</div>
-        <h1 class="htitle">Sei formati</h1>
+        <h2 class="htitle">Sei formati</h2>
         <div class="kicker">UN <span>solo mondo</span>.</div>
         <p>Tre assi: <b>cosa compri</b> (Drop), <b>chi è</b> (Voce, Ritual), <b>dove vive e con chi</b> (World, Muse, Duet).</p>
-        <p>Drop converte. Voce e Ritual costruiscono carattere e intimità. World e Muse costruiscono l'universo estetico in cui i Drop hanno senso. Duet monetizza e, col contrasto col reale, rende evidente la sua natura digitale senza doverla spiegare.</p>
-        <div class="note"><b>Uso:</b> non tutti ogni settimana. Si <b>ruotano</b> — il nucleo è Drop+Voce+World, gli altri entrano a cadenza, per non diluire l'identità.</div>
+        <p>Drop converte. Voce e Ritual costruiscono carattere. World e Muse costruiscono l'universo estetico. Duet monetizza e rende evidente la natura digitale senza spiegarla.</p>
+        <div class="note"><b>Uso:</b> non tutti ogni settimana. Il nucleo è Drop+Voce+World, gli altri entrano a cadenza.</div>
       </div>
       <div class="col-vis">
         <div class="fmt-grid">
@@ -437,17 +499,14 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section class="page section-num"><h2>05. <b>Piano editoriale.</b></h2></section>
-  <section class="page">
-    <div class="brandbar"><span class="l">@unreal.kiara</span><span class="r">05 · Editoriale</span></div>
+  <div class="sec">
     <div class="body">
       <div class="col-txt">
-        <div class="tag">05. Simulazione del piano editoriale</div>
-        <h1 class="htitle">Prima il desiderio</h1>
+        <div class="tag">05. Piano editoriale</div>
+        <h2 class="htitle">Prima il desiderio</h2>
         <div class="kicker">POI <span>la conversione</span>.</div>
-        <p>Stessa sequenza commerciale graduale del tuo deck: prima affezione, poi acquisto.</p>
         <p>Almeno <b>3 contenuti di mondo/voce</b> senza vendita diretta. Poi il quarto, un <b>DROP con CTA in caption</b> — non aggressiva, nata da una storia reale.</p>
         <p>Il pubblico compra dopo essersi affezionato all'estetica, non prima.</p>
       </div>
@@ -460,18 +519,27 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section class="page section-num"><h2>06. <b>Template · Drop.</b></h2></section>
-  <section class="page">
-    <div class="brandbar"><span class="l">@unreal.kiara</span><span class="r">06 · Drop</span></div>
+</div>
+
+<!-- ══ 06-11 · TEMPLATE ══ -->
+<div class="ch-div" id="template">
+  <div class="ch-div-inner">
+    <span class="num">06 — 11</span>
+    <h2><b>Template.</b></h2>
+  </div>
+</div>
+<div class="wrap">
+
+  <div class="sec">
+    <div class="sub-div"><span class="sub-label">06 · Drop</span><hr></div>
     <div class="body">
       <div class="col-txt">
-        <div class="tag">06. Format Drop</div>
-        <h1 class="htitle">La struttura del template</h1>
+        <div class="tag">Format Drop</div>
+        <h2 class="htitle">La struttura del template</h2>
         <div class="kicker">FORMAT <span>DROP</span>.</div>
-        <p>Trasferisce desiderio e dà la conversione. Struttura ripetibile:</p>
-        <p>— in alto il nome della release / prodotto,<br>— al centro la promessa estetica,<br>— in basso <b>prezzo + CTA corallo</b>.</p>
+        <p>Trasferisce desiderio e dà la conversione. Struttura ripetibile: nome release in alto, promessa estetica al centro, <b>prezzo + CTA corallo</b> in basso.</p>
         <p>È l'unico format dove il corallo compare con forza: segna l'azione.</p>
       </div>
       <div class="col-vis">
@@ -483,19 +551,17 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section class="page section-num"><h2>07. <b>Template · Voce.</b></h2></section>
-  <section class="page">
-    <div class="brandbar"><span class="l">@unreal.kiara</span><span class="r">07 · Voce</span></div>
+  <div class="sec">
+    <div class="sub-div"><span class="sub-label">07 · Voce</span><hr></div>
     <div class="body">
       <div class="col-txt">
-        <div class="tag">07. Format Voce</div>
-        <h1 class="htitle">La struttura del template</h1>
+        <div class="tag">Format Voce</div>
+        <h2 class="htitle">La struttura del template</h2>
         <div class="kicker">FORMAT <span>VOCE</span>.</div>
         <p>Rende leggibile il carattere di Kiara: pensieri brevi, poetici, ironici sul suo essere digitale.</p>
-        <p>Fondo chiaro, frase in Fraunces corsivo, una parola in corallo, firma "— Kiara".</p>
-        <p>Costruisce <b>affezione</b>, non vendita. Variabile nel testo, fisso nella forma.</p>
+        <p>Fondo chiaro, frase in Fraunces corsivo, una parola in corallo, firma "— Kiara". Costruisce <b>affezione</b>, non vendita.</p>
       </div>
       <div class="col-vis">
         <div class="post voce">
@@ -505,19 +571,17 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section class="page section-num"><h2>08. <b>Template · World.</b></h2></section>
-  <section class="page">
-    <div class="brandbar"><span class="l">@unreal.kiara</span><span class="r">08 · World</span></div>
+  <div class="sec">
+    <div class="sub-div"><span class="sub-label">08 · World</span><hr></div>
     <div class="body">
       <div class="col-txt">
-        <div class="tag">08. Format World</div>
-        <h1 class="htitle">La struttura del template</h1>
+        <div class="tag">Format World</div>
+        <h2 class="htitle">La struttura del template</h2>
         <div class="kicker">FORMAT <span>WORLD</span>.</div>
         <p>Mostra il mondo di Kiara: luoghi, atmosfere, oggetti, outfit. Non vende e non riflette — <b>costruisce l'universo estetico</b> in cui i Drop hanno senso.</p>
-        <p>È il pilastro "presenza": dove vive, che luce abita, cosa la circonda. Fondo caldo, luogo in Fraunces corsivo, micro-didascalia.</p>
-        <p>Il format che rende desiderabile tutto il resto.</p>
+        <p>Fondo caldo, luogo in Fraunces corsivo, micro-didascalia. Il format che rende desiderabile tutto il resto.</p>
       </div>
       <div class="col-vis">
         <div class="post world">
@@ -530,19 +594,17 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section class="page section-num"><h2>09. <b>Template · Ritual.</b></h2></section>
-  <section class="page">
-    <div class="brandbar"><span class="l">@unreal.kiara</span><span class="r">09 · Ritual</span></div>
+  <div class="sec">
+    <div class="sub-div"><span class="sub-label">09 · Ritual</span><hr></div>
     <div class="body">
       <div class="col-txt">
-        <div class="tag">09. Format Ritual</div>
-        <h1 class="htitle">La struttura del template</h1>
+        <div class="tag">Format Ritual</div>
+        <h2 class="htitle">La struttura del template</h2>
         <div class="kicker">FORMAT <span>RITUAL</span>.</div>
-        <p>Il diario di Kiara: la sua giornata, le abitudini, le piccole ossessioni ricorrenti. Crea <b>ritorno e intimità</b> — "cosa fa oggi".</p>
-        <p>Più narrativo della Voce: un orario, un gesto, un pensiero breve. Fondo avorio, timestamp in corallo, frase in Fraunces corsivo.</p>
-        <p>Trasforma un personaggio in una <b>compagnia quotidiana</b>.</p>
+        <p>Il diario di Kiara: la sua giornata, le abitudini, le piccole ossessioni ricorrenti. Crea <b>ritorno e intimità</b>.</p>
+        <p>Fondo avorio, timestamp in corallo, frase in Fraunces corsivo. Trasforma un personaggio in una <b>compagnia quotidiana</b>.</p>
       </div>
       <div class="col-vis">
         <div class="post ritual">
@@ -553,19 +615,17 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section class="page section-num"><h2>10. <b>Template · Muse.</b></h2></section>
-  <section class="page">
-    <div class="brandbar"><span class="l">@unreal.kiara</span><span class="r">10 · Muse</span></div>
+  <div class="sec">
+    <div class="sub-div"><span class="sub-label">10 · Muse</span><hr></div>
     <div class="body">
       <div class="col-txt">
-        <div class="tag">10. Format Muse</div>
-        <h1 class="htitle">La struttura del template</h1>
+        <div class="tag">Format Muse</div>
+        <h2 class="htitle">La struttura del template</h2>
         <div class="kicker">FORMAT <span>MUSE</span>.</div>
-        <p>L'editoriale: mini-storie visive a tema o stagione (una palette, un mood). Premium, costruito per i <b>caroselli</b> e per agganciare collab.</p>
-        <p>Kiara come musa di una narrazione coerente — copertina + indice "01/06". Fondo cacao, titolo in Fraunces, indice freddo.</p>
-        <p>È il format che alza la <b>percezione di valore</b> del profilo.</p>
+        <p>L'editoriale: mini-storie visive a tema o stagione. Premium, costruito per i <b>caroselli</b> e per agganciare collab.</p>
+        <p>Fondo cacao, titolo in Fraunces, indice "01/06". È il format che alza la <b>percezione di valore</b> del profilo.</p>
       </div>
       <div class="col-vis">
         <div class="post muse">
@@ -576,19 +636,17 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section class="page section-num"><h2>11. <b>Template · Duet.</b></h2></section>
-  <section class="page">
-    <div class="brandbar"><span class="l">@unreal.kiara</span><span class="r">11 · Duet</span></div>
+  <div class="sec">
+    <div class="sub-div"><span class="sub-label">11 · Duet</span><hr></div>
     <div class="body">
       <div class="col-txt">
-        <div class="tag">11. Format Duet</div>
-        <h1 class="htitle">La struttura del template</h1>
+        <div class="tag">Format Duet</div>
+        <h2 class="htitle">La struttura del template</h2>
         <div class="kicker">FORMAT <span>DUET</span>.</div>
         <p>Kiara accanto a brand, oggetti o persone reali. È il format che <b>monetizza di più</b>.</p>
-        <p>E risolve la questione trasparenza meglio di qualsiasi making-of: la sua natura digitale <b>emerge dal contrasto col reale</b>, senza doverla spiegare.</p>
-        <p>Struttura: Kiara ✕ partner, badge "in collaboration", una riga di voce.</p>
+        <p>La sua natura digitale <b>emerge dal contrasto col reale</b>, senza doverla spiegare. Struttura: Kiara ✕ partner, badge "in collaboration", una riga di voce.</p>
       </div>
       <div class="col-vis">
         <div class="post duet">
@@ -599,19 +657,27 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section class="page section-num"><h2>12. <b>CTA &amp; Caption.</b></h2></section>
-  <section class="page">
-    <div class="brandbar"><span class="l">@unreal.kiara</span><span class="r">12 · CTA</span></div>
+</div>
+
+<!-- ══ 12 · CTA ══ -->
+<div class="ch-div" id="cta">
+  <div class="ch-div-inner">
+    <span class="num">12</span>
+    <h2><b>CTA &amp; Caption.</b></h2>
+  </div>
+</div>
+<div class="wrap">
+  <div class="sec">
     <div class="body">
       <div class="col-txt">
         <div class="tag">12. CTA e Caption</div>
-        <h1 class="htitle">L'uso della CTA</h1>
+        <h2 class="htitle">L'uso della CTA</h2>
         <div class="kicker">NEI <span>format</span>.</div>
-        <p>Formula modulare come la tua. Struttura: <b>storia → riconoscimento → CTA con parola modulare</b>.</p>
+        <p>Formula modulare. Struttura: <b>storia → riconoscimento → CTA con parola modulare</b>.</p>
         <p>La chiusura è fissa ("commenta [PAROLA] e te lo mando"). La parte variabile è la storia reale del drop.</p>
-        <div class="note"><b>Vs. il tuo:</b> la tua CTA apre una conversazione B2B di metodo. Quella di Kiara apre un <b>micro-acquisto / waitlist</b>.</div>
+        <div class="note"><b>La CTA di Kiara</b> apre un <b>micro-acquisto / waitlist</b>, non una conversazione.</div>
       </div>
       <div class="col-vis">
         <div class="cta-stack">
@@ -621,15 +687,16 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</div>
 
-  <section class="page section-num"><h2>13. <b>Contenuti in evidenza.</b></h2></section>
-  <section class="page">
-    <div class="brandbar"><span class="l">@unreal.kiara</span><span class="r">13 · Featured</span></div>
+<!-- ══ 13 · FEATURED ══ -->
+<div class="wrap">
+  <div class="sec" id="featured" style="scroll-margin-top:62px">
     <div class="body">
       <div class="col-txt">
         <div class="tag">13. Contenuti in evidenza</div>
-        <h1 class="htitle">La struttura dei contenuti</h1>
+        <h2 class="htitle">La struttura dei contenuti</h2>
         <div class="kicker">IN <span>evidenza</span>.</div>
         <p>Rispondono a una domanda: <b>perché dovrei seguire / comprare da Kiara?</b></p>
         <p>Quattro prove fisse, una per tipo: la prova <b>estetica</b>, la <b>commerciale</b> (drop), la <b>collab</b> (un brand reale), l'<b>interattiva</b> (la community che la plasma).</p>
@@ -643,19 +710,25 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</div>
 
-  <section class="page section-num"><h2>14. <b>Firma &amp; contatto.</b></h2></section>
-  <section class="page">
-    <div class="brandbar"><span class="l">@unreal.kiara</span><span class="r">14 · Firma</span></div>
+<!-- ══ 14 · FIRMA ══ -->
+<div class="ch-div" id="firma">
+  <div class="ch-div-inner">
+    <span class="num">14</span>
+    <h2><b>Firma &amp; contatto.</b></h2>
+  </div>
+</div>
+<div class="wrap">
+  <div class="sec">
     <div class="body">
       <div class="col-txt">
         <div class="tag">14. Firma / Link-in-bio</div>
-        <h1 class="htitle">La struttura del</h1>
+        <h2 class="htitle">La struttura del</h2>
         <div class="kicker">CONTATTO <span>collab</span>.</div>
-        <p>L'equivalente della tua firma professionale, adattato a un brand: non un CEO da contattare, ma un <b>canale collab + shop</b> in un tap.</p>
-        <p>Avatar coerente, nome, una riga di posizionamento, i due link che contano: <b>DM per le collab</b>, shop per i drop. Qui vince il calore.</p>
-        <p>Il click costruisce desiderio e converte — come il tuo LinkedIn costruisce fiducia.</p>
+        <p>Non un CEO da contattare, ma un <b>canale collab + shop</b> in un tap. Avatar coerente, nome, una riga di posizionamento, i due link che contano.</p>
+        <p>Il click costruisce desiderio e converte.</p>
       </div>
       <div class="col-vis">
         <div class="sig-card">
@@ -669,83 +742,80 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</div>
 
-  <section class="page opener">
-    <div class="brandbar"><span class="l">@unreal.kiara</span><span class="r">Appendice</span></div>
-    <h1>FIRMA <em>digitale</em>.</h1>
-    <div class="sub">UnrealKiara · Brand System v1</div>
-    <div class="vl">UNREAL<br>KIARA</div>
-  </section>
+<!-- ══ APPENDICE ══ -->
+<div class="ch-div" id="appendice">
+  <div class="ch-div-inner">
+    <h2>FIRMA <em style="font-style:italic;color:var(--pesca)">digitale</em>.</h2>
+  </div>
+</div>
+<div class="wrap">
 
-  <!-- APPENDICE 1 · REFERENCE AVATAR -->
-  <section class="page">
-    <div class="brandbar"><span class="l">@unreal.kiara</span><span class="r">Appendice · Asset 1/2</span></div>
+  <div class="sec">
     <div class="asset">
       <div class="tag">Appendice 1 — Reference avatar (model sheet)</div>
-      <h1 class="htitle" style="font-size:28px;margin-bottom:2px">Immagini di Kiara da caricare</h1>
-      <div class="kicker" style="font-size:13px;margin:2px 0 12px">cartella <span>img/</span> · vincolanti per l'IA</div>
-
+      <h2 class="htitle" style="font-size:30px;margin-bottom:6px">Immagini di Kiara da caricare</h2>
+      <div class="kicker" style="font-size:13px;margin:2px 0 16px">cartella <span>img/</span> · vincolanti per l'IA</div>
       <div class="grp">
         <div class="gh">Volto · più angolazioni <em>· 1:1, luce e sfondo neutri, stesso outfit</em></div>
         <div class="arow"><span class="fname">ref-face-front.jpg</span><span class="fmt">1:1</span><span class="desc"><b>Volto frontale</b>, sguardo in camera. Il riferimento primario dell'identità.</span></div>
         <div class="arow"><span class="fname">ref-face-3q-l.jpg</span><span class="fmt">1:1</span><span class="desc">Volto a <b>tre quarti sinistra</b>.</span></div>
         <div class="arow"><span class="fname">ref-face-3q-r.jpg</span><span class="fmt">1:1</span><span class="desc">Volto a <b>tre quarti destra</b>.</span></div>
         <div class="arow"><span class="fname">ref-face-side.jpg</span><span class="fmt">1:1</span><span class="desc"><b>Profilo laterale</b> completo.</span></div>
-        <div class="arow"><span class="fname">ref-face-expr.jpg</span><span class="fmt">1:1</span><span class="desc"><b>Foglio espressioni</b>: neutra, sorriso lieve, sguardo basso (opzionale ma utile).</span></div>
+        <div class="arow"><span class="fname">ref-face-expr.jpg</span><span class="fmt">1:1</span><span class="desc"><b>Foglio espressioni</b>: neutra, sorriso lieve, sguardo basso.</span></div>
       </div>
-
       <div class="grp">
         <div class="gh">Full body · proporzioni <em>· 2:3, posa neutra, outfit base</em></div>
-        <div class="arow"><span class="fname">ref-body-front.jpg</span><span class="fmt">2:3</span><span class="desc"><b>Figura intera frontale</b>, posa neutra. Blocca proporzioni e corporatura.</span></div>
+        <div class="arow"><span class="fname">ref-body-front.jpg</span><span class="fmt">2:3</span><span class="desc"><b>Figura intera frontale</b>, posa neutra.</span></div>
         <div class="arow"><span class="fname">ref-body-3q.jpg</span><span class="fmt">2:3</span><span class="desc">Figura intera a <b>tre quarti</b>.</span></div>
-        <div class="arow"><span class="fname">ref-body-back.jpg</span><span class="fmt">2:3</span><span class="desc">Figura intera <b>di spalle</b> (capelli, schiena, silhouette).</span></div>
+        <div class="arow"><span class="fname">ref-body-back.jpg</span><span class="fmt">2:3</span><span class="desc">Figura intera <b>di spalle</b>.</span></div>
       </div>
-
-      <div class="foot">Queste immagini <b>non si pubblicano</b>: sono il seed d'identità. Più angolazioni = avatar più stabile su qualsiasi posa generata.</div>
+      <div class="foot">Queste immagini <b>non si pubblicano</b>: sono il seed d'identità.</div>
     </div>
-  </section>
+  </div>
 
-  <!-- APPENDICE 2 · ESEMPI & FEATURED -->
-  <section class="page">
-    <div class="brandbar"><span class="l">@unreal.kiara</span><span class="r">Appendice · Asset 2/2</span></div>
+  <div class="sec">
     <div class="asset">
       <div class="tag">Appendice 2 — Esempi format &amp; Featured</div>
-      <h1 class="htitle" style="font-size:28px;margin-bottom:2px">Visual dei contenuti</h1>
-      <div class="kicker" style="font-size:13px;margin:2px 0 12px">cartella <span>img/</span> · indicativi (mood e composizione)</div>
-
+      <h2 class="htitle" style="font-size:30px;margin-bottom:6px">Visual dei contenuti</h2>
+      <div class="kicker" style="font-size:13px;margin:2px 0 16px">cartella <span>img/</span> · indicativi (mood e composizione)</div>
       <div class="grp">
-        <div class="gh">Esempi format <em>· 1:1, danno stile e composizione, non identità</em></div>
-        <div class="arow"><span class="fname">ex-drop.jpg</span><span class="fmt">1:1</span><span class="desc">Prodotto/drop su fondo caldo. Spazio in alto per il nome, in basso per prezzo + CTA.</span></div>
-        <div class="arow"><span class="fname">ex-world.jpg</span><span class="fmt">1:1</span><span class="desc">Atmosfera/luogo: ambiente, luce, oggetti. Niente prodotto, niente volto ravvicinato.</span></div>
-        <div class="arow"><span class="fname">ex-ritual.jpg</span><span class="fmt">1:1</span><span class="desc">Gesto/momento del diario: dettaglio intimo e ravvicinato (mani, oggetto, mattina).</span></div>
-        <div class="arow"><span class="fname">ex-muse.jpg</span><span class="fmt">1:1</span><span class="desc">Cover editoriale di un carosello a tema/stagione. Composizione da copertina.</span></div>
-        <div class="arow"><span class="fname">ex-duet.jpg</span><span class="fmt">1:1</span><span class="desc">Kiara accanto a un brand/oggetto reale: contrasto digitale↔reale.</span></div>
+        <div class="gh">Esempi format <em>· 1:1</em></div>
+        <div class="arow"><span class="fname">ex-drop.jpg</span><span class="fmt">1:1</span><span class="desc">Prodotto/drop su fondo caldo.</span></div>
+        <div class="arow"><span class="fname">ex-world.jpg</span><span class="fmt">1:1</span><span class="desc">Atmosfera/luogo: ambiente, luce, oggetti.</span></div>
+        <div class="arow"><span class="fname">ex-ritual.jpg</span><span class="fmt">1:1</span><span class="desc">Gesto/momento del diario: dettaglio intimo.</span></div>
+        <div class="arow"><span class="fname">ex-muse.jpg</span><span class="fmt">1:1</span><span class="desc">Cover editoriale di un carosello.</span></div>
+        <div class="arow"><span class="fname">ex-duet.jpg</span><span class="fmt">1:1</span><span class="desc">Kiara accanto a un brand/oggetto reale.</span></div>
       </div>
-
       <div class="grp">
-        <div class="gh">Featured <em>· 16:9, opzionali, possono riusare i visual sopra</em></div>
-        <div class="arow"><span class="fname">feat-aesthetic.jpg</span><span class="fmt">16:9</span><span class="desc">Il contenuto estetico più forte (signature light).</span></div>
-        <div class="arow"><span class="fname">feat-commercial.jpg</span><span class="fmt">16:9</span><span class="desc">Il drop più riuscito — prova commerciale.</span></div>
+        <div class="gh">Featured <em>· 16:9</em></div>
+        <div class="arow"><span class="fname">feat-aesthetic.jpg</span><span class="fmt">16:9</span><span class="desc">Il contenuto estetico più forte.</span></div>
+        <div class="arow"><span class="fname">feat-commercial.jpg</span><span class="fmt">16:9</span><span class="desc">Il drop più riuscito.</span></div>
         <div class="arow"><span class="fname">feat-collab.jpg</span><span class="fmt">16:9</span><span class="desc">Collab con un brand reale.</span></div>
         <div class="arow"><span class="fname">feat-interactive.jpg</span><span class="fmt">16:9</span><span class="desc">Contenuto plasmato dalla community.</span></div>
       </div>
-
-      <div class="foot"><b>REF</b> (appendice 1) = identità, vincolante. <b>EX / FEAT</b> = mood, indicativi. Nomi minuscoli, senza spazi né accenti.</div>
+      <div class="foot"><b>REF</b> = identità, vincolante. <b>EX / FEAT</b> = mood, indicativi. Nomi minuscoli, senza spazi né accenti.</div>
     </div>
-  </section>
+  </div>
 
-  <!-- EXTRA · PRE-PROMPT -->
-  <section class="page section-num"><h2>Extra. <b>Pre-prompt.</b></h2></section>
+</div>
 
-  <section class="page">
-    <div class="brandbar"><span class="l">@unreal.kiara</span><span class="r">Extra · Pre-prompt</span></div>
-    <div class="pp">
-      <div class="tag">Extra — Pre-prompt per l'IA</div>
-      <h1 class="htitle" style="font-size:28px;margin-bottom:2px">Il blocco fisso</h1>
-      <div class="kicker" style="font-size:13px;margin:2px 0 10px">va PRIMA <span>di ogni format</span></div>
-      <div class="pp-lead">Questo blocco apre <b>ogni</b> generazione: definisce identità, stile e vincoli. Si incolla sempre, poi si aggiunge sotto il blocco del format scelto (slide seguenti). Le <span style="color:var(--corallo);font-weight:600">[parentesi]</span> sono i campi da riempire.</div>
-      <div class="pp-box"><span class="h">SYSTEM / IDENTITY — always include</span>
+<!-- ══ PRE-PROMPT ══ -->
+<div class="ch-div" id="preprompt">
+  <div class="ch-div-inner">
+    <h2>Extra. <b>Pre-prompt.</b></h2>
+  </div>
+</div>
+<div class="wrap">
+
+  <div class="sec">
+    <div class="tag">Extra — Pre-prompt per l'IA</div>
+    <h2 class="htitle" style="font-size:30px;margin-bottom:6px">Il blocco fisso</h2>
+    <div class="kicker" style="font-size:13px;margin:2px 0 14px">va PRIMA <span>di ogni format</span></div>
+    <div class="pp-lead">Questo blocco apre <b>ogni</b> generazione. Si incolla sempre, poi si aggiunge sotto il blocco del format scelto. Le <span style="color:var(--corallo);font-weight:600">[parentesi]</span> sono i campi da riempire.</div>
+    <div class="pp-box"><span class="h">SYSTEM / IDENTITY — always include</span>
 
 <span class="c"># Subject</span>
 Kiara, a virtual (AI) influencer. Female, warm-blonde short
@@ -763,82 +833,99 @@ Openly digital — never pretend to be human.
 <span class="c"># Hard rules</span>
 Square 1:1 unless stated. Leave negative space for text.
 No logos/watermarks. Consistent face every time.</div>
-    </div>
-  </section>
+  </div>
 
-  <section class="page">
-    <div class="brandbar"><span class="l">@unreal.kiara</span><span class="r">Extra · Pre-prompt</span></div>
-    <div class="pp">
-      <div class="tag">Extra — Pre-prompt per format</div>
-      <h1 class="htitle" style="font-size:28px;margin-bottom:2px">Drop · Voce · World</h1>
-      <div class="kicker" style="font-size:13px;margin:2px 0 10px">si aggiungono <span>sotto il blocco fisso</span></div>
-      <div class="pp-two">
-        <div>
-          <div class="pp-cap">Drop</div>
-          <div class="pp-box"><span class="h">FORMAT: DROP</span>
+  <div class="sec">
+    <div class="tag">Extra — Pre-prompt per format</div>
+    <h2 class="htitle" style="font-size:30px;margin-bottom:6px">Drop · Voce · World</h2>
+    <div class="kicker" style="font-size:13px;margin:2px 0 14px">si aggiungono <span>sotto il blocco fisso</span></div>
+    <div class="pp-two">
+      <div>
+        <div class="pp-cap">Drop</div>
+        <div class="pp-box"><span class="h">FORMAT: DROP</span>
 Kiara presenting <span class="v">[product/release]</span>
 on warm gradient. Top: product
 name. Bottom space for price +
 coral CTA pill.
 <span class="c">Caption:</span> story → recognition →
 "commenta <span class="v">[WORD]</span> e te lo mando".</div>
-        </div>
-        <div>
-          <div class="pp-cap">Voce</div>
-          <div class="pp-box"><span class="h">FORMAT: VOCE</span>
+      </div>
+      <div>
+        <div class="pp-cap">Voce</div>
+        <div class="pp-box"><span class="h">FORMAT: VOCE</span>
 Light ivory background, minimal.
 No product. Big Fraunces italic
 quote, one word in coral.
 Signature "— Kiara".
 <span class="c">Text:</span> <span class="v">[short poetic line]</span>,
 ironic about being digital.</div>
-        </div>
       </div>
-      <div style="margin-top:14px">
-        <div class="pp-cap">World</div>
-        <div class="pp-box"><span class="h">FORMAT: WORLD</span>
+    </div>
+    <div style="margin-top:16px">
+      <div class="pp-cap">World</div>
+      <div class="pp-box"><span class="h">FORMAT: WORLD</span>
 Atmosphere / place of Kiara's world: <span class="v">[location/mood]</span>. Warm light, objects, outfit.
 Kiara present but not posing — she inhabits the scene. No product, no selling.
 <span class="c">Caption:</span> evocative one-liner, place tag "— <span class="v">[where]</span>".</div>
-      </div>
     </div>
-  </section>
+  </div>
 
-  <section class="page">
-    <div class="brandbar"><span class="l">@unreal.kiara</span><span class="r">Extra · Pre-prompt</span></div>
-    <div class="pp">
-      <div class="tag">Extra — Pre-prompt per format</div>
-      <h1 class="htitle" style="font-size:28px;margin-bottom:2px">Ritual · Muse · Duet</h1>
-      <div class="kicker" style="font-size:13px;margin:2px 0 10px">si aggiungono <span>sotto il blocco fisso</span></div>
-      <div class="pp-two">
-        <div>
-          <div class="pp-cap">Ritual</div>
-          <div class="pp-box"><span class="h">FORMAT: RITUAL</span>
+  <div class="sec">
+    <div class="tag">Extra — Pre-prompt per format</div>
+    <h2 class="htitle" style="font-size:30px;margin-bottom:6px">Ritual · Muse · Duet</h2>
+    <div class="kicker" style="font-size:13px;margin:2px 0 14px">si aggiungono <span>sotto il blocco fisso</span></div>
+    <div class="pp-two">
+      <div>
+        <div class="pp-cap">Ritual</div>
+        <div class="pp-box"><span class="h">FORMAT: RITUAL</span>
 Intimate diary moment: <span class="v">[gesture]</span>.
 Close-up, soft morning light.
 Coral timestamp <span class="v">[HH:MM]</span>, italic
 line, "— diario · giorno <span class="v">[n]</span>".</div>
-        </div>
-        <div>
-          <div class="pp-cap">Muse</div>
-          <div class="pp-box"><span class="h">FORMAT: MUSE</span>
+      </div>
+      <div>
+        <div class="pp-cap">Muse</div>
+        <div class="pp-box"><span class="h">FORMAT: MUSE</span>
 Editorial carousel cover, theme
 <span class="v">[season/palette]</span>. Cocoa bg,
 Fraunces title, index "01/06".
 Premium, magazine-like.</div>
-        </div>
       </div>
-      <div style="margin-top:14px">
-        <div class="pp-cap">Duet</div>
-        <div class="pp-box"><span class="h">FORMAT: DUET</span>
+    </div>
+    <div style="margin-top:16px">
+      <div class="pp-cap">Duet</div>
+      <div class="pp-box"><span class="h">FORMAT: DUET</span>
 Kiara next to a real brand/object/person: <span class="v">[partner]</span>. Show the digital↔real contrast.
 Badge "in collaboration with <span class="v">[brand]</span>".
 <span class="c">Caption:</span> line that owns her digital nature, e.g. "Io sono finta. <span class="v">[questo]</span> no."</div>
-      </div>
     </div>
-  </section>
+  </div>
 
 </div>
+
+<footer class="site-footer">
+  <em>Unreal Kiara</em> &nbsp;·&nbsp; Brand System v1 &nbsp;·&nbsp; @unreal.kiara
+</footer>
+
+<script>
+(function(){
+  const nav = document.getElementById('sitenav');
+  const links = nav.querySelectorAll('a[href^="#"]');
+  const sections = Array.from(links).map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        links.forEach(a => a.classList.remove('active'));
+        const active = nav.querySelector('a[href="#'+e.target.id+'"]');
+        if(active){ active.classList.add('active'); active.scrollIntoView({block:'nearest',inline:'center'}); }
+      }
+    });
+  }, { rootMargin: '-50px 0px -60% 0px', threshold: 0 });
+
+  sections.forEach(s => obs.observe(s));
+})();
+</script>
 
 </body>
 </html>
