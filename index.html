@@ -383,34 +383,75 @@ details.prompt-drop .pp-box{border-radius:0;margin:0;font-size:10.5px}
     <div class="tag">L'armadio · Reference visiva</div>
     <h2 class="htitle" style="margin-bottom:6px">Come si veste</h2>
     <div class="kicker" style="margin-bottom:20px">STILE <span>non moda</span>.</div>
-    <div style="display:flex;gap:24px;margin-bottom:24px">
-      <p style="flex:1;font-size:13px;line-height:1.65;color:var(--tortora)">Kiara non segue le stagioni della moda — segue le <b style="color:var(--cacao)">stagioni della luce</b>. Veste morbido, fluido, mai costruito. Ogni capo sembra scelto per comodità, eppure l'insieme è sempre coerente.</p>
-      <p style="flex:1;font-size:13px;line-height:1.65;color:var(--tortora)">La sua palette vestiti rispecchia quella del brand: avorio, champagne, sabbia calda, cacao come accento scuro. <b style="color:var(--cacao)">Mai colori freddi, mai sintetici lucidi, mai logo in vista.</b></p>
+    <p style="font-size:13px;line-height:1.65;color:var(--tortora);max-width:720px;margin-bottom:24px">Kiara non segue le stagioni della moda — segue le <b style="color:var(--cacao)">stagioni della luce</b>. Tre palette di riferimento: neutri caldi come base, caldi morbidi per l'atmosfera, freddi rari come contrasto occasionale.</p>
+
+    <!-- carousel armadio -->
+    <div style="position:relative;margin-bottom:28px">
+      <div id="stile-track" style="display:flex;overflow-x:scroll;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:20px;-webkit-overflow-scrolling:touch">
+        <style>#stile-track::-webkit-scrollbar{display:none}</style>
+
+        <!-- 01 neutri caldi -->
+        <div style="flex:0 0 100%;scroll-snap-align:start;position:relative;box-sizing:border-box">
+          <img src="img/ref-stile-neutri-caldi.png" style="width:100%;display:block;border-radius:20px">
+          <div style="position:absolute;top:16px;left:20px;right:20px;display:flex;justify-content:space-between;align-items:center">
+            <div style="background:rgba(93,70,59,.55);backdrop-filter:blur(4px);border-radius:20px;padding:5px 12px;font-size:8px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--panna)">Neutri caldi</div>
+            <div style="font-size:9px;font-weight:700;color:rgba(255,248,238,.5)">1 / 3</div>
+          </div>
+          <div style="position:absolute;bottom:16px;left:20px;font-size:11px;color:rgba(255,248,238,.7);font-weight:500">avorio · champagne · sabbia · cacao</div>
+        </div>
+
+        <!-- 02 caldi morbidi -->
+        <div style="flex:0 0 100%;scroll-snap-align:start;position:relative;box-sizing:border-box">
+          <img src="img/ref-stile-caldi-morbidi.png" style="width:100%;display:block;border-radius:20px">
+          <div style="position:absolute;top:16px;left:20px;right:20px;display:flex;justify-content:space-between;align-items:center">
+            <div style="background:rgba(93,70,59,.55);backdrop-filter:blur(4px);border-radius:20px;padding:5px 12px;font-size:8px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--panna)">Caldi morbidi</div>
+            <div style="font-size:9px;font-weight:700;color:rgba(255,248,238,.5)">2 / 3</div>
+          </div>
+          <div style="position:absolute;bottom:16px;left:20px;font-size:11px;color:rgba(255,248,238,.7);font-weight:500">pesca · albicocca · rosa · corallo</div>
+        </div>
+
+        <!-- 03 freddi rari -->
+        <div style="flex:0 0 100%;scroll-snap-align:start;position:relative;box-sizing:border-box">
+          <img src="img/ref-stile-freddi-rari.png" style="width:100%;display:block;border-radius:20px">
+          <div style="position:absolute;top:16px;left:20px;right:20px;display:flex;justify-content:space-between;align-items:center">
+            <div style="background:rgba(93,70,59,.55);backdrop-filter:blur(4px);border-radius:20px;padding:5px 12px;font-size:8px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--panna)">Freddi rari</div>
+            <div style="font-size:9px;font-weight:700;color:rgba(255,248,238,.5)">3 / 3</div>
+          </div>
+          <div style="position:absolute;bottom:16px;left:20px;font-size:11px;color:rgba(255,248,238,.7);font-weight:500">pistacchio · salvia · acqua · turchese</div>
+        </div>
+      </div>
+      <button onclick="document.getElementById('stile-track').scrollBy({left:-1200,behavior:'smooth'})" style="position:absolute;left:-16px;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:var(--panna);border:1px solid var(--champagne);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(93,70,59,.15)">‹</button>
+      <button onclick="document.getElementById('stile-track').scrollBy({left:1200,behavior:'smooth'})" style="position:absolute;right:-16px;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:var(--panna);border:1px solid var(--champagne);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(93,70,59,.15)">›</button>
     </div>
-    <img src="img/ref-stile-sheet.png" alt="Kiara wardrobe sheet" style="width:100%;border-radius:20px;display:block;margin-bottom:28px">
+    <div style="display:flex;justify-content:center;gap:6px;margin-bottom:28px">
+      <div style="width:6px;height:6px;border-radius:50%;background:var(--cacao)"></div>
+      <div style="width:6px;height:6px;border-radius:50%;background:var(--champagne)"></div>
+      <div style="width:6px;height:6px;border-radius:50%;background:var(--champagne)"></div>
+    </div>
+
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:4px">
       <div style="padding:16px;background:var(--avorio);border-radius:14px;border:1px solid var(--champagne)">
         <div style="font-size:8px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--corallo);margin-bottom:10px">Mattina</div>
         <div style="font-family:'Fraunces',serif;font-weight:500;font-size:15px;color:var(--cacao);margin-bottom:6px">Lino e cotone</div>
-        <div style="font-size:11px;color:var(--tortora);line-height:1.55">Pantalone largo sabbia, top semplice bianco o avorio. Piedi scalzi o sandali piatti. Tazza in mano.</div>
+        <div style="font-size:11px;color:var(--tortora);line-height:1.55">Pantalone largo, top semplice. Piedi scalzi o sandali piatti. Tazza in mano. Neutri caldi o pesca.</div>
       </div>
       <div style="padding:16px;background:var(--avorio);border-radius:14px;border:1px solid var(--champagne)">
         <div style="font-size:8px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--corallo);margin-bottom:10px">Giorno</div>
         <div style="font-family:'Fraunces',serif;font-weight:500;font-size:15px;color:var(--cacao);margin-bottom:6px">Abito midi</div>
-        <div style="font-size:11px;color:var(--tortora);line-height:1.55">Cotone o lino, champagne o beige caldo. Leggermente oversize. Maniche corte o senza. Nessun accessorio.</div>
+        <div style="font-size:11px;color:var(--tortora);line-height:1.55">Cotone o lino, leggermente oversize. Champagne, albicocca o salvia. Nessun accessorio.</div>
       </div>
       <div style="padding:16px;background:var(--avorio);border-radius:14px;border:1px solid var(--champagne)">
         <div style="font-size:8px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--corallo);margin-bottom:10px">Sera</div>
         <div style="font-family:'Fraunces',serif;font-weight:500;font-size:15px;color:var(--cacao);margin-bottom:6px">Slip dress seta</div>
-        <div style="font-size:11px;color:var(--tortora);line-height:1.55">Avorio o champagne, midi, spalline sottili. Un solo braccialetto sottile. Nient'altro. Luce serale da un lato.</div>
+        <div style="font-size:11px;color:var(--tortora);line-height:1.55">Avorio, rosa o acqua. Midi, spalline sottili. Un solo braccialetto. Nient'altro.</div>
       </div>
       <div style="padding:16px;background:var(--avorio);border-radius:14px;border:1px solid var(--champagne)">
         <div style="font-size:8px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--corallo);margin-bottom:10px">Freddo</div>
         <div style="font-family:'Fraunces',serif;font-weight:500;font-size:15px;color:var(--cacao);margin-bottom:6px">Cappotto oversize</div>
-        <div style="font-size:11px;color:var(--tortora);line-height:1.55">Lino pesante o lana in cacao o tortora. Pantalone champagne sotto. Stivali semplici. Mani in tasca.</div>
+        <div style="font-size:11px;color:var(--tortora);line-height:1.55">Cacao, tortora o turchese desaturato. Pantalone champagne sotto. Stivali semplici.</div>
       </div>
     </div>
-    <div class="note" style="margin-top:20px"><b>Non indossa mai:</b> fast fashion con logo visibile, palette fredda (blu elettrico, verde brillante), sportswear fuori contesto, tacchi alti, gioielli vistosi, più di un accessorio per volta.</div>
+    <div class="note" style="margin-top:20px"><b>Non indossa mai:</b> fast fashion con logo visibile, colori saturi o freddi brillanti, sportswear fuori contesto, tacchi alti, gioielli vistosi, più di un accessorio per volta.</div>
   </div>
 </div>
 
