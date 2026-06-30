@@ -429,26 +429,26 @@ details.prompt-drop .pp-box{border-radius:0;margin:0;font-size:10.5px}
       <div style="width:6px;height:6px;border-radius:50%;background:var(--champagne)"></div>
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:4px">
+    <div id="stile-cards" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:4px;transition:opacity .2s">
       <div style="padding:16px;background:var(--avorio);border-radius:14px;border:1px solid var(--champagne)">
         <div style="font-size:8px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--corallo);margin-bottom:10px">Mattina</div>
-        <div style="font-family:'Fraunces',serif;font-weight:500;font-size:15px;color:var(--cacao);margin-bottom:6px">Lino e cotone</div>
-        <div style="font-size:11px;color:var(--tortora);line-height:1.55">Pantalone largo, top semplice. Piedi scalzi o sandali piatti. Tazza in mano. Neutri caldi o pesca.</div>
+        <div id="sc-mattina-title" style="font-family:'Fraunces',serif;font-weight:500;font-size:15px;color:var(--cacao);margin-bottom:6px">Lino e cotone</div>
+        <div id="sc-mattina-text" style="font-size:11px;color:var(--tortora);line-height:1.55">Pantalone largo sabbia, top avorio o bianco. Sandali piatti o piedi scalzi. Tazza in mano.</div>
       </div>
       <div style="padding:16px;background:var(--avorio);border-radius:14px;border:1px solid var(--champagne)">
         <div style="font-size:8px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--corallo);margin-bottom:10px">Giorno</div>
-        <div style="font-family:'Fraunces',serif;font-weight:500;font-size:15px;color:var(--cacao);margin-bottom:6px">Abito midi</div>
-        <div style="font-size:11px;color:var(--tortora);line-height:1.55">Cotone o lino, leggermente oversize. Champagne, albicocca o salvia. Nessun accessorio.</div>
+        <div id="sc-giorno-title" style="font-family:'Fraunces',serif;font-weight:500;font-size:15px;color:var(--cacao);margin-bottom:6px">Abito midi</div>
+        <div id="sc-giorno-text" style="font-size:11px;color:var(--tortora);line-height:1.55">Champagne o beige caldo, leggermente oversize. Maniche corte o senza. Nessun accessorio.</div>
       </div>
       <div style="padding:16px;background:var(--avorio);border-radius:14px;border:1px solid var(--champagne)">
         <div style="font-size:8px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--corallo);margin-bottom:10px">Sera</div>
-        <div style="font-family:'Fraunces',serif;font-weight:500;font-size:15px;color:var(--cacao);margin-bottom:6px">Slip dress seta</div>
-        <div style="font-size:11px;color:var(--tortora);line-height:1.55">Avorio, rosa o acqua. Midi, spalline sottili. Un solo braccialetto. Nient'altro.</div>
+        <div id="sc-sera-title" style="font-family:'Fraunces',serif;font-weight:500;font-size:15px;color:var(--cacao);margin-bottom:6px">Slip dress seta</div>
+        <div id="sc-sera-text" style="font-size:11px;color:var(--tortora);line-height:1.55">Avorio o champagne, midi, spalline sottili. Un solo braccialetto sottile. Nient'altro.</div>
       </div>
       <div style="padding:16px;background:var(--avorio);border-radius:14px;border:1px solid var(--champagne)">
         <div style="font-size:8px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--corallo);margin-bottom:10px">Freddo</div>
-        <div style="font-family:'Fraunces',serif;font-weight:500;font-size:15px;color:var(--cacao);margin-bottom:6px">Cappotto oversize</div>
-        <div style="font-size:11px;color:var(--tortora);line-height:1.55">Cacao, tortora o turchese desaturato. Pantalone champagne sotto. Stivali semplici.</div>
+        <div id="sc-freddo-title" style="font-family:'Fraunces',serif;font-weight:500;font-size:15px;color:var(--cacao);margin-bottom:6px">Cappotto oversize</div>
+        <div id="sc-freddo-text" style="font-size:11px;color:var(--tortora);line-height:1.55">Cacao o tortora, lino pesante o lana. Pantalone champagne sotto. Stivali semplici.</div>
       </div>
     </div>
     <div class="note" style="margin-top:20px"><b>Non indossa mai:</b> fast fashion con logo visibile, colori saturi o freddi brillanti, sportswear fuori contesto, tacchi alti, gioielli vistosi, più di un accessorio per volta.</div>
@@ -1473,6 +1473,54 @@ e.g. "Io sono finta. <span class="v">[questo]</span> no."</div>
   }, { rootMargin: '-50px 0px -60% 0px', threshold: 0 });
 
   sections.forEach(s => obs.observe(s));
+})();
+
+// ── ARMADIO CAROUSEL CARDS ──
+(function(){
+  const track = document.getElementById('stile-track');
+  if(!track) return;
+  const data = [
+    {
+      mattinaTitle:'Lino e cotone', mattinaText:'Pantalone largo sabbia, top avorio o bianco. Sandali piatti o piedi scalzi. Tazza in mano.',
+      giornoTitle:'Abito midi', giornoText:'Champagne o beige caldo, leggermente oversize. Maniche corte o senza. Nessun accessorio.',
+      seraTitle:'Slip dress seta', seraText:'Avorio o champagne, midi, spalline sottili. Un solo braccialetto sottile. Nient\'altro.',
+      freddoTitle:'Cappotto oversize', freddoText:'Cacao o tortora, lino pesante o lana. Pantalone champagne sotto. Stivali semplici.'
+    },
+    {
+      mattinaTitle:'Lino pesca', mattinaText:'Pantalone largo albicocca, top peach. Sandali piatti. Leggero, estivo — questa è la palette dell\'estate.',
+      giornoTitle:'Abito rosa antico', giornoText:'Rosa pallido o albicocca, fluido. Spalle scoperte o manica corta. Caldo e morbido.',
+      seraTitle:'Slip dress rosa', seraText:'Rosa antico o albicocca. L\'unica palette che porta il corallo come accento — rarissimo.',
+      freddoTitle:'Non stagione', freddoText:'Questa palette è per estate e primavera. In autunno e inverno torna ai neutri caldi.'
+    },
+    {
+      mattinaTitle:'Lino salvia', mattinaText:'Pantalone largo salvia, top pistacchio o avorio. Il contrasto con la pelle calda è il punto.',
+      giornoTitle:'Abito acqua', giornoText:'Turchese desaturato o acqua pallido, quasi neutro. Midi, minimale. Indossato raramente.',
+      seraTitle:'Slip dress acqua', seraText:'Acqua pallido, quasi neutro. Il freddo più elegante — indossato una volta su dieci.',
+      freddoTitle:'Cappotto turchese', freddoText:'Turchese molto desaturato, quasi grigio-verde. Con parsimonia — il freddo incontra il freddo.'
+    }
+  ];
+  function update(idx){
+    const d = data[idx];
+    const cards = document.getElementById('stile-cards');
+    if(!cards) return;
+    cards.style.opacity = '0';
+    setTimeout(()=>{
+      document.getElementById('sc-mattina-title').textContent = d.mattinaTitle;
+      document.getElementById('sc-mattina-text').textContent = d.mattinaText;
+      document.getElementById('sc-giorno-title').textContent = d.giornoTitle;
+      document.getElementById('sc-giorno-text').textContent = d.giornoText;
+      document.getElementById('sc-sera-title').textContent = d.seraTitle;
+      document.getElementById('sc-sera-text').textContent = d.seraText;
+      document.getElementById('sc-freddo-title').textContent = d.freddoTitle;
+      document.getElementById('sc-freddo-text').textContent = d.freddoText;
+      cards.style.opacity = '1';
+    }, 180);
+  }
+  let last = 0;
+  track.addEventListener('scroll', ()=>{
+    const idx = Math.round(track.scrollLeft / track.offsetWidth);
+    if(idx !== last){ last = idx; update(idx); }
+  }, {passive:true});
 })();
 </script>
 
