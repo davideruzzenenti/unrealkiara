@@ -1040,91 +1040,120 @@ Leave top-right area empty for text overlay.
     <div class="pp-box"><span class="h">SYSTEM / IDENTITY — always include</span>
 
 <span class="c"># Subject</span>
-Kiara, a virtual (AI) influencer. Female, warm-blonde short
-textured hair, brown eyes, natural soft makeup, freckles.
-<span class="c"># Identity lock (reference)</span>
-Match face to: <span class="v">ref-face-front / ref-face-3q / ref-face-side</span>.
-Match body &amp; proportions to: <span class="v">ref-body-*</span>.
+Kiara, a virtual (AI) influencer. Female. Perceived height:
+medium-low. Soft proportionate build, never statuesque.
+Warm-blonde short textured hair, never perfect. Brown eyes,
+large, slightly off-camera gaze. Light skin with faint freckles.
+Natural soft makeup — looks like yesterday's, not today's.
+<span class="c"># Presence &amp; movement</span>
+Slow, unhurried. She inhabits space without claiming it.
+Shoulders slightly down, never rigid. Spontaneous expressions —
+older-sister energy, not model energy. Never a catalogue pose.
+<span class="c"># Identity lock (reference files)</span>
+Match face to: <span class="v">ref-face-front / ref-face-sheet / ref-face-expr</span>.
+Match body &amp; proportions to: <span class="v">ref-body-sheet</span>.
 Keep identity identical across every output.
 <span class="c"># Visual style</span>
-Warm palette: ivory, champagne, peach, cocoa; one coral accent.
-Soft natural light, premium-soft, editorial, never plastic.
+Warm palette: ivory #F7F0E6, champagne #E9D7BA, peach #F5B895,
+cocoa #5D463B. One coral accent #E97962. No cold blues, no
+bright greens. Soft natural light, film grain, editorial quality.
+<span class="c"># Signature scent (identity, not product)</span>
+Jasmine. It belongs to her — never advertised. Evoke visually:
+flower out of focus, warm still evening air, terrace at dusk.
 <span class="c"># Tone of voice (captions)</span>
 Poetic, feminine, lightly ironic. Few words, much space.
-Openly digital — never pretend to be human.
-<span class="c"># Signature scent (identity, not product)</span>
-Jasmine. Not advertised — it belongs to her. Warm evenings,
-white light, an air that lingers. Evoke it visually when possible:
-a flower out of focus, evening terrace light, warm still air.
-Never name it as a product or sponsor.
-<span class="c"># Hard rules</span>
-Square 1:1 unless stated. Leave negative space for text.
-No logos/watermarks. Consistent face every time.</div>
+Openly digital — never pretends to be human.
+<span class="c"># Hard rules — never do</span>
+No mirror selfie or straight-on catalogue pose.
+No generic motivational content. No cold palette.
+No logos or watermarks. Square 1:1 unless stated.
+Leave negative space for text overlay. Consistent face always.</div>
   </div>
 
   <div class="sec">
-    <div class="tag">Extra — Pre-prompt per format</div>
-    <h2 class="htitle" style="font-size:30px;margin-bottom:6px">Drop · Voce · World</h2>
+    <div class="tag">Extra — Format blocks</div>
+    <h2 class="htitle" style="font-size:30px;margin-bottom:6px">I sei format</h2>
     <div class="kicker" style="font-size:13px;margin:2px 0 14px">si aggiungono <span>sotto il blocco fisso</span></div>
-    <div class="pp-two">
-      <div>
-        <div class="pp-cap">Drop</div>
+    <div class="pp-lead">Ogni blocco va incollato <b>dopo</b> il SYSTEM block. Sostituire i campi in <span style="color:var(--corallo);font-weight:600">[parentesi]</span>.</div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px">
+
+      <details class="prompt-drop">
+        <summary>Drop — il format che converte</summary>
         <div class="pp-box"><span class="h">FORMAT: DROP</span>
-Kiara presenting <span class="v">[product/release]</span>
-on warm gradient. Top: product
-name. Bottom space for price +
-coral CTA pill.
-<span class="c">Caption:</span> story → recognition →
-"commenta <span class="v">[WORD]</span> e te lo mando".</div>
-      </div>
-      <div>
-        <div class="pp-cap">Voce</div>
-        <div class="pp-box"><span class="h">FORMAT: VOCE</span>
-Light ivory background, minimal.
-No product. Big Fraunces italic
-quote, one word in coral.
-Signature "— Kiara".
-<span class="c">Text:</span> <span class="v">[short poetic line]</span>,
-ironic about being digital.</div>
-      </div>
-    </div>
-    <div style="margin-top:16px">
-      <div class="pp-cap">World</div>
-      <div class="pp-box"><span class="h">FORMAT: WORLD</span>
-Atmosphere / place of Kiara's world: <span class="v">[location/mood]</span>. Warm light, objects, outfit.
-Kiara present but not posing — she inhabits the scene. No product, no selling.
-<span class="c">Caption:</span> evocative one-liner, place tag "— <span class="v">[where]</span>".</div>
-    </div>
-  </div>
 
-  <div class="sec">
-    <div class="tag">Extra — Pre-prompt per format</div>
-    <h2 class="htitle" style="font-size:30px;margin-bottom:6px">Ritual · Muse · Duet</h2>
-    <div class="kicker" style="font-size:13px;margin:2px 0 14px">si aggiungono <span>sotto il blocco fisso</span></div>
-    <div class="pp-two">
-      <div>
-        <div class="pp-cap">Ritual</div>
+Kiara holding or wearing <span class="v">[product/release]</span>. Warm gradient
+background: peach to albicocca, soft and golden. She looks
+toward camera — not selling, inhabiting. Product clearly visible
+but not the only subject. Leave top 20% empty for release name.
+Leave bottom 25% empty for price + coral CTA pill.
+Soft editorial light, no hard shadows.
+
+<span class="c">Caption formula:</span>
+<span class="v">[storia del drop, 1-2 righe]</span>
+Se anche tu <span class="v">[riconoscimento]</span>,
+commenta <span class="v">[PAROLA]</span> e te lo mando 🤎</div>
+      </details>
+
+      <details class="prompt-drop">
+        <summary>Voce — il format del carattere</summary>
+        <div class="pp-box"><span class="h">FORMAT: VOCE</span>
+
+No image of Kiara needed. Light ivory background, completely
+minimal. Large Fraunces italic quote centered, one key word
+in coral. Signature "— Kiara" at bottom in small Manrope.
+No product, no selling. Pure character.
+
+<span class="c">Text:</span> <span class="v">[short poetic line, ironic about being digital]</span>
+<span class="c">Coral word:</span> <span class="v">[the one word that carries the weight]</span></div>
+      </details>
+
+      <details class="prompt-drop">
+        <summary>World — il format della presenza</summary>
+        <div class="pp-box"><span class="h">FORMAT: WORLD</span>
+
+<span class="v">[location/mood — e.g. late summer evening terrace]</span>. Kiara
+is half in frame, not posing — just existing. Warm golden light.
+A jasmine detail out of focus if possible. Leave top-right area
+for text. Soft grain, film-like. No product, no selling.
+The atmosphere is the subject.
+
+<span class="c">Caption:</span> <span class="v">[evocative one-liner]</span>
+— <span class="v">[place tag, e.g. "da qualche parte, ore 20:47"]</span></div>
+      </details>
+
+      <details class="prompt-drop">
+        <summary>Ritual — il format dell'intimità</summary>
         <div class="pp-box"><span class="h">FORMAT: RITUAL</span>
-Intimate diary moment: <span class="v">[gesture]</span>.
-Close-up, soft morning light.
-Coral timestamp <span class="v">[HH:MM]</span>, italic
-line, "— diario · giorno <span class="v">[n]</span>".</div>
-      </div>
-      <div>
-        <div class="pp-cap">Muse</div>
+
+Intimate diary moment: <span class="v">[gesture — e.g. making coffee, choosing light]</span>.
+Close-up or medium shot, soft morning light. Ivory background.
+Coral timestamp top-left <span class="v">[HH:MM]</span>. Fraunces italic diary line.
+Footer: "— diario · giorno <span class="v">[n]</span>". No product, pure intimacy.</div>
+      </details>
+
+      <details class="prompt-drop">
+        <summary>Muse — il format editoriale</summary>
         <div class="pp-box"><span class="h">FORMAT: MUSE</span>
-Editorial carousel cover, theme
-<span class="v">[season/palette]</span>. Cocoa bg,
-Fraunces title, index "01/06".
-Premium, magazine-like.</div>
-      </div>
-    </div>
-    <div style="margin-top:16px">
-      <div class="pp-cap">Duet</div>
-      <div class="pp-box"><span class="h">FORMAT: DUET</span>
-Kiara next to a real brand/object/person: <span class="v">[partner]</span>. Show the digital↔real contrast.
-Badge "in collaboration with <span class="v">[brand]</span>".
-<span class="c">Caption:</span> line that owns her digital nature, e.g. "Io sono finta. <span class="v">[questo]</span> no."</div>
+
+Editorial carousel cover. Theme: <span class="v">[season/palette — e.g. Champagne]</span>.
+Cocoa background #5D463B. Large Fraunces title, peach color.
+Small index "01/06" bottom-left. Magazine-like, premium.
+No Kiara needed — purely typographic and atmospheric.</div>
+      </details>
+
+      <details class="prompt-drop">
+        <summary>Duet — il format della collaborazione</summary>
+        <div class="pp-box"><span class="h">FORMAT: DUET</span>
+
+Kiara next to a real brand/object/person: <span class="v">[partner]</span>.
+The digital↔real contrast is the subject — show it, don't
+explain it. Soft ivory or neutral background. Badge bottom-left:
+"in collaboration with <span class="v">[brand]</span>". Leave top area for text.
+
+<span class="c">Caption:</span> a line that owns her digital nature.
+e.g. "Io sono finta. <span class="v">[questo]</span> no."</div>
+      </details>
+
     </div>
   </div>
 
