@@ -718,15 +718,61 @@ details.prompt-drop .pp-box{border-radius:0;margin:0;font-size:10.5px}
     <div class="tmpl-grid">
 
       <div class="tmpl-card">
-        <div class="post drop">
-          <div class="lbl">Drop</div>
-          <div class="t">Champagne<br>Edit</div>
-          <div class="d">Release digitale · sei pose esclusive in luce dorata.</div>
-          <div class="row"><div class="price">€39</div><div class="cta">Disponibile ora →</div></div>
+        <div class="post drop" style="background:none;padding:0;overflow:hidden;position:relative;aspect-ratio:1;max-height:none">
+          <img src="img/ref-drop-01.png" alt="Drop post" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:16px">
+          <div style="position:absolute;inset:0;border-radius:16px;background:linear-gradient(to bottom, rgba(93,70,59,.55) 0%, transparent 35%, transparent 55%, rgba(93,70,59,.7) 100%)"></div>
+          <div style="position:absolute;top:13px;left:14px;font-size:8px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:rgba(255,248,238,.6)">Drop</div>
+          <div style="position:absolute;top:18px;right:0;left:0;text-align:center;padding:0 20px">
+            <div style="font-family:'Fraunces',serif;font-weight:500;font-size:26px;line-height:1.1;color:var(--panna)">Sera.<br><span style="font-size:14px;letter-spacing:.18em;font-style:italic;opacity:.8">Vol. 01</span></div>
+          </div>
+          <div style="position:absolute;bottom:20px;left:20px;right:20px;display:flex;align-items:center;justify-content:space-between">
+            <div style="font-family:'Fraunces',serif;font-weight:600;font-size:22px;color:var(--panna)">€29</div>
+            <div style="background:var(--corallo);color:var(--panna);font-weight:700;font-size:11px;padding:8px 16px;border-radius:30px;letter-spacing:.02em">Disponibile ora →</div>
+          </div>
         </div>
         <div>
           <div class="tmpl-name">Drop <span style="font-size:11px;font-family:'Manrope';font-weight:700;color:var(--corallo);letter-spacing:.08em">· 06</span></div>
           <div class="tmpl-desc">Il format che <b>converte</b>. Nome release in alto, promessa estetica al centro, prezzo + CTA corallo in basso. L'unico dove il corallo compare con forza — segna l'azione.</div>
+          <details class="prompt-drop">
+            <summary>Prompt usato</summary>
+            <div class="pp-box"><span class="h">SYSTEM / IDENTITY — always include</span>
+
+<span class="c"># Subject</span>
+Kiara, a virtual (AI) influencer. Female, warm-blonde short
+textured hair, brown eyes, natural soft makeup, freckles.
+<span class="c"># Identity lock (reference)</span>
+Match face to: <span class="v">ref-face-front / ref-face-sheet / ref-face-expr</span>.
+Match body &amp; proportions to: <span class="v">ref-body-sheet</span>.
+Keep identity identical across every output.
+<span class="c"># Visual style</span>
+Warm palette: ivory, champagne, peach, cocoa; one coral accent.
+Soft natural light, premium-soft, editorial, never plastic.
+<span class="c"># Signature scent (identity, not product)</span>
+Jasmine. Evoke it visually when possible: a flower out of focus,
+evening terrace light, warm still air. Never name it as a product.
+<span class="c"># Tone of voice (captions)</span>
+Poetic, feminine, lightly ironic. Few words, much space.
+Openly digital — never pretend to be human.
+<span class="c"># Hard rules</span>
+Square 1:1 unless stated. Leave negative space for text.
+No logos/watermarks. Consistent face every time.
+
+<span class="h">FORMAT: DROP</span>
+
+Kiara holding or wearing [PRODOTTO]. Warm gradient background:
+peach to albicocca, soft and golden. She looks toward camera,
+expression natural — not selling, inhabiting. Product clearly
+visible but not the only subject. Leave top 20% empty for
+product name text overlay. Leave bottom 25% empty for price
+and coral CTA pill. Soft editorial light, no hard shadows.
+
+<span class="c">Release:</span> <span class="v">Sera. Vol. 01</span>
+<span class="c">Price:</span> <span class="v">€29</span>
+<span class="c">CTA:</span> <span class="v">Disponibile ora →</span>
+<span class="c">Caption:</span> L'ho immaginata alle sei di sera, quando la luce
+non decide ancora se restare. Se anche tu collezioni ore
+più che cose — commenta <span class="v">SERA</span> e te lo mando 🤎</div>
+          </details>
         </div>
       </div>
 
