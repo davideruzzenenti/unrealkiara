@@ -240,6 +240,13 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
 .asset .foot{font-size:10px;color:var(--tortora);margin-top:10px;line-height:1.5;border-left:2px solid var(--corallo);padding-left:10px}
 .asset .foot b{color:var(--corallo)}
 
+/* ── PROMPT DETAILS ── */
+details.prompt-drop{margin-top:12px;border-radius:10px;overflow:hidden;border:1px solid var(--champagne)}
+details.prompt-drop summary{font-size:9px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--tortora);padding:9px 14px;cursor:pointer;user-select:none;list-style:none;display:flex;align-items:center;gap:8px;background:var(--avorio)}
+details.prompt-drop summary::-webkit-details-marker{display:none}
+details.prompt-drop summary::before{content:"▶";font-size:7px;color:var(--corallo);transition:.2s}
+details.prompt-drop[open] summary::before{transform:rotate(90deg)}
+details.prompt-drop .pp-box{border-radius:0;margin:0;font-size:10.5px}
 /* ── PRE-PROMPT ── */
 .pp-lead{font-size:12.5px;color:var(--tortora);line-height:1.55;margin-bottom:16px;max-width:820px}
 .pp-lead b{color:var(--cacao);font-weight:600}
@@ -748,6 +755,20 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);-web
         <div>
           <div class="tmpl-name">World <span style="font-size:11px;font-family:'Manrope';font-weight:700;color:var(--tortora);letter-spacing:.08em">· 08</span></div>
           <div class="tmpl-desc">Il format della <b>presenza</b>. Luoghi, atmosfere, oggetti, outfit. Non vende — costruisce l'universo estetico in cui i Drop hanno senso. Il format che rende desiderabile tutto il resto.</div>
+          <details class="prompt-drop">
+            <summary>Prompt usato</summary>
+            <div class="pp-box"><span class="h">FORMAT: WORLD</span>
+
+Late summer evening terrace. Kiara is half in frame, leaning
+on a railing, looking slightly off camera — not posing, just
+existing. Warm golden light, almost gone. A jasmine plant
+slightly out of focus in the foreground. Table with a glass,
+nothing else. Soft grain, film-like quality. No product, no
+selling. The atmosphere is the subject.
+
+<span class="c">Caption:</span> <span class="v">"certe sere esistono solo per essere respirate."</span>
+— da qualche parte, ore 20:47</div>
+          </details>
         </div>
       </div>
 
