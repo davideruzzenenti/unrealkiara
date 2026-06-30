@@ -924,82 +924,91 @@ Leave top-right area empty for text overlay.
   <div class="sec">
     <div class="tag">Carousel in azione · Sera Vol. 01</div>
     <h2 class="htitle" style="font-size:28px;margin-bottom:6px">Un carousel completo</h2>
-    <div class="kicker" style="font-size:13px;margin:2px 0 16px">SEI SLIDE <span>un solo post</span>.</div>
-    <p style="font-size:13px;color:var(--tortora);line-height:1.65;max-width:720px;margin-bottom:24px">Esempio reale del carousel <b style="color:var(--cacao)">Sera Vol. 01</b>. Cover editoriale + atmosfera + intimità + mood + voce + conversione. Le slide 01 e 05 sono tipografiche — nessuna immagine generata. Le restanti usano i ref file.</p>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+    <div class="kicker" style="font-size:13px;margin:2px 0 16px">CINQUE SLIDE <span>un solo post</span>.</div>
+    <p style="font-size:13px;color:var(--tortora);line-height:1.65;max-width:720px;margin-bottom:24px">Esempio reale del carousel <b style="color:var(--cacao)">Sera Vol. 01</b>. Scorri le slide con le frecce o trascinando. Le slide 01 e 05 sono tipografiche — nessuna generazione. Le restanti usano i ref file.</p>
 
-      <!-- 01 cover -->
-      <div style="display:flex;flex-direction:column;gap:10px">
-        <div style="aspect-ratio:1;border-radius:14px;background:var(--cacao);display:flex;flex-direction:column;justify-content:space-between;padding:20px;position:relative;overflow:hidden">
-          <div style="font-size:8px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:rgba(255,248,238,.4)">Muse · 01/06</div>
-          <div>
-            <div style="font-family:'Fraunces',serif;font-weight:500;font-size:28px;line-height:1.05;color:var(--pesca)">Sera.</div>
-            <div style="font-size:11px;letter-spacing:.22em;font-style:italic;color:var(--miele);margin-top:4px">Vol. 01</div>
+    <div style="max-width:420px;margin:0 auto">
+      <div style="position:relative">
+        <!-- track -->
+        <div id="sera-track" style="display:flex;overflow-x:scroll;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:16px;-webkit-overflow-scrolling:touch">
+          <style>#sera-track::-webkit-scrollbar{display:none}</style>
+
+          <!-- 01 cover -->
+          <div style="flex:0 0 100%;scroll-snap-align:start;aspect-ratio:1;background:var(--cacao);display:flex;flex-direction:column;justify-content:space-between;padding:22px;position:relative;box-sizing:border-box">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div style="font-size:8px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:rgba(255,248,238,.4)">Muse</div>
+              <div style="font-size:9px;font-weight:700;color:rgba(255,248,238,.35)">1 / 6</div>
+            </div>
+            <div>
+              <div style="font-family:'Fraunces',serif;font-weight:500;font-size:42px;line-height:1;color:var(--pesca)">Sera.</div>
+              <div style="font-size:12px;letter-spacing:.22em;font-style:italic;color:var(--miele);margin-top:6px">Vol. 01</div>
+            </div>
+            <div style="font-size:8px;color:rgba(255,248,238,.2);letter-spacing:.1em;text-transform:uppercase">Stagione · Estate</div>
           </div>
-          <div style="font-size:8px;color:rgba(255,248,238,.25);letter-spacing:.1em;text-transform:uppercase">Stagione · Estate</div>
-        </div>
-        <div style="font-size:10px;color:var(--tortora);line-height:1.5"><b style="color:var(--cacao)">Cover</b> — tipografica CSS, nessuna generazione</div>
-      </div>
 
-      <!-- 02 world -->
-      <div style="display:flex;flex-direction:column;gap:10px">
-        <div style="aspect-ratio:1;border-radius:14px;overflow:hidden;position:relative">
-          <img src="img/ref-world-01.png" style="width:100%;height:100%;object-fit:cover;display:block">
-          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(93,70,59,.65) 0%,transparent 55%)"></div>
-          <div style="position:absolute;top:10px;left:12px;font-size:8px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:rgba(255,248,238,.5)">World · 02/06</div>
-          <div style="position:absolute;bottom:14px;left:14px;right:14px;font-family:'Fraunces',serif;font-style:italic;font-size:14px;color:var(--panna);line-height:1.3">certe sere esistono solo per essere respirate.</div>
-        </div>
-        <div style="font-size:10px;color:var(--tortora);line-height:1.5"><b style="color:var(--cacao)">Atmosfera</b> — ref-world-01.png</div>
-      </div>
-
-      <!-- 03 ritual -->
-      <div style="display:flex;flex-direction:column;gap:10px">
-        <div style="aspect-ratio:1;border-radius:14px;overflow:hidden;position:relative">
-          <img src="img/ref-sera-03.png" style="width:100%;height:100%;object-fit:cover;display:block">
-          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(93,70,59,.55) 0%,transparent 50%)"></div>
-          <div style="position:absolute;top:10px;left:12px;font-size:8px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:rgba(255,248,238,.5)">Ritual · 03/06</div>
-          <div style="position:absolute;bottom:14px;left:14px;font-size:11px;color:rgba(255,248,238,.7);font-weight:700;letter-spacing:.08em">19:52</div>
-        </div>
-        <div style="font-size:10px;color:var(--tortora);line-height:1.5"><b style="color:var(--cacao)">Intimità</b> — ref-sera-03.png</div>
-      </div>
-
-      <!-- 04 drop mood -->
-      <div style="display:flex;flex-direction:column;gap:10px">
-        <div style="aspect-ratio:1;border-radius:14px;overflow:hidden;position:relative">
-          <img src="img/ref-drop-01.png" style="width:100%;height:100%;object-fit:cover;display:block">
-          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(93,70,59,.55) 0%,transparent 50%)"></div>
-          <div style="position:absolute;top:10px;left:12px;font-size:8px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:rgba(255,248,238,.5)">Drop · 04/06</div>
-        </div>
-        <div style="font-size:10px;color:var(--tortora);line-height:1.5"><b style="color:var(--cacao)">Mood drop</b> — ref-drop-01.png</div>
-      </div>
-
-      <!-- 05 voce -->
-      <div style="display:flex;flex-direction:column;gap:10px">
-        <div style="aspect-ratio:1;border-radius:14px;background:var(--panna);display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:24px;position:relative">
-          <div style="font-size:8px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--tortora);margin-bottom:16px">Voce · 05/06</div>
-          <div style="font-family:'Fraunces',serif;font-style:italic;font-size:20px;line-height:1.25;color:var(--cacao)">Sono fatta di <span style="color:var(--corallo)">pixel</span>.<br>Il caldo sulla pelle no —<br>quello è tuo.</div>
-          <div style="font-size:10px;color:var(--tortora);font-weight:500;margin-top:16px">— Kiara</div>
-        </div>
-        <div style="font-size:10px;color:var(--tortora);line-height:1.5"><b style="color:var(--cacao)">Voce</b> — tipografica CSS, nessuna generazione</div>
-      </div>
-
-      <!-- 06 drop CTA -->
-      <div style="display:flex;flex-direction:column;gap:10px">
-        <div style="aspect-ratio:1;border-radius:14px;overflow:hidden;position:relative">
-          <img src="img/ref-drop-01.png" style="width:100%;height:100%;object-fit:cover;display:block">
-          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(93,70,59,.6) 0%,transparent 35%,transparent 50%,rgba(93,70,59,.75) 100%)"></div>
-          <div style="position:absolute;top:14px;left:0;right:0;text-align:center">
-            <div style="font-family:'Fraunces',serif;font-weight:500;font-size:20px;color:var(--panna)">Sera. <span style="font-size:11px;font-style:italic;opacity:.8">Vol. 01</span></div>
+          <!-- 02 world -->
+          <div style="flex:0 0 100%;scroll-snap-align:start;aspect-ratio:1;position:relative;overflow:hidden;box-sizing:border-box">
+            <img src="img/ref-world-01.png" style="width:100%;height:100%;object-fit:cover;display:block">
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(93,70,59,.7) 0%,transparent 55%)"></div>
+            <div style="position:absolute;top:12px;left:14px;right:14px;display:flex;justify-content:space-between">
+              <div style="font-size:8px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:rgba(255,248,238,.5)">World</div>
+              <div style="font-size:9px;font-weight:700;color:rgba(255,248,238,.35)">2 / 6</div>
+            </div>
+            <div style="position:absolute;bottom:18px;left:18px;right:18px;font-family:'Fraunces',serif;font-style:italic;font-size:18px;color:var(--panna);line-height:1.3">certe sere esistono<br>solo per essere respirate.</div>
           </div>
-          <div style="position:absolute;top:10px;left:12px;font-size:8px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:rgba(255,248,238,.5)">Drop · 06/06</div>
-          <div style="position:absolute;bottom:14px;left:14px;right:14px;display:flex;align-items:center;justify-content:space-between">
-            <div style="font-family:'Fraunces',serif;font-weight:600;font-size:18px;color:var(--panna)">€29</div>
-            <div style="background:var(--corallo);color:var(--panna);font-weight:700;font-size:10px;padding:6px 13px;border-radius:30px">commenta SERA →</div>
+
+          <!-- 03 ritual -->
+          <div style="flex:0 0 100%;scroll-snap-align:start;aspect-ratio:1;position:relative;overflow:hidden;box-sizing:border-box">
+            <img src="img/ref-sera-03.png" style="width:100%;height:100%;object-fit:cover;display:block">
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(93,70,59,.55) 0%,transparent 50%)"></div>
+            <div style="position:absolute;top:12px;left:14px;right:14px;display:flex;justify-content:space-between">
+              <div style="font-size:8px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:rgba(255,248,238,.5)">Ritual</div>
+              <div style="font-size:9px;font-weight:700;color:rgba(255,248,238,.35)">3 / 6</div>
+            </div>
+            <div style="position:absolute;bottom:18px;left:18px;font-size:13px;color:rgba(255,248,238,.75);font-weight:700;letter-spacing:.1em">19:52</div>
+          </div>
+
+          <!-- 04 voce -->
+          <div style="flex:0 0 100%;scroll-snap-align:start;aspect-ratio:1;background:var(--panna);display:flex;flex-direction:column;justify-content:center;padding:28px;position:relative;box-sizing:border-box">
+            <div style="position:absolute;top:12px;left:14px;right:14px;display:flex;justify-content:space-between">
+              <div style="font-size:8px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--tortora)">Voce</div>
+              <div style="font-size:9px;font-weight:700;color:var(--champagne)">4 / 5</div>
+            </div>
+            <div style="font-family:'Fraunces',serif;font-style:italic;font-size:24px;line-height:1.3;color:var(--cacao)">Sono fatta di <span style="color:var(--corallo)">pixel</span>.<br>Il caldo sulla pelle no —<br>quello è tuo.</div>
+            <div style="font-size:11px;color:var(--tortora);font-weight:500;margin-top:18px">— Kiara</div>
+          </div>
+
+          <!-- 05 drop CTA -->
+          <div style="flex:0 0 100%;scroll-snap-align:start;aspect-ratio:1;position:relative;overflow:hidden;box-sizing:border-box">
+            <img src="img/ref-drop-01.png" style="width:100%;height:100%;object-fit:cover;display:block">
+            <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(93,70,59,.65) 0%,transparent 40%,transparent 52%,rgba(93,70,59,.8) 100%)"></div>
+            <div style="position:absolute;top:12px;left:14px;right:14px;display:flex;justify-content:space-between;align-items:center">
+              <div style="font-size:8px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:rgba(255,248,238,.5)">Drop</div>
+              <div style="font-size:9px;font-weight:700;color:rgba(255,248,238,.35)">5 / 5</div>
+            </div>
+            <div style="position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center">
+              <div style="font-family:'Fraunces',serif;font-weight:500;font-size:28px;color:var(--panna);text-align:center">Sera.<br><span style="font-size:13px;font-style:italic;opacity:.75">Vol. 01</span></div>
+            </div>
+            <div style="position:absolute;bottom:18px;left:18px;right:18px;display:flex;align-items:center;justify-content:space-between">
+              <div style="font-family:'Fraunces',serif;font-weight:600;font-size:22px;color:var(--panna)">€29</div>
+              <div style="background:var(--corallo);color:var(--panna);font-weight:700;font-size:11px;padding:8px 16px;border-radius:30px">commenta SERA →</div>
+            </div>
           </div>
         </div>
-        <div style="font-size:10px;color:var(--tortora);line-height:1.5"><b style="color:var(--cacao)">Conversione</b> — ref-drop-01.png + overlay</div>
+
+        <!-- frecce -->
+        <button onclick="document.getElementById('sera-track').scrollBy({left:-420,behavior:'smooth'})" style="position:absolute;left:-18px;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:var(--panna);border:1px solid var(--champagne);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(93,70,59,.15)">‹</button>
+        <button onclick="document.getElementById('sera-track').scrollBy({left:420,behavior:'smooth'})" style="position:absolute;right:-18px;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:var(--panna);border:1px solid var(--champagne);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(93,70,59,.15)">›</button>
       </div>
 
+      <!-- dots -->
+      <div id="sera-dots" style="display:flex;justify-content:center;gap:6px;margin-top:14px">
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--cacao)"></div>
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--champagne)"></div>
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--champagne)"></div>
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--champagne)"></div>
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--champagne)"></div>
+      </div>
     </div>
   </div>
 
