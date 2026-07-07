@@ -1,0 +1,158 @@
+{
+  "name": "Kiara Image Generator",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "n01-trigger",
+      "name": "▶ Genera 25 Immagini",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [160, 400]
+    },
+    {
+      "parameters": {
+        "jsCode": "// ─── CONFIGURAZIONE ───────────────────────────────────\n// Cambia il percorso della cartella dove salvare le immagini:\nconst OUTPUT_FOLDER = 'C:/Users/arzig/OneDrive/Desktop/unrealkiara/img/generated';\n\n// Modello Replicate (flux-schnell = veloce/economico | flux-dev = più qualità)\nconst MODEL = 'black-forest-labs/flux-schnell';\n// ──────────────────────────────────────────────────────\n\nconst BASE = 'young Italian woman, minimalist fashion, warm tones ivory peach champagne sand, soft natural light, photorealistic, editorial fashion photography, Italian aesthetic, intimate mood, square format 1:1';\n\nconst prompts = [\n  // ── RITUAL (mattina, domestico) ──\n  { pillar:'ritual', slug:'morning-window',    prompt: `${BASE}, in ivory linen pajama set, holding white ceramic coffee cup, standing by large window, sheer curtains, warm morning light filtering, Italian apartment interior, soft grain` },\n  { pillar:'ritual', slug:'coffee-hands',      prompt: `${BASE}, close-up of hands wrapped around ceramic mug, steaming coffee, wooden table, ivory linen cloth, morning light, warm peach tones, detail shot` },\n  { pillar:'ritual', slug:'white-sheets',      prompt: `${BASE}, lying in white cotton sheets, peach morning light, bare shoulder, relaxed reading, Italian apartment, warm minimal interior` },\n  { pillar:'ritual', slug:'barefoot-floor',    prompt: `${BASE}, barefoot on warm wooden floor, ivory interior, soft morning sun rays, minimal decor, lifestyle photography` },\n  { pillar:'ritual', slug:'mirror-gaze',       prompt: `${BASE}, facing mirror in minimal ivory bathroom, soft warm steam, calm expression, morning ritual, no make-up natural skin` },\n\n  // ── WORLD (luoghi, momenti) ──\n  { pillar:'world',  slug:'cobblestone-walk',  prompt: `${BASE}, walking on cobblestone street, wide-leg linen trousers sand color, tucked ivory blouse, warm afternoon, Milan Italy, blurred ochre background, candid editorial` },\n  { pillar:'world',  slug:'cafe-outdoor',      prompt: `${BASE}, sitting at marble outdoor cafe table, peach midi dress, cappuccino, dappled sunlight, Italian summer, candid lifestyle` },\n  { pillar:'world',  slug:'ochre-wall',        prompt: `${BASE}, leaning against warm ochre wall, golden hour light, simple cream linen outfit, shadow play, Italian city street` },\n  { pillar:'world',  slug:'olive-trees',       prompt: `${BASE}, standing among olive trees, ivory and sage green linen dress, Mediterranean afternoon light, dreamy soft focus background` },\n  { pillar:'world',  slug:'train-window',      prompt: `${BASE}, looking out of train window, soft motion blur outside, warm interior light, champagne outfit, contemplative expression` },\n  { pillar:'world',  slug:'flower-market',     prompt: `${BASE}, at outdoor flower market, ivory outfit, touching fresh peach flowers, warm natural light, candid lifestyle, Italian market` },\n  { pillar:'world',  slug:'rooftop-sunset',    prompt: `${BASE}, on rooftop terrace at golden hour, flowing champagne dress, Italian city skyline soft focus, warm sunset light` },\n\n  // ── ARMADIO (outfit, moda) ──\n  { pillar:'outfit', slug:'linen-sand-set',    prompt: `${BASE}, full length, wide-leg sand linen trousers, tucked ivory fitted top, minimal gold jewelry, clean warm studio, even soft light, editorial fashion` },\n  { pillar:'outfit', slug:'slip-dress-champ',  prompt: `${BASE}, champagne slip dress midi length, spaghetti straps, natural window light, minimal white interior, soft shadows, editorial` },\n  { pillar:'outfit', slug:'cacao-blazer',      prompt: `${BASE}, oversized cacao brown blazer, ivory blouse underneath, against warm beige stone wall, editorial fashion` },\n  { pillar:'outfit', slug:'all-cream-layers',  prompt: `${BASE}, layered all-cream outfit, linen and cotton textures, movement, warm diffused studio light, clean background` },\n  { pillar:'outfit', slug:'peach-trousers',    prompt: `${BASE}, peach fitted top, wide albicocca orange high-waist trousers, outdoor movement shot, hair flowing, warm afternoon light` },\n  { pillar:'outfit', slug:'ivory-coat-winter', prompt: `${BASE}, long ivory wool coat, winter editorial, stone architecture background, elegant minimal, cold clear day` },\n  { pillar:'outfit', slug:'white-linen-dress', prompt: `${BASE}, simple white linen dress, sun-drenched outdoor, relaxed natural pose, warm afternoon, lifestyle editorial` },\n  { pillar:'outfit', slug:'rust-knit-autumn',  prompt: `${BASE}, rust terracotta knit sweater, Italian countryside, golden autumn light, relaxed fashion editorial` },\n\n  // ── MUSE / EDITORIALE ──\n  { pillar:'muse',   slug:'studio-editorial',  prompt: `${BASE}, minimalist studio, ivory background, avant-garde relaxed pose, fashion editorial, Vogue Italia aesthetic, high fashion` },\n  { pillar:'muse',   slug:'beauty-portrait',   prompt: `${BASE}, close-up portrait, bare skin, minimal makeup, warm side light, editorial beauty, natural Italian aesthetic, intimate` },\n  { pillar:'muse',   slug:'fabric-shadow',     prompt: `${BASE}, artistic fashion shot, strong shadow play on ivory fabric, graphic composition, editorial mood, minimal` },\n\n  // ── SFONDI / TEXTURE (per Voce e Drop) ──\n  { pillar:'texture',slug:'flatlay-ivory',     prompt: `flat lay, ivory linen fabric, champagne silk, small pearl earring, ceramic object, warm morning light, editorial product photography, overhead, no person, square format` },\n  { pillar:'texture',slug:'warm-abstract',     prompt: `abstract warm background, ivory peach cream tones, soft shadows, no people, minimal texture, perfect text overlay background, editorial aesthetic, square format` }\n];\n\nreturn prompts.map((p, i) => ({ json: {\n  index:         i + 1,\n  total:         prompts.length,\n  pillar:        p.pillar,\n  slug:          p.slug,\n  prompt:        p.prompt,\n  filename:      `kiara-${p.pillar}-${p.slug}.webp`,\n  outputFolder:  OUTPUT_FOLDER,\n  model:         MODEL\n}}));"
+      },
+      "id": "n02-prompts",
+      "name": "Prompt List (25)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [380, 400]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "n03-loop",
+      "name": "Loop",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [600, 400]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.replicate.com/v1/models/{{ $json.model }}/predictions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Prefer",       "value": "wait" },
+            { "name": "Content-Type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"input\": {\n    \"prompt\": \"{{ $json.prompt }}\",\n    \"aspect_ratio\": \"1:1\",\n    \"output_format\": \"webp\",\n    \"output_quality\": 90,\n    \"num_outputs\": 1\n  }\n}",
+        "options": {
+          "timeout": 60000,
+          "response": {
+            "response": {
+              "neverError": false
+            }
+          }
+        }
+      },
+      "id": "n04-generate",
+      "name": "Generate Image (Replicate)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [820, 300],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "replicate-token",
+          "name": "Replicate API Token"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const res     = $input.first().json;\nconst meta    = $('Loop').first().json;\n\nif(res.status !== 'succeeded' || !res.output || !res.output[0]){\n  throw new Error(`Replicate error [${meta.slug}]: status=${res.status} | ${res.error || 'no output'}`);\n}\n\nreturn [{ json: {\n  ...meta,\n  imageUrl: res.output[0],\n  predictionId: res.id\n}}];"
+      },
+      "id": "n05-extract",
+      "name": "Extract Image URL",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1040, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $json.imageUrl }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "id": "n06-download",
+      "name": "Download Image",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1260, 300]
+    },
+    {
+      "parameters": {
+        "fileName": "={{ $('Extract Image URL').first().json.outputFolder }}/{{ $('Extract Image URL').first().json.filename }}",
+        "dataPropertyName": "data",
+        "options": {}
+      },
+      "id": "n07-save",
+      "name": "Save to Folder",
+      "type": "n8n-nodes-base.writeBinaryFile",
+      "typeVersion": 1,
+      "position": [1480, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Tutte le 25 immagini generate con successo\nconst total = $('Prompt List (25)').all().length;\nreturn [{ json: {\n  status: 'done',\n  message: `✅ ${total} immagini Kiara generate e salvate.`,\n  folder: $('Prompt List (25)').first().json.outputFolder\n}}];"
+      },
+      "id": "n08-done",
+      "name": "Done",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [820, 540]
+    }
+  ],
+  "connections": {
+    "▶ Genera 25 Immagini": {
+      "main": [[{ "node": "Prompt List (25)", "type": "main", "index": 0 }]]
+    },
+    "Prompt List (25)": {
+      "main": [[{ "node": "Loop", "type": "main", "index": 0 }]]
+    },
+    "Loop": {
+      "main": [
+        [{ "node": "Generate Image (Replicate)", "type": "main", "index": 0 }],
+        [{ "node": "Done", "type": "main", "index": 0 }]
+      ]
+    },
+    "Generate Image (Replicate)": {
+      "main": [[{ "node": "Extract Image URL", "type": "main", "index": 0 }]]
+    },
+    "Extract Image URL": {
+      "main": [[{ "node": "Download Image", "type": "main", "index": 0 }]]
+    },
+    "Download Image": {
+      "main": [[{ "node": "Save to Folder", "type": "main", "index": 0 }]]
+    },
+    "Save to Folder": {
+      "main": [[{ "node": "Loop", "type": "main", "index": 0 }]]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": ""
+  },
+  "id": "kiara-imagegen-v1",
+  "meta": {
+    "templateCredsSetupCompleted": false
+  }
+}
