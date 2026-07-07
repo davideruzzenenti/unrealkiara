@@ -65,24 +65,39 @@ async function generateImage(scene, isTexture = false) {
     ? `${scene}, ${STYLE}`
     : `${IDENTITY}, ${scene}, ${STYLE}`;
 
-  const input = {
-    prompt,
-    aspect_ratio:   '1:1',
-    output_format:  'webp',
-    output_quality: 90,
-    num_outputs:    1
-  };
-
-  if (!isTexture && refImageBase64) {
-    input.image           = refImageBase64;
-    input.prompt_strength = 0.72;
-  }
-
   console.error(`[Kiara MCP] → Replicate: "${scene.substring(0,60)}..."`);
 
-  const res = await fetch(
-    'https://api.replicate.com/v1/models/black-forest-labs/flux-dev/predictions',
-    {
+  let url, input, res;
+
+  if (!isTexture && refImageBase64) {
+    // PuLID Flux — preserva identità del viso dalla reference image
+    url = 'https://api.replicate.com/v1/models/zsxkib/pulid-flux/predictions';
+    input = {
+      prompt,
+      main_face_image: refImageBase64,
+      num_steps:       20,
+      start_step:      0,
+      guidance_scale:  4.0,
+      true_cfg:        1.0,
+      id_weight:       1.0,   // aumenta (max 3.0) per più fedeltà al viso
+      width:           1024,
+      height:          1024,
+      output_format:   'webp',
+      output_quality:  90
+    };
+  } else {
+    // Texture/sfondi — Flux Schnell senza reference
+    url = 'https://api.replicate.com/v1/models/black-forest-labs/flux-schnell/predictions';
+    input = {
+      prompt,
+      aspect_ratio:   '1:1',
+      output_format:  'webp',
+      output_quality: 90,
+      num_outputs:    1
+    };
+  }
+
+  res = await fetch(url, {
       method:  'POST',
       headers: {
         'Authorization': `Token ${token}`,
@@ -90,8 +105,7 @@ async function generateImage(scene, isTexture = false) {
         'Prefer':        'wait'
       },
       body: JSON.stringify({ input })
-    }
-  );
+    });
 
   const result = await res.json();
   if (result.status !== 'succeeded' || !result.output?.[0]) {
