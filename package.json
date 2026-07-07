@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "express": "^4.19.0",
-    "puppeteer": "^22.0.0"
+    "puppeteer": "^22.0.0",
+    "@modelcontextprotocol/sdk": "^1.0.0"
   }
 }

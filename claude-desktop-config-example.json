@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "kiara": {
+      "command": "node",
+      "args": ["C:/Users/arzig/OneDrive/Desktop/unrealkiara/kiara-mcp-server.js"],
+      "env": {
+        "REPLICATE_API_TOKEN": "r8_INSERISCI_IL_TUO_TOKEN_QUI"
+      }
+    }
+  }
+}
