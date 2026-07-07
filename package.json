@@ -1,0 +1,13 @@
+{
+  "name": "kiara-creator-api",
+  "version": "1.0.0",
+  "description": "Kiara Post Rendering API",
+  "main": "creator-server.js",
+  "scripts": {
+    "start": "node creator-server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.0",
+    "puppeteer": "^22.0.0"
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "name": "Kiara Post Creator",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "kiara-post",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000001",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "webhookId": "kiara-post-creator"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Build the Claude prompt based on format + topic\nconst body = $input.first().json.body || $input.first().json;\nconst format = body.format || 'voce';\nconst topic  = body.topic  || 'autunno';\nconst slides = parseInt(body.slides || 1); // for carousel: how many slides\nconst imageBase64 = body.imageBase64 || null;\n\nconst formatDefs = {\n  voce:  '{ quote (max 20 parole, poetico), coral (1 parola chiave), sig: \"Kiara\", bg: \"light\"|\"dark\" }',\n  muse:  '{ title (1-2 parole con punto), vol (es. \"Vol. 02\"), season (es. \"Stagione · Autunno\"), idx (es. \"01 / 06\") }',\n  world: '{ caption (2-3 righe poetiche, newline con \\\\n), place (es. \"Milano, ore 19:30\") }',\n  drop:  '{ release (nome prodotto), price (es. \"€39\"), cta (1 parola) }',\n  ritual:'{ time (es. \"08:14\"), diary (1-2 righe di diario, newline con \\\\n), day (es. \"042\") }',\n  duet:  '{ caption (2-3 righe poetiche brevi, newline con \\\\n), brand (nome brand partner) }'\n};\n\nconst needsImage = ['world','drop','ritual','duet'].includes(format);\nconst isCarousel = slides > 1;\n\nconst systemPrompt = `Sei il content strategist di Kiara, una virtual influencer italiana di moda minimalista.\nKiara parla italiano con una voce poetica e intima — tra il diario e la moda concettuale.\nPalette: avorio, pesca, cacao, corallo. Mai troppo.\n\nRispondi SOLO con JSON valido, nessun testo extra.`;\n\nlet userPrompt;\nif(isCarousel){\n  userPrompt = `Genera un carosello di ${slides} slide per il format \"${format}\" sul tema: ${topic}.\nCampi richiesti per ogni slide: ${formatDefs[format] || '{}'}\n${needsImage ? 'Includi midjourney_prompt per ogni slide (immagine coerente col tema, photorealistic, moody warm tones).' : ''}\n\nSchema risposta (array di ${slides} oggetti):\n[\n  {\n    \"slide\": 1,\n    \"format\": \"${format}\",\n    \"fields\": { ...campi specifici... },\n    ${needsImage ? '\"midjourney_prompt\": \"...\",' : '\"midjourney_prompt\": null,'}\n    \"instagram_caption\": \"...\",\n    \"hashtags\": [\"#tag\"]\n  }\n]`;\n} else {\n  userPrompt = `Genera il contenuto per un singolo post format \"${format}\" sul tema: ${topic}.\nCampi richiesti: ${formatDefs[format] || '{}'}\n${needsImage ? 'Includi midjourney_prompt per l\\'immagine di sfondo (photorealistic, moody warm tones, fashion editorial).' : ''}\n\nSchema risposta:\n{\n  \"format\": \"${format}\",\n  \"fields\": { ...campi specifici... },\n  ${needsImage ? '\"midjourney_prompt\": \"...\",' : '\"midjourney_prompt\": null,'}\n  \"instagram_caption\": \"...\",\n  \"hashtags\": [\"#tag\"]\n}`;\n}\n\nreturn [{ json: {\n  format, topic, slides, isCarousel, needsImage, imageBase64,\n  systemPrompt, userPrompt\n}}];"
+      },
+      "id": "a1b2c3d4-0002-0002-0002-000000000002",
+      "name": "Build Prompt",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "anthropic-version", "value": "2023-06-01" },
+            { "name": "content-type",      "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"claude-haiku-4-5-20251001\",\n  \"max_tokens\": 1024,\n  \"system\": \"{{ $json.systemPrompt }}\",\n  \"messages\": [{ \"role\": \"user\", \"content\": \"{{ $json.userPrompt }}\" }]\n}",
+        "options": {}
+      },
+      "id": "a1b2c3d4-0003-0003-0003-000000000003",
+      "name": "Claude — Genera Contenuto",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [680, 300],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "anthropic-key",
+          "name": "Anthropic API Key"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse Claude response and build render request(s)\nconst prev    = $('Build Prompt').first().json;\nconst claude  = $input.first().json;\nconst rawText = claude.content[0].text.trim();\n\nlet parsed;\ntry {\n  // Strip markdown code fences if present\n  const clean = rawText.replace(/^```json\\n?|^```\\n?|```$/gm, '').trim();\n  parsed = JSON.parse(clean);\n} catch(e) {\n  throw new Error('Claude non ha restituito JSON valido: ' + rawText.substring(0,200));\n}\n\nconst imageBase64 = prev.imageBase64 || null;\n\nif(prev.isCarousel && Array.isArray(parsed)){\n  // Carousel: return each slide as a separate item\n  return parsed.map(slide => ({ json: {\n    isCarousel:       true,\n    totalSlides:      parsed.length,\n    slide:            slide.slide,\n    format:           slide.format,\n    fields:           slide.fields,\n    imageBase64:      imageBase64,\n    mj_prompt:        slide.midjourney_prompt || null,\n    instagram_caption:slide.instagram_caption,\n    hashtags:         slide.hashtags || []\n  }}));\n} else {\n  // Single post\n  return [{ json: {\n    isCarousel:       false,\n    format:           parsed.format,\n    fields:           parsed.fields,\n    imageBase64:      imageBase64,\n    mj_prompt:        parsed.midjourney_prompt || null,\n    instagram_caption:parsed.instagram_caption,\n    hashtags:         parsed.hashtags || []\n  }}];\n}"
+      },
+      "id": "a1b2c3d4-0004-0004-0004-000000000004",
+      "name": "Parse Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=http://localhost:3031/render",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"format\": \"{{ $json.format }}\",\n  \"fields\": {{ JSON.stringify($json.fields) }},\n  \"imageBase64\": {{ $json.imageBase64 ? JSON.stringify($json.imageBase64) : 'null' }}\n}",
+        "options": {
+          "timeout": 30000
+        }
+      },
+      "id": "a1b2c3d4-0005-0005-0005-000000000005",
+      "name": "Render PNG",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1120, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Merge rendered PNG with content metadata\nconst render  = $input.first().json;\nconst meta    = $('Parse Response').first().json;\n\nreturn [{ json: {\n  format:            meta.format,\n  slide:             meta.slide || null,\n  isCarousel:        meta.isCarousel,\n  png_base64:        render.png,\n  midjourney_prompt: meta.mj_prompt,\n  instagram_caption: meta.instagram_caption,\n  hashtags:          meta.hashtags,\n  fields:            meta.fields\n}}];"
+      },
+      "id": "a1b2c3d4-0006-0006-0006-000000000006",
+      "name": "Build Output",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1340, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json) }}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "id": "a1b2c3d4-0007-0007-0007-000000000007",
+      "name": "Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1560, 300]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [[{ "node": "Build Prompt", "type": "main", "index": 0 }]]
+    },
+    "Build Prompt": {
+      "main": [[{ "node": "Claude — Genera Contenuto", "type": "main", "index": 0 }]]
+    },
+    "Claude — Genera Contenuto": {
+      "main": [[{ "node": "Parse Response", "type": "main", "index": 0 }]]
+    },
+    "Parse Response": {
+      "main": [[{ "node": "Render PNG", "type": "main", "index": 0 }]]
+    },
+    "Render PNG": {
+      "main": [[{ "node": "Build Output", "type": "main", "index": 0 }]]
+    },
+    "Build Output": {
+      "main": [[{ "node": "Respond", "type": "main", "index": 0 }]]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "id": "kiara-post-creator-v1",
+  "meta": {
+    "templateCredsSetupCompleted": false,
+    "instanceId": "kiara"
+  }
+}
