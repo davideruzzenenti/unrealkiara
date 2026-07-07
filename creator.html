@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiara · Post Creator</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+:root{
+  --avorio:#F7F0E6;--panna:#FFF8EE;--champagne:#E9D7BA;--miele:#D8B88A;
+  --pesca:#F5B895;--albicocca:#F2A878;--corallo:#E97962;
+  --cacao:#5D463B;--tortora:#9A8171;--oro:#C8A45D;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);display:flex;flex-direction:column}
+
+/* ── TOPBAR ── */
+.topbar{background:var(--cacao);height:50px;display:flex;align-items:center;padding:0 28px;gap:0;flex-shrink:0;position:relative}
+.topbar .logo{font-family:'Fraunces',serif;font-style:italic;font-size:15px;color:var(--pesca);font-weight:500;text-decoration:none;letter-spacing:.01em;margin-right:24px}
+.topbar a{color:rgba(255,248,238,.4);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:5px 11px;border-radius:20px;transition:.15s}
+.topbar a:hover{color:var(--panna)}
+.topbar .page-title{position:absolute;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:rgba(255,248,238,.25)}
+
+/* ── MAIN ── */
+.main{display:flex;flex:1;overflow:hidden}
+
+/* ── CONTROLS ── */
+.controls{width:300px;flex-shrink:0;background:var(--avorio);border-right:1px solid var(--champagne);overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:16px}
+.controls::-webkit-scrollbar{width:3px}
+.controls::-webkit-scrollbar-thumb{background:var(--champagne);border-radius:2px}
+
+.sec-lbl{font-size:8px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--tortora);padding-bottom:8px;border-bottom:1px solid var(--champagne)}
+
+/* Format buttons */
+.fmt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
+.fmt-btn{padding:8px 4px;border:1.5px solid var(--champagne);border-radius:9px;background:transparent;color:var(--tortora);font-family:'Manrope',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:.15s}
+.fmt-btn:hover{border-color:var(--corallo);color:var(--cacao)}
+.fmt-btn.active{border-color:var(--corallo);background:var(--corallo);color:#fff}
+
+/* Fields */
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-size:8px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--tortora)}
+.field input,.field textarea,.field select{font-family:'Manrope',sans-serif;font-size:12px;color:var(--cacao);background:var(--panna);border:1.5px solid var(--champagne);border-radius:8px;padding:8px 10px;outline:none;resize:none;transition:border-color .15s;width:100%}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--corallo)}
+.field textarea{line-height:1.5}
+
+/* Upload */
+.upload-area{border:2px dashed var(--miele);border-radius:10px;padding:16px;text-align:center;cursor:pointer;transition:.15s;background:var(--panna);display:block}
+.upload-area:hover{border-color:var(--corallo)}
+.upload-area input{display:none}
+.upload-icon{font-size:22px;opacity:.35;display:block;margin-bottom:5px}
+.upload-lbl{font-size:9px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--tortora);display:block}
+.upload-sub{font-size:10px;color:var(--miele);margin-top:2px;display:block}
+
+/* ── PREVIEW PANEL ── */
+.preview-panel{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:32px;overflow:hidden}
+
+.preview-wrap{position:relative;flex-shrink:0}
+.preview-shadow{box-shadow:0 24px 64px rgba(93,70,59,.22);border-radius:3px;overflow:hidden}
+
+/* The actual post canvas — 1080px scaled down */
+#post{width:1080px;height:1080px;position:relative;overflow:hidden;font-family:'Manrope',sans-serif;transform-origin:top left}
+
+.dl-row{display:flex;flex-direction:column;align-items:center;gap:8px}
+.dl-btn{background:var(--corallo);color:#fff;border:none;border-radius:30px;padding:11px 28px;font-family:'Manrope',sans-serif;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:.15s;box-shadow:0 4px 16px rgba(233,121,98,.28)}
+.dl-btn:hover{opacity:.88;transform:translateY(-1px)}
+.dl-btn:active{transform:none}
+.dl-btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.dl-hint{font-size:10px;color:var(--tortora);text-align:center;line-height:1.55;max-width:260px}
+
+/* ── POST INNER STYLES (1080px space) ── */
+.post-tag{position:absolute;font-size:20px;letter-spacing:.22em;text-transform:uppercase;font-weight:700}
+.post-caption{font-family:'Fraunces',serif;font-style:italic}
+.post-badge{display:inline-block;border:1.5px solid rgba(255,248,238,.28);border-radius:40px;padding:10px 26px;font-size:20px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,248,238,.52)}
+.ov-top{position:absolute;top:0;left:0;right:0;pointer-events:none}
+.ov-bot{position:absolute;bottom:0;left:0;right:0;pointer-events:none}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="index.html" class="logo">Kiara</a>
+  <a href="index.html">← Deck</a>
+  <div class="page-title">Post Creator</div>
+</div>
+
+<div class="main">
+
+  <!-- ── CONTROLS ── -->
+  <div class="controls">
+
+    <div>
+      <div class="sec-lbl" style="margin-bottom:10px">Format</div>
+      <div class="fmt-grid">
+        <button class="fmt-btn active" data-fmt="voce">Voce</button>
+        <button class="fmt-btn" data-fmt="drop">Drop</button>
+        <button class="fmt-btn" data-fmt="muse">Muse</button>
+        <button class="fmt-btn" data-fmt="world">World</button>
+        <button class="fmt-btn" data-fmt="ritual">Ritual</button>
+        <button class="fmt-btn" data-fmt="duet">Duet</button>
+      </div>
+    </div>
+
+    <div id="fields"></div>
+
+  </div>
+
+  <!-- ── PREVIEW ── -->
+  <div class="preview-panel">
+    <div class="preview-wrap preview-shadow" id="preview-wrap">
+      <div id="post"></div>
+    </div>
+    <div class="dl-row">
+      <button class="dl-btn" id="dl-btn">Scarica PNG 1080 × 1080</button>
+      <div class="dl-hint">Per i format con immagine carica prima il file.<br>Attendi il caricamento dei font prima di scaricare.</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ─────────────────────────────────────────
+//  FORMAT DEFINITIONS
+// ─────────────────────────────────────────
+const FORMATS = {
+  voce: {
+    label:'Voce', img:false,
+    fields:[
+      {id:'quote', label:'Quote', type:'textarea', rows:4, ph:'Sono fatta di pixel. Il caldo sulla pelle no — quello è tuo.'},
+      {id:'coral', label:'Parola in corallo', type:'text', ph:'pixel'},
+      {id:'sig',   label:'Firma', type:'text', ph:'Kiara', def:'Kiara'},
+      {id:'bg',    label:'Sfondo', type:'select', opts:['Chiaro (avorio)','Scuro (cacao)']}
+    ]
+  },
+  drop: {
+    label:'Drop', img:true,
+    fields:[
+      {id:'release', label:'Nome release', type:'text', ph:'Sera Vol. 01'},
+      {id:'price',   label:'Prezzo', type:'text', ph:'€29'},
+      {id:'cta',     label:'Parola CTA', type:'text', ph:'SERA'}
+    ]
+  },
+  muse: {
+    label:'Muse', img:false,
+    fields:[
+      {id:'title',  label:'Titolo', type:'text', ph:'Sera.'},
+      {id:'vol',    label:'Volume', type:'text', ph:'Vol. 01'},
+      {id:'season', label:'Stagione / tema', type:'text', ph:'Stagione · Estate'},
+      {id:'idx',    label:'Indice slide', type:'text', ph:'01 / 06', def:'01 / 06'}
+    ]
+  },
+  world: {
+    label:'World', img:true,
+    fields:[
+      {id:'caption', label:'Caption', type:'textarea', rows:3, ph:'certe sere esistono\nsolo per essere respirate.'},
+      {id:'place',   label:'Luogo · ora', type:'text', ph:'da qualche parte, ore 20:47'}
+    ]
+  },
+  ritual: {
+    label:'Ritual', img:true,
+    fields:[
+      {id:'time',  label:'Timestamp', type:'text', ph:'07:22'},
+      {id:'diary', label:'Riga diario', type:'textarea', rows:3, ph:'Prima cosa: scelgo la luce del giorno. Anche se non mi tocca.'},
+      {id:'day',   label:'Giorno n.', type:'text', ph:'041'}
+    ]
+  },
+  duet: {
+    label:'Duet', img:true,
+    fields:[
+      {id:'caption', label:'Caption', type:'textarea', rows:3, ph:'Io sono finta.\nQuesto profumo no.'},
+      {id:'brand',   label:'Brand', type:'text', ph:'nome brand'}
+    ]
+  }
+};
+
+// ─────────────────────────────────────────
+//  STATE
+// ─────────────────────────────────────────
+let curFmt = 'voce';
+let imgData = null;
+const vals = {}; // { fmt: { fieldId: value } }
+
+function getV(id){ const el=document.getElementById('f-'+id); return el?el.value:''; }
+
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function br(s){ return esc(s).replace(/\n/g,'<br>'); }
+
+function markCoral(text, word){
+  if(!word||!word.trim()) return esc(text);
+  const w = esc(word.trim()).replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  return esc(text).replace(new RegExp('('+w+')','gi'),'<span style="color:#E97962">$1</span>');
+}
+
+// ─────────────────────────────────────────
+//  FIELDS RENDER
+// ─────────────────────────────────────────
+function renderFields(fmt){
+  const def = FORMATS[fmt];
+  const prev = vals[fmt] || {};
+  let h = '';
+
+  if(def.img){
+    h += `
+    <div class="sec-lbl" style="margin-bottom:10px">Immagine di sfondo</div>
+    <label class="upload-area" id="uplabel">
+      <input type="file" id="imgup" accept="image/*">
+      <span class="upload-icon">🖼</span>
+      <span class="upload-lbl" id="uplbl-text">Carica immagine</span>
+      <span class="upload-sub">JPG o PNG · foto generata da Midjourney</span>
+    </label>`;
+  }
+
+  h += `<div class="sec-lbl" style="margin-bottom:10px;margin-top:${def.img?4:0}px">Contenuto</div>`;
+
+  def.fields.forEach(f=>{
+    const v = prev[f.id]!==undefined ? prev[f.id] : (f.def||'');
+    h += `<div class="field"><label for="f-${f.id}">${f.label}</label>`;
+    if(f.type==='textarea'){
+      h += `<textarea id="f-${f.id}" rows="${f.rows||3}" placeholder="${f.ph}">${esc(v)}</textarea>`;
+    } else if(f.type==='select'){
+      h += `<select id="f-${f.id}">`;
+      f.opts.forEach((o,i)=>{ h+=`<option value="${i}"${v==i?' selected':''}>${o}</option>`; });
+      h += `</select>`;
+    } else {
+      h += `<input type="text" id="f-${f.id}" placeholder="${f.ph}" value="${esc(v)}">`;
+    }
+    h += `</div>`;
+  });
+
+  document.getElementById('fields').innerHTML = h;
+
+  // events
+  def.fields.forEach(f=>{
+    const el=document.getElementById('f-'+f.id);
+    if(el) el.addEventListener('input',()=>{ save(); draw(); });
+  });
+  if(def.img){
+    document.getElementById('imgup').addEventListener('change',e=>{
+      const file=e.target.files[0]; if(!file) return;
+      const r=new FileReader();
+      r.onload=ev=>{ imgData=ev.target.result; document.getElementById('uplbl-text').textContent=file.name; draw(); };
+      r.readAsDataURL(file);
+    });
+  }
+}
+
+function save(){
+  if(!vals[curFmt]) vals[curFmt]={};
+  FORMATS[curFmt].fields.forEach(f=>{
+    const el=document.getElementById('f-'+f.id);
+    if(el) vals[curFmt][f.id]=el.value;
+  });
+}
+
+// ─────────────────────────────────────────
+//  POST TEMPLATES (1080 × 1080)
+// ─────────────────────────────────────────
+function tmpl(){
+  const imgBg = imgData ? `background-image:url(${imgData});background-size:cover;background-position:center` : '';
+  const gradFb = 'background:linear-gradient(150deg,#F5B895,#F2A878)'; // fallback for image formats
+
+  switch(curFmt){
+
+    case 'voce': {
+      const quote = getV('quote') || 'Sono fatta di pixel. Il caldo sulla pelle no — quello è tuo.';
+      const coral = getV('coral');
+      const sig   = getV('sig') || 'Kiara';
+      const dark  = getV('bg') === '1';
+      const bg    = dark ? '#5D463B' : '#FFF8EE';
+      const fg    = dark ? '#FFF8EE' : '#5D463B';
+      const sub   = dark ? 'rgba(255,248,238,.32)' : 'rgba(93,70,59,.3)';
+      const tag   = dark ? 'rgba(255,248,238,.18)' : 'rgba(93,70,59,.15)';
+      return `
+        <div style="width:1080px;height:1080px;background:${bg};display:flex;flex-direction:column;justify-content:center;align-items:center;padding:120px;position:relative">
+          <div style="position:absolute;top:64px;left:72px;font-size:20px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:${tag}">Voce</div>
+          <div style="font-family:'Fraunces',serif;font-style:italic;font-size:62px;line-height:1.25;color:${fg};text-align:center;margin-bottom:56px">${markCoral(quote,coral)}</div>
+          <div style="font-size:24px;font-weight:500;color:${sub};letter-spacing:.08em">— ${esc(sig)}</div>
+        </div>`;
+    }
+
+    case 'muse': {
+      const title  = getV('title')  || 'Sera.';
+      const vol    = getV('vol')    || 'Vol. 01';
+      const season = getV('season') || 'Stagione · Estate';
+      const idx    = getV('idx')    || '01 / 06';
+      return `
+        <div style="width:1080px;height:1080px;background:#5D463B;display:flex;flex-direction:column;justify-content:space-between;padding:72px">
+          <div style="font-size:20px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:rgba(255,248,238,.18)">Muse</div>
+          <div>
+            <div style="font-family:'Fraunces',serif;font-weight:500;font-size:130px;line-height:.92;color:#F5B895">${esc(title)}</div>
+            <div style="font-family:'Fraunces',serif;font-style:italic;font-size:34px;color:#D8B88A;margin-top:26px">${esc(vol)}</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:flex-end">
+            <div style="font-size:19px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:rgba(255,248,238,.18)">${esc(season)}</div>
+            <div style="font-size:19px;font-weight:700;color:rgba(255,248,238,.18)">${esc(idx)}</div>
+          </div>
+        </div>`;
+    }
+
+    case 'world': {
+      const caption = getV('caption') || 'certe sere esistono\nsolo per essere respirate.';
+      const place   = getV('place')   || 'da qualche parte, ore 20:47';
+      const bg = imgData ? imgBg : 'background:#D8B88A';
+      return `
+        <div style="width:1080px;height:1080px;position:relative;overflow:hidden">
+          <div style="position:absolute;inset:0;${bg}"></div>
+          <div style="position:absolute;top:0;left:0;right:0;height:280px;background:linear-gradient(to bottom,rgba(93,70,59,.52),transparent)"></div>
+          <div style="position:absolute;bottom:0;left:0;right:0;height:440px;background:linear-gradient(to top,rgba(93,70,59,.82),transparent)"></div>
+          <div style="position:absolute;top:64px;left:72px;font-size:20px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:rgba(255,248,238,.55)">World</div>
+          <div style="position:absolute;bottom:92px;left:72px;right:72px;font-family:'Fraunces',serif;font-style:italic;font-size:56px;line-height:1.25;color:#FFF8EE">${br(caption)}</div>
+          <div style="position:absolute;bottom:50px;left:72px;font-size:20px;color:rgba(255,248,238,.48);font-weight:600;letter-spacing:.08em">${esc(place)}</div>
+        </div>`;
+    }
+
+    case 'drop': {
+      const release = getV('release') || 'Sera Vol. 01';
+      const price   = getV('price')   || '€29';
+      const cta     = getV('cta')     || 'SERA';
+      const bg = imgData ? imgBg : gradFb;
+      return `
+        <div style="width:1080px;height:1080px;position:relative;overflow:hidden">
+          <div style="position:absolute;inset:0;${bg}"></div>
+          <div style="position:absolute;top:0;left:0;right:0;height:290px;background:linear-gradient(to bottom,rgba(93,70,59,.44),transparent)"></div>
+          <div style="position:absolute;bottom:0;left:0;right:0;height:330px;background:linear-gradient(to top,rgba(93,70,59,.88),transparent)"></div>
+          <div style="position:absolute;top:64px;left:72px;font-size:20px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:rgba(255,248,238,.55)">Drop</div>
+          <div style="position:absolute;top:64px;right:72px;font-family:'Fraunces',serif;font-style:italic;font-size:28px;color:rgba(255,248,238,.65)">${esc(release)}</div>
+          <div style="position:absolute;bottom:64px;left:72px;right:72px;display:flex;align-items:center;justify-content:space-between">
+            <div style="font-family:'Fraunces',serif;font-weight:600;font-size:78px;color:#FFF8EE">${esc(price)}</div>
+            <div style="background:#E97962;color:#fff;font-weight:800;font-size:28px;padding:20px 44px;border-radius:60px;letter-spacing:.04em;white-space:nowrap">commenta ${esc(cta)} →</div>
+          </div>
+        </div>`;
+    }
+
+    case 'ritual': {
+      const time  = getV('time')  || '07:22';
+      const diary = getV('diary') || 'Prima cosa: scelgo la luce del giorno. Anche se non mi tocca.';
+      const day   = getV('day')   || '041';
+      const hasImg = !!imgData;
+      const bg = hasImg ? imgBg : 'background:#F7F0E6';
+      const ov = hasImg ? 'rgba(93,70,59,.3)' : 'rgba(93,70,59,.05)';
+      const tc = hasImg ? 'rgba(255,248,238,.88)' : '#5D463B';
+      const fc = hasImg ? 'rgba(255,248,238,.42)' : 'rgba(93,70,59,.38)';
+      return `
+        <div style="width:1080px;height:1080px;position:relative;overflow:hidden">
+          <div style="position:absolute;inset:0;${bg}"></div>
+          <div style="position:absolute;inset:0;background:${ov}"></div>
+          <div style="position:absolute;top:68px;left:72px;font-size:30px;font-weight:800;color:#E97962;letter-spacing:.1em">${esc(time)}</div>
+          <div style="position:absolute;bottom:96px;left:72px;right:72px;font-family:'Fraunces',serif;font-style:italic;font-size:44px;color:${tc};line-height:1.35">${br(diary)}</div>
+          <div style="position:absolute;bottom:52px;left:72px;font-size:22px;color:${fc};font-weight:600;letter-spacing:.1em">— diario · giorno ${esc(day)}</div>
+        </div>`;
+    }
+
+    case 'duet': {
+      const caption = getV('caption') || 'Io sono finta.\nQuesto profumo no.';
+      const brand   = getV('brand')   || 'brand name';
+      const bg = imgData ? imgBg : gradFb;
+      return `
+        <div style="width:1080px;height:1080px;position:relative;overflow:hidden">
+          <div style="position:absolute;inset:0;${bg}"></div>
+          <div style="position:absolute;bottom:0;left:0;right:0;height:480px;background:linear-gradient(to top,rgba(93,70,59,.82),transparent)"></div>
+          <div style="position:absolute;top:64px;left:72px;font-size:20px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:rgba(255,248,238,.55)">Duet</div>
+          <div style="position:absolute;bottom:128px;left:72px;right:72px;font-family:'Fraunces',serif;font-style:italic;font-size:52px;color:#FFF8EE;line-height:1.25">${br(caption)}</div>
+          <div style="position:absolute;bottom:64px;left:72px;display:inline-block;border:1.5px solid rgba(255,248,238,.28);border-radius:40px;padding:10px 26px;font-size:20px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,248,238,.5)">in collaboration with ${esc(brand)}</div>
+        </div>`;
+    }
+  }
+  return '';
+}
+
+// ─────────────────────────────────────────
+//  DRAW + SCALE
+// ─────────────────────────────────────────
+function calcScale(){
+  const panel = document.querySelector('.preview-panel');
+  const available = Math.min(panel.clientWidth - 64, panel.clientHeight - 120);
+  const size = Math.min(available, 560);
+  return { size, scale: size / 1080 };
+}
+
+function draw(){
+  document.getElementById('post').innerHTML = tmpl();
+  const {size, scale} = calcScale();
+  const post = document.getElementById('post');
+  const wrap = document.getElementById('preview-wrap');
+  post.style.transform = `scale(${scale})`;
+  wrap.style.width  = size + 'px';
+  wrap.style.height = size + 'px';
+}
+
+// ─────────────────────────────────────────
+//  DOWNLOAD
+// ─────────────────────────────────────────
+document.getElementById('dl-btn').addEventListener('click', async ()=>{
+  const btn = document.getElementById('dl-btn');
+  btn.disabled = true;
+  btn.textContent = 'Generazione…';
+  await document.fonts.ready;
+
+  // Temporarily remove the CSS transform so html2canvas sees full 1080px
+  const post = document.getElementById('post');
+  const prevTransform = post.style.transform;
+  post.style.transform = 'none';
+  post.style.position = 'fixed';
+  post.style.top = '-9999px';
+  post.style.left = '-9999px';
+  document.body.appendChild(post);
+
+  try {
+    const canvas = await html2canvas(post, {
+      scale: 1,
+      useCORS: true,
+      allowTaint: true,
+      width: 1080,
+      height: 1080,
+      logging: false,
+      backgroundColor: null
+    });
+    const link = document.createElement('a');
+    link.download = `kiara-${curFmt}-${Date.now()}.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  } catch(e){
+    alert('Errore generazione. Riprova.');
+    console.error(e);
+  }
+
+  // Restore
+  document.querySelector('.preview-wrap').appendChild(post);
+  post.style.transform = prevTransform;
+  post.style.position  = '';
+  post.style.top       = '';
+  post.style.left      = '';
+
+  btn.disabled = false;
+  btn.textContent = 'Scarica PNG 1080 × 1080';
+});
+
+// ─────────────────────────────────────────
+//  FORMAT SWITCH
+// ─────────────────────────────────────────
+document.querySelectorAll('.fmt-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    save();
+    document.querySelectorAll('.fmt-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    curFmt = btn.dataset.fmt;
+    imgData = null;
+    renderFields(curFmt);
+    draw();
+  });
+});
+
+window.addEventListener('resize', draw);
+
+// ─────────────────────────────────────────
+//  INIT
+// ─────────────────────────────────────────
+renderFields(curFmt);
+draw();
+</script>
+</body>
+</html>
