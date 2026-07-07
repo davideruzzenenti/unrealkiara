@@ -70,6 +70,12 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);disp
 .dl-btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
 .dl-hint{font-size:10px;color:var(--tortora);text-align:center;line-height:1.55;max-width:260px}
 
+/* ── FORMAT RECAP ── */
+.fmt-recap{background:var(--panna);border:1.5px solid var(--champagne);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:5px}
+.fmt-recap-name{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--corallo)}
+.fmt-recap-desc{font-size:11px;line-height:1.55;color:var(--cacao)}
+.fmt-recap-use{font-size:9px;letter-spacing:.06em;color:var(--tortora);font-style:italic;margin-top:1px}
+
 /* ── POST INNER STYLES (1080px space) ── */
 .post-tag{position:absolute;font-size:20px;letter-spacing:.22em;text-transform:uppercase;font-weight:700}
 .post-caption{font-family:'Fraunces',serif;font-style:italic}
@@ -103,6 +109,12 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);disp
       </div>
     </div>
 
+    <div class="fmt-recap" id="fmt-recap">
+      <div class="fmt-recap-name" id="recap-name"></div>
+      <div class="fmt-recap-desc" id="recap-desc"></div>
+      <div class="fmt-recap-use"  id="recap-use"></div>
+    </div>
+
     <div id="fields"></div>
 
   </div>
@@ -121,6 +133,26 @@ body{font-family:'Manrope',sans-serif;background:#E6DCCB;color:var(--cacao);disp
 </div>
 
 <script>
+// ─────────────────────────────────────────
+//  FORMAT RECAP DESCRIPTIONS
+// ─────────────────────────────────────────
+const RECAPS = {
+  voce:  { name:'Voce — Solo testo',    desc:'Una citazione, un pensiero, una frase identitaria di Kiara. Sfondo piatto avorio o cacao, grande tipografia Fraunces in corsivo. Nessuna immagine.', use:'Usalo per: aforismi, manifesto, frasi da condividere.' },
+  drop:  { name:'Drop — Lancio prodotto', desc:'Post di annuncio per una limited edition o collab. Immagine di sfondo (o gradiente pesca di default), prezzo ben visibile, CTA pill in corallo.', use:'Usalo per: nuove uscite, capsule collection, link-in-bio drop.' },
+  muse:  { name:'Muse — Copertina carosello', desc:'Prima slide di una serie tematica. Sfondo cacao scuro, titolo enorme in pesca, sottotitolo volume. Funziona da cover per caroselli editoriali.', use:'Usalo per: aprire una serie di outfit, una stagione, un archivio.' },
+  world: { name:'World — Foto con caption', desc:'Un\'immagine di sfondo (foto di Kiara o ambientazione) con una caption poetica sovrapposta e un\'indicazione di luogo. Gradient dal basso per leggibilità.', use:'Usalo per: momenti vissuti, luoghi, frammenti di vita (o di finzione).' },
+  ritual:{ name:'Ritual — Diario mattutino', desc:'Un timestamp in corallo, una riga di diario intima in Fraunces, il numero del giorno in basso. Con o senza foto di sfondo.', use:'Usalo per: routine quotidiana, la mattina di Kiara, contenuto sempre-verde.' },
+  duet:  { name:'Duet — Collaborazione', desc:'Post per partnership con un brand. Foto di sfondo, caption breve, badge con il nome del brand in basso a sinistra. Sovrapposizione scura e leggibile.', use:'Usalo per: co-creation, gifting, endorsement editoriale.' }
+};
+
+function updateRecap(fmt){
+  const r = RECAPS[fmt];
+  if(!r) return;
+  document.getElementById('recap-name').textContent = r.name;
+  document.getElementById('recap-desc').textContent = r.desc;
+  document.getElementById('recap-use').textContent  = r.use;
+}
+
 // ─────────────────────────────────────────
 //  FORMAT DEFINITIONS
 // ─────────────────────────────────────────
@@ -447,6 +479,7 @@ document.querySelectorAll('.fmt-btn').forEach(btn=>{
     btn.classList.add('active');
     curFmt = btn.dataset.fmt;
     imgData = null;
+    updateRecap(curFmt);
     renderFields(curFmt);
     draw();
   });
@@ -457,6 +490,7 @@ window.addEventListener('resize', draw);
 // ─────────────────────────────────────────
 //  INIT
 // ─────────────────────────────────────────
+updateRecap(curFmt);
 renderFields(curFmt);
 draw();
 </script>
