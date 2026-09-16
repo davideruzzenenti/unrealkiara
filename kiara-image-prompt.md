@@ -5,8 +5,19 @@ Blocco unico da incollare per generare un'immagine di Kiara. Allegare sempre
 angolazioni) e `img/ref-face-expr.png` (espressioni) — e, se lo scatto è a
 figura intera, anche `img/ref-body-sheet.png` (proporzioni corpo).
 
-Repo pubblico (usa questi link se lo strumento non accetta file locali, es.
-ChatGPT via URL):
+**Con ChatGPT**: un link incollato in chat non viene "visto" come immagine —
+allega i file direttamente (upload/drag&drop) dai percorsi locali qui sotto,
+non incollare un URL.
+
+Percorsi locali (drag&drop in ChatGPT):
+
+- Volto: `C:\Users\arzig\OneDrive\Desktop\unrealkiara\img\ref-face-front.jpg`
+- Volto multi-angolo: `C:\Users\arzig\OneDrive\Desktop\unrealkiara\img\ref-face-sheet.png`
+- Espressioni: `C:\Users\arzig\OneDrive\Desktop\unrealkiara\img\ref-face-expr.png`
+- Corpo: `C:\Users\arzig\OneDrive\Desktop\unrealkiara\img\ref-body-sheet.png`
+
+Link raw (repo pubblico) — utili per API/automazioni che scaricano da URL,
+non per ChatGPT via chat:
 
 - Volto: https://raw.githubusercontent.com/davideruzzenenti/unrealkiara/main/img/ref-face-front.jpg
 - Volto multi-angolo: https://raw.githubusercontent.com/davideruzzenenti/unrealkiara/main/img/ref-face-sheet.png
