@@ -29,14 +29,18 @@ const path = require('path');
 const PROJECT_DIR    = __dirname;
 const OUTPUT_DIR     = path.join(PROJECT_DIR, 'img', 'generated');
 const REF_IMAGE_PATH = path.join(PROJECT_DIR, 'img', 'ref-face-front.jpg');
+const REF_BODY_PATH  = path.join(PROJECT_DIR, 'img', 'ref-body-sheet.png');
 
 // ── IDENTITÀ FISSA DI KIARA (preposta a ogni prompt) ────────────────────
+// Verificata contro img/ref-face-front.jpg — vedi brand/identity.md
 const IDENTITY = [
   'Kiara',
-  'young Italian woman virtual fashion influencer',
-  'warm olive skin, dark chestnut hair flowing naturally',
-  'delicate feminine features, natural minimal makeup',
-  'slim elegant build, relaxed confident presence'
+  'virtual (AI) influencer, female',
+  'warm-blonde short textured hair, never perfect',
+  'brown eyes, large, slightly off-camera gaze',
+  'light skin with faint freckles, natural soft makeup',
+  'soft proportionate build, never statuesque',
+  'slow unhurried presence, older-sister energy, never a catalogue pose'
 ].join(', ');
 
 const STYLE = [
@@ -46,74 +50,110 @@ const STYLE = [
   'intimate diary mood, 1:1 square format'
 ].join(', ');
 
-// ── IMMAGINE DI RIFERIMENTO ─────────────────────────────────────────────
-let refImageBase64 = null;
-try {
-  const buf  = fs.readFileSync(REF_IMAGE_PATH);
-  refImageBase64 = `data:image/jpeg;base64,${buf.toString('base64')}`;
-  console.error('[Kiara MCP] Ref image loaded.');
-} catch(e) {
-  console.error('[Kiara MCP] Ref image not found — text-only mode:', e.message);
+// ── IMMAGINI DI RIFERIMENTO ──────────────────────────────────────────────
+// Caricate su Replicate Files API al primo uso (URL, non base64)
+let refImageUrl = null;
+let refBodyUrl  = null;
+
+async function uploadRefImage(token, filePath, filename, mimeType) {
+  if (!fs.existsSync(filePath)) return null;
+  console.error(`[Kiara MCP] Carico ${filename} su Replicate Files...`);
+
+  const buf  = fs.readFileSync(filePath);
+  const blob = new Blob([buf], { type: mimeType });
+  const form = new FormData();
+  form.append('content', blob, filename);
+
+  const res  = await fetch('https://api.replicate.com/v1/files', {
+    method:  'POST',
+    headers: { 'Authorization': `Token ${token}` },
+    body:    form
+  });
+  const data = await res.json();
+  const url  = data.urls?.get || null;
+  if (url) console.error(`[Kiara MCP] ${filename} URL: ${url}`);
+  else     console.error(`[Kiara MCP] Upload ${filename} fallito:`, JSON.stringify(data));
+  return url;
 }
 
-// ── REPLICATE: genera immagine ──────────────────────────────────────────
+// ── OPENAI GPT-IMAGE-2 via Replicate ───────────────────────────────────
 async function generateImage(scene, isTexture = false) {
   const token = process.env.REPLICATE_API_TOKEN;
   if (!token) throw new Error('REPLICATE_API_TOKEN non configurato nel file claude_desktop_config.json');
+
+  // Upload ref images la prima volta (poi usa URL cachati)
+  if (!isTexture && !refImageUrl) {
+    try { refImageUrl = await uploadRefImage(token, REF_IMAGE_PATH, 'ref-face-front.jpg', 'image/jpeg'); } catch(e) {
+      console.error('[Kiara MCP] Upload ref-face fallito, procedo senza:', e.message);
+    }
+  }
+  if (!isTexture && !refBodyUrl) {
+    try { refBodyUrl = await uploadRefImage(token, REF_BODY_PATH, 'ref-body-sheet.png', 'image/png'); } catch(e) {
+      console.error('[Kiara MCP] Upload ref-body fallito, procedo senza:', e.message);
+    }
+  }
 
   const prompt = isTexture
     ? `${scene}, ${STYLE}`
     : `${IDENTITY}, ${scene}, ${STYLE}`;
 
-  console.error(`[Kiara MCP] → Replicate: "${scene.substring(0,60)}..."`);
+  const input = {
+    prompt,
+    aspect_ratio:       '1:1',
+    output_format:      'webp',
+    number_of_images:   1,
+    quality:            'auto',
+    background:         'auto',
+    moderation:         'auto',
+    output_compression: 85
+  };
 
-  let url, input, res;
-
-  if (!isTexture && refImageBase64) {
-    // PuLID Flux — preserva identità del viso dalla reference image
-    url = 'https://api.replicate.com/v1/models/zsxkib/pulid-flux/predictions';
-    input = {
-      prompt,
-      main_face_image: refImageBase64,
-      num_steps:       20,
-      start_step:      0,
-      guidance_scale:  4.0,
-      true_cfg:        1.0,
-      id_weight:       1.0,   // aumenta (max 3.0) per più fedeltà al viso
-      width:           1024,
-      height:          1024,
-      output_format:   'webp',
-      output_quality:  90
-    };
-  } else {
-    // Texture/sfondi — Flux Schnell senza reference
-    url = 'https://api.replicate.com/v1/models/black-forest-labs/flux-schnell/predictions';
-    input = {
-      prompt,
-      aspect_ratio:   '1:1',
-      output_format:  'webp',
-      output_quality: 90,
-      num_outputs:    1
-    };
+  if (!isTexture) {
+    const refs = [refImageUrl, refBodyUrl].filter(Boolean);
+    if (refs.length) input.input_images = refs;
   }
 
-  res = await fetch(url, {
+  console.error(`[Kiara MCP] → gpt-image-2: "${scene.substring(0, 60)}..."`);
+
+  // Crea prediction (polling — gpt-image-2 impiega ~40s)
+  const createRes = await fetch(
+    'https://api.replicate.com/v1/models/openai/gpt-image-2/predictions',
+    {
       method:  'POST',
-      headers: {
-        'Authorization': `Token ${token}`,
-        'Content-Type':  'application/json',
-        'Prefer':        'wait'
-      },
-      body: JSON.stringify({ input })
-    });
+      headers: { 'Authorization': `Token ${token}`, 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ input })
+    }
+  );
 
-  const result = await res.json();
-  if (result.status !== 'succeeded' || !result.output?.[0]) {
-    throw new Error(`Replicate ${result.status}: ${JSON.stringify(result.error || 'no output')}`);
+  const prediction = await createRes.json();
+  if (!prediction.id) {
+    console.error('[Kiara MCP] Create error:', JSON.stringify(prediction, null, 2));
+    throw new Error(`Replicate create error: ${JSON.stringify(prediction)}`);
+  }
+  console.error(`[Kiara MCP] ⏳ Prediction ${prediction.id} — attendo...`);
+
+  // Polling max 3 minuti
+  let result;
+  for (let i = 0; i < 90; i++) {
+    await new Promise(r => setTimeout(r, 2000));
+    const pollRes = await fetch(`https://api.replicate.com/v1/predictions/${prediction.id}`, {
+      headers: { 'Authorization': `Token ${token}` }
+    });
+    result = await pollRes.json();
+    console.error(`[Kiara MCP] ... ${result.status}`);
+    if (['succeeded', 'failed', 'canceled'].includes(result.status)) break;
   }
 
-  console.error(`[Kiara MCP] ✓ ${result.output[0]}`);
-  return result.output[0];
+  if (result.status !== 'succeeded') {
+    console.error(`[Kiara MCP] FAIL:`, JSON.stringify(result, null, 2));
+    throw new Error(`Replicate ${result.status}: ${JSON.stringify(result.error || 'timeout/failed')}`);
+  }
+
+  const outputUrl = Array.isArray(result.output) ? result.output[0] : result.output;
+  if (!outputUrl) throw new Error(`Output vuoto: ${JSON.stringify(result)}`);
+
+  console.error(`[Kiara MCP] ✓ ${outputUrl}`);
+  return outputUrl;
 }
 
 async function downloadImage(url, filepath) {
