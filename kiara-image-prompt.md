@@ -5,6 +5,14 @@ Blocco unico da incollare per generare un'immagine di Kiara. Allegare sempre
 angolazioni) e `img/ref-face-expr.png` (espressioni) — e, se lo scatto è a
 figura intera, anche `img/ref-body-sheet.png` (proporzioni corpo).
 
+Repo pubblico (usa questi link se lo strumento non accetta file locali, es.
+ChatGPT via URL):
+
+- Volto: https://raw.githubusercontent.com/davideruzzenenti/unrealkiara/main/img/ref-face-front.jpg
+- Volto multi-angolo: https://raw.githubusercontent.com/davideruzzenenti/unrealkiara/main/img/ref-face-sheet.png
+- Espressioni: https://raw.githubusercontent.com/davideruzzenenti/unrealkiara/main/img/ref-face-expr.png
+- Corpo: https://raw.githubusercontent.com/davideruzzenenti/unrealkiara/main/img/ref-body-sheet.png
+
 ```
 Kiara, a virtual (AI) influencer. Female. Perceived height:
 medium-low. Soft proportionate build, never statuesque.
